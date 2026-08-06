@@ -1,0 +1,133 @@
+swagger: '2.0'
+info:
+  title: Armory Scale Agent Dynamic Accounts API
+  description: Armory-specific endpoints for retrieving Kubernetes accounts and namespaces handled by an Armory Scale Agent.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+basePath: /
+schemes:
+- https
+tags:
+- name: agent-accounts-controller
+paths:
+  /agents/kubernetes/accounts/{accountName}:
+    get:
+      tags:
+      - agent-accounts-controller
+      summary: Retrieve account by name if handled by armory agent
+      operationId: getAccountUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: accountName
+        in: path
+        description: accountName
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/KubesvcAccount'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /agents/kubernetes/accounts/{accountName}/namespaces:
+    get:
+      tags:
+      - agent-accounts-controller
+      summary: Retrieve namespaces by account name if handled by armory agent
+      operationId: getNamespacesUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: accountName
+        in: path
+        description: accountName
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  KubesvcAccount:
+    type: object
+    required:
+    - definition
+    - definitionAsString
+    - name
+    - permissions
+    - properties
+    - propertiesAsString
+    properties:
+      certFingerprint:
+        type: string
+      def:
+        type: string
+      definition:
+        type: object
+      definitionAsString:
+        type: string
+      dynamic:
+        type: boolean
+      errorMessage:
+        type: string
+      kubeHost:
+        type: string
+      kubeVersion:
+        type: string
+      lastUpdated:
+        type: integer
+        format: int64
+      maxWatchAgeSeconds:
+        type: integer
+        format: int64
+      name:
+        type: string
+      permissions:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      properties:
+        type: object
+      propertiesAsString:
+        type: string
+      props:
+        type: string
+      status:
+        type: string
+        enum:
+        - ACTIVATING
+        - ACTIVE
+        - DEACTIVATING
+        - FAILED
+        - INACTIVE
+        - TO_DEACTIVATE
+        - TO_MIGRATE
+        - ORPHANED
+      zoneId:
+        type: string
+    title: KubesvcAccount

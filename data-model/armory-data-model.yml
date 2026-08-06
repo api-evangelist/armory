@@ -1,0 +1,221 @@
+generated: '2026-08-06'
+method: derived
+source: openapi/_original/armory-scale-agent-swagger.json
+scope: Armory Scale Agent / Clouddriver REST surface
+note: >-
+  Derived from the 50 schema definitions and their $ref links plus the id-reference fields
+  (account/accountName, application, moniker.app, cluster) that the Springfox dump exposes. Armory
+  publishes no object reference and no id-prefix scheme, so no identifier conventions are asserted
+  here beyond what the schemas literally declare.
+identifier_conventions:
+  published: false
+  observed:
+  - entity: Task
+    field: id
+    type: string
+    note: Opaque. Correlates to the caller's clientRequestId through Task.requestId.
+  - entity: Account
+    field: name
+    note: Accounts are addressed by name throughout the API, not by a surrogate id.
+  - entity: Moniker
+    note: >-
+      Spinnaker's naming convention object (app / cluster / stack / detail / sequence) is embedded in
+      most infrastructure entities and is the real cross-entity naming key.
+entities:
+- name: Application
+  description: Top-level grouping in Spinnaker; owns clusters.
+  fields: [name, attributes, clusterNames]
+  operations: [listUsingGET, getUsingGET]
+- name: ApplicationViewModel
+  description: Expanded application projection returned when clusters are inlined.
+  fields: [name, attributes, clusters]
+- name: Cluster
+  description: A named grouping of server groups within one account.
+  fields: [name, accountName, type, moniker, serverGroups, loadBalancers]
+  operations: [listByAccountUsingGET, getForAccountUsingGET, getForAccountAndNameUsingGET, getForAccountAndNameAndTypeUsingGET]
+- name: ServerGroup
+  description: A deployed, versioned set of instances - the unit Spinnaker actually rolls.
+  fields: [name, region, type, cloudProvider, capacity, instanceCounts, instances, moniker, securityGroups, loadBalancers, serverGroupManagers, disabled, createdTime]
+  operations: [getServerGroupsUsingGET, getServerGroupUsingGET, getServerGroupByApplicationUsingGET, getTargetServerGroupUsingGET, getServerGroupSummaryUsingGET]
+- name: ServerGroupManager
+  description: Controller object (e.g. a Kubernetes Deployment) that manages server groups.
+  fields: [name, account, region, moniker, serverGroups]
+  operations: [getForApplicationUsingGET]
+- name: Instance
+  description: A single running instance inside a server group.
+  fields: [name, humanReadableName, cloudProvider, providerType, zone, health, healthState, labels, launchTime]
+  operations: [getInstanceUsingGET, getConsoleOutputUsingGET]
+- name: LoadBalancer
+  fields: [name, account, type, cloudProvider, moniker, serverGroups, labels]
+  operations: [listUsingGET_4]
+- name: SecurityGroup
+  fields: [id, name, accountName, application, region, cloudProvider, inboundRules, outboundRules, summary, moniker]
+  operations: [listUsingGET_8, listByAccountAndRegionUsingGET_1, listByAccountAndCloudProviderUsingGET, listByAccountAndCloudProviderAndNameUsingGET, getUsingGET_2]
+- name: KubesvcAccount
+  description: >-
+    The Armory-specific account object returned by the Scale Agent Dynamic Accounts endpoints. Carries
+    the Agent assignment state (zoneId, status, certFingerprint, lastUpdated) that no upstream
+    Clouddriver object has.
+  fields: [name, zoneId, status, definition, definitionAsString, properties, permissions, kubeHost, kubeVersion, certFingerprint, dynamic, lastUpdated, maxWatchAgeSeconds, errorMessage]
+  operations: [getAccountUsingGET, getNamespacesUsingGET]
+- name: CredentialsDefinition
+  description: Account credential record managed through the /credentials surface.
+  fields: [name]
+  operations: [listAccountCredentialsUsingGET, createAccountUsingPOST, updateAccountUsingPUT, deleteAccountUsingDELETE, getAccountCredentialsDetailsUsingGET, getAccountHistoryUsingGET, listAccountsByTypeUsingGET]
+- name: ArtifactCredentials
+  fields: [name, type, types]
+  operations: [listUsingGET_1]
+- name: Task
+  description: Async unit of work created by an /ops submission; polled to completion.
+  fields: [id, requestId, ownerId, status, history, resultObjects, sagaIds, retryable, startTimeMs]
+  operations: [listUsingGET_6, getUsingGET_1, resumeTaskUsingPOST]
+- name: Status
+  description: Phase/status pair carried on Task and in Task.history.
+  fields: [phase, status, completed, failed, retryable]
+- name: SagaId
+  fields: [id, name]
+- name: StartOperationResult
+  description: Returned by an /ops submission - the handle for polling.
+  fields: [id, resourceUri]
+- name: JobStatus
+  fields: [id, name, account, location, provider, jobState, createdTime, completedTime, completionDetails]
+  operations: [collectJobUsingGET, cancelJobUsingDELETE, getFileContentsUsingGET]
+- name: KubernetesRawResource
+  fields: [name, displayName, account, namespace, region, kind, apiVersion, moniker, labels, createdTime]
+  operations: [listUsingGET_7]
+- name: Function
+  fields: [account, region, cloudProvider]
+  operations: [listUsingGET_2]
+- name: Network
+  fields: [id, name, account, region, cloudProvider]
+  operations: [listUsingGET_5, listByCloudProviderUsingGET]
+- name: Subnet
+  fields: [id, type, purpose]
+  operations: [listUsingGET_10, listByCloudProviderUsingGET_1]
+- name: ElasticIp
+  fields: [address, accountName, region, type, attachedToId]
+  operations: [listByAccountAndRegionUsingGET]
+- name: InstanceType
+  fields: [name]
+  operations: [listUsingGET_3]
+- name: ReservationReport
+  operations: [getReservationReportsUsingGET, getReservationReportsByNameUsingGET]
+- name: AgentIntrospection
+  description: Caching-agent execution telemetry exposed by GET /cache/introspection.
+  fields: [id, provider, totalAdditions, totalEvictions, lastExecutionStartDate, lastExecutionDurationMs, lastError]
+  operations: [getAgentIntrospectionsUsingGET]
+- name: SearchResultSet
+  fields: [query, platform, pageNumber, pageSize, totalMatches, results]
+  operations: [searchUsingGET]
+- name: Moniker
+  description: Shared naming value object embedded across infrastructure entities.
+  fields: [app, cluster, stack, detail, sequence]
+relationships:
+- from: Application
+  to: Cluster
+  type: has_many
+  via: clusterNames / clusters
+- from: Cluster
+  to: ServerGroup
+  type: has_many
+  via: serverGroups
+- from: Cluster
+  to: LoadBalancer
+  type: has_many
+  via: loadBalancers
+- from: Cluster
+  to: Account
+  type: belongs_to
+  via: accountName
+- from: ServerGroup
+  to: Instance
+  type: has_many
+  via: instances
+- from: ServerGroup
+  to: SecurityGroup
+  type: has_many
+  via: securityGroups
+- from: ServerGroup
+  to: LoadBalancer
+  type: has_many
+  via: loadBalancers
+- from: ServerGroup
+  to: ServerGroupManager
+  type: has_many
+  via: serverGroupManagers
+- from: ServerGroup
+  to: Capacity
+  type: has_one
+  via: capacity
+- from: ServerGroup
+  to: InstanceCounts
+  type: has_one
+  via: instanceCounts
+- from: ServerGroup
+  to: Moniker
+  type: has_one
+  via: moniker
+- from: ServerGroupManager
+  to: ServerGroup
+  type: has_many
+  via: serverGroups
+- from: SecurityGroup
+  to: SecurityGroupSummary
+  type: has_one
+  via: summary
+- from: SecurityGroup
+  to: Rule
+  type: has_many
+  via: inboundRules / outboundRules
+- from: Task
+  to: Status
+  type: has_one
+  via: status
+- from: Task
+  to: Status
+  type: has_many
+  via: history
+- from: Task
+  to: SagaId
+  type: has_many
+  via: sagaIds
+- from: StartOperationResult
+  to: Task
+  type: has_one
+  via: id / resourceUri
+- from: KubesvcAccount
+  to: Agent
+  type: has_many
+  via: zoneId assignment
+- from: KubernetesRawResource
+  to: KubernetesKind
+  type: has_one
+  via: kind
+- from: KubernetesRawResource
+  to: KubernetesApiVersion
+  type: has_one
+  via: apiVersion
+- from: KubernetesApiVersion
+  to: KubernetesApiGroup
+  type: has_one
+  via: group
+- from: AgentIntrospection
+  to: Throwable
+  type: has_one
+  via: lastError
+- from: JobStatus
+  to: Account
+  type: belongs_to
+  via: account
+- from: LoadBalancer
+  to: ServerGroup
+  type: has_many
+  via: serverGroups
+spec_defects:
+  dangling_refs:
+  - '#/definitions/Map'
+  - '#/definitions/Set'
+  detail: >-
+    Both are referenced by the published Swagger but never defined in it - a Springfox generic-erasure
+    artefact present in the provider's own document, not introduced by this derivation. Named generic
+    definitions such as Map«string,Map» and Map«string,Set«SecurityGroupSummary»» do exist.

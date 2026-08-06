@@ -1,0 +1,103 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Armory Scale Agent API
+  version: 1.0.0
+x-provenance:
+  generated: '2026-08-06'
+  method: generated
+  source: openapi/_original/armory-scale-agent-swagger.json
+  note: >-
+    Enhancements API Evangelist would apply to the Armory-published Swagger 2.0 document. The
+    harvested original is never mutated. Every action below is a repair of a documented defect in the
+    provider's own contract, or a restatement of behaviour Armory documents in prose but omits from
+    the spec.
+extends: openapi/_original/armory-scale-agent-swagger.json
+actions:
+- target: $.info
+  description: >-
+    Name the actual product. The published document is titled "clouddriver" with contact
+    admin@host.net, which is Springfox boilerplate rather than an Armory identity.
+  update:
+    title: Armory Scale Agent API
+    x-apievangelist-provider: armory
+    x-apievangelist-source: https://docs.armory.io/reference/scale-agent/swagger.json
+    x-apievangelist-harvested: '2026-08-06'
+- target: $.host
+  description: >-
+    The document declares host localhost:7002, which is the developer default and not callable. The
+    docs describe reaching the surface at https://<clouddriver-loadbalancer-url>:<clouddriver-port>.
+    Self-hosted software has no vendor host, so the correct repair is to remove the misleading value
+    rather than substitute another one.
+  remove: true
+- target: $.definitions
+  description: >-
+    Supply the two definitions the published document references but never defines - #/definitions/Map
+    and #/definitions/Set - so the spec resolves. These are Springfox generic-erasure artefacts; the
+    shapes below are the only ones consistent with the Java types they erase.
+  update:
+    Map:
+      type: object
+      additionalProperties: true
+      title: Map
+      description: Untyped map emitted by Springfox generic erasure. Added by API Evangelist to close a dangling $ref in the published document.
+    Set:
+      type: array
+      uniqueItems: true
+      items:
+        type: object
+      title: Set
+      description: Untyped set emitted by Springfox generic erasure. Added by API Evangelist to close a dangling $ref in the published document.
+- target: $.securityDefinitions
+  description: >-
+    The document declares no security at all. Armory documents mutual TLS between the Agent and
+    Clouddriver and x509 client certificates on the Gate automation port, so the contract understates
+    its own requirements.
+  update:
+    mutualTLS:
+      type: basic
+      x-scheme: mutualTLS
+      description: >-
+        Client certificate authentication. Armory requires a CA certificate in PEM form plus a
+        certificate and PKCS#8 private key on the Agent side. See
+        https://docs.armory.io/plugins/scale-agent/tasks/configure-mtls/
+- target: $.paths['/ops'].post
+  description: Record the successor for the deprecated non-cloud-provider operations endpoint.
+  update:
+    x-sunset-successor: POST /{cloudProvider}/ops
+    x-apievangelist-note: Marked deprecated in the published spec; use the cloud-provider-scoped form.
+- target: $.paths['/ops/{name}'].post
+  description: Record the successor for the deprecated named-operation endpoint.
+  update:
+    x-sunset-successor: POST /{cloudProvider}/ops/{name}
+    x-apievangelist-note: Marked deprecated in the published spec; use the cloud-provider-scoped form.
+- target: $.paths['/{cloudProvider}/ops'].post.parameters[?(@.name=='clientRequestId')]
+  description: >-
+    Document what clientRequestId actually does. The published parameter description is the literal
+    string "clientRequestId".
+  update:
+    description: >-
+      Idempotency key. Clouddriver keys the created Task on this value, so replaying a submission with
+      the same clientRequestId returns the existing Task rather than starting a second cloud
+      operation. The value is echoed back as Task.requestId.
+    x-idempotency-key: true
+- target: $.paths['/{cloudProvider}/ops/{name}'].post.parameters[?(@.name=='clientRequestId')]
+  description: Same idempotency semantics on the named cloud-provider operation.
+  update:
+    description: >-
+      Idempotency key. Clouddriver keys the created Task on this value; the value is echoed back as
+      Task.requestId.
+    x-idempotency-key: true
+- target: $.paths['/agents/kubernetes/accounts/{accountName}'].get
+  description: >-
+    Add the 400 that Armory documents by hand for the Dynamic Accounts endpoints but which is absent
+    from the generated spec.
+  update:
+    responses:
+      '400':
+        description: The account name is not defined in Clouddriver.
+- target: $.paths['/agents/kubernetes/accounts/{accountName}/namespaces'].get
+  description: Same documented 400 on the namespaces lookup.
+  update:
+    responses:
+      '400':
+        description: The account name is not defined in Clouddriver.

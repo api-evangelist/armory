@@ -1,0 +1,90 @@
+generated: '2026-08-06'
+method: searched
+source: >-
+  https://docs.armory.io/plugins/pipelines-as-code/arm-cli/ + https://github.com/armory/avm +
+  https://hub.docker.com/r/armory/arm-cli
+note: >-
+  Armory shipped two distinct command-line tools. The ARM CLI is still documented and still
+  distributed. The Armory CLI for CD-as-a-Service and its version manager (avm) are still on GitHub,
+  but the service they drove is gone - developer.armory.io and api.cloud.armory.io no longer resolve -
+  so that CLI is recorded here as historical rather than usable.
+clis:
+- name: ARM CLI
+  binary: arm
+  status: documented
+  description: >-
+    Standalone tool that renders dinghyfiles locally so a pipeline definition can be validated before
+    it is committed, without a round trip through Armory's Pipelines-as-Code service. Requires
+    Pipelines-as-Code installed in the Armory CD instance, and the dinghyfile plus its module repo
+    available on the local filesystem.
+  license: proprietary
+  docs: https://docs.armory.io/plugins/pipelines-as-code/arm-cli/
+  source: https://github.com/armory-io/arm
+  install:
+  - method: docker
+    registry: Docker Hub
+    image: armory/arm-cli
+    command: docker pull armory/arm-cli:latest
+    url: https://hub.docker.com/r/armory/arm-cli
+  - method: binary
+    command: Download the OS/arch archive from GitHub releases, unzip, and symlink onto $PATH
+    url: https://github.com/armory-io/arm/releases
+    note: >-
+      The binary is not code-signed, so macOS Gatekeeper warns on first run and requires an explicit
+      "Allow Anyway" in Security & Privacy.
+  commands:
+  - command: arm help
+    description: Print CLI help.
+  - command: arm dinghy render <dinghyfile>
+    description: Render a dinghyfile to the final pipeline JSON and report whether it is valid JSON.
+    flags:
+    - flag: --modules
+      description: Path to the locally checked-out templates/modules repository.
+    - flag: --local_modules
+      description: Path to local modules referenced by the dinghyfile.
+    - flag: --rawdata
+      description: Path to a JSON file supplying git-push rawData for the render.
+    - flag: --output
+      description: Directory to write the rendered output into.
+    - flag: --type
+      description: Set to yaml to render YAML dinghyfiles instead of JSON.
+  integrations:
+  - name: IntelliJ external tool
+    description: >-
+      Armory documents registering arm as an IntelliJ External Tool so pipeline JSON can be rendered
+      and validated from the editor rather than the shell.
+- name: Armory Version Manager (avm)
+  binary: avm
+  status: historical
+  description: >-
+    Version manager that installed and switched between Armory CLI versions for Armory
+    CD-as-a-Service. Cobra-generated command surface; the install script pulled release artifacts
+    from Armory's S3 bucket.
+  source: https://github.com/armory/avm
+  latest_release: v1.3.2
+  latest_release_date: '2023-11-28'
+  install:
+  - method: binary
+    command: Download the release for your OS/arch from GitHub releases, mark executable, place on $PATH
+    url: https://github.com/armory/avm/releases/latest
+  commands:
+  - command: avm install [version]
+    description: Install an Armory CLI version; omitting the version installs and links the latest as default.
+  - command: avm list
+    description: List installed Armory CLI versions.
+  - command: avm listall
+    description: List available versions.
+  - command: avm use <version>
+    description: Select an installed Armory CLI version to use.
+  - command: avm version
+    description: Print the avm version.
+  caveat: >-
+    The Armory CLI this manages targeted the Armory CD-as-a-Service control plane, which is no longer
+    reachable.
+x-evidence:
+- url: https://docs.armory.io/plugins/pipelines-as-code/arm-cli/
+  http_status: 200
+  fetched: '2026-08-06'
+- url: https://github.com/armory/avm
+  http_status: 200
+  fetched: '2026-08-06'

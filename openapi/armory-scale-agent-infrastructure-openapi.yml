@@ -1,0 +1,671 @@
+swagger: '2.0'
+info:
+  title: Armory Scale Agent Infrastructure API
+  description: Cloud infrastructure lookups - networks, subnets, VPCs, security groups, elastic IPs, instance types, reservation
+    reports and search.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+basePath: /
+schemes:
+- https
+tags:
+- name: elastic-ip-controller
+- name: instance-type-controller
+- name: network-controller
+- name: reservation-report-controller
+- name: search-controller
+- name: security-group-controller
+- name: subnet-controller
+- name: vpc-controller
+paths:
+  /elasticIps/{account}:
+    get:
+      tags:
+      - elastic-ip-controller
+      summary: listByAccountAndRegion
+      operationId: listByAccountAndRegionUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: region
+        in: query
+        description: region
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ElasticIp'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /instanceTypes:
+    get:
+      tags:
+      - instance-type-controller
+      summary: list
+      operationId: listUsingGET_3
+      produces:
+      - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/InstanceType'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /networks:
+    get:
+      tags:
+      - network-controller
+      summary: list
+      operationId: listUsingGET_5
+      produces:
+      - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: array
+              items:
+                $ref: '#/definitions/Network'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /networks/{cloudProvider}:
+    get:
+      tags:
+      - network-controller
+      summary: listByCloudProvider
+      operationId: listByCloudProviderUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Network'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /reports/reservation:
+    get:
+      tags:
+      - reservation-report-controller
+      summary: getReservationReports
+      operationId: getReservationReportsUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: filters
+        in: query
+        description: filters
+        required: true
+        items:
+          type: object
+          additionalProperties:
+            type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReservationReport'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /reports/reservation/{name}:
+    get:
+      tags:
+      - reservation-report-controller
+      summary: getReservationReportsByName
+      operationId: getReservationReportsByNameUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: filters
+        in: query
+        description: filters
+        required: true
+        items:
+          type: object
+          additionalProperties:
+            type: string
+      - name: name
+        in: path
+        description: name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReservationReport'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /search:
+    get:
+      tags:
+      - search-controller
+      summary: search
+      operationId: searchUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: page
+        in: query
+        description: page
+        required: false
+        type: integer
+        default: 1
+        format: int32
+      - name: pageSize
+        in: query
+        description: pageSize
+        required: false
+        type: integer
+        default: 10000
+        format: int32
+      - name: platform
+        in: query
+        description: platform
+        required: false
+        type: string
+      - name: q
+        in: query
+        description: q
+        required: false
+        type: string
+      - name: type
+        in: query
+        description: type
+        required: true
+        type: array
+        items:
+          type: string
+        collectionFormat: multi
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SearchResultSet'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /securityGroups:
+    get:
+      tags:
+      - security-group-controller
+      summary: list
+      operationId: listUsingGET_8
+      produces:
+      - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: object
+              additionalProperties:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/definitions/SecurityGroupSummary'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /securityGroups/{account}:
+    get:
+      tags:
+      - security-group-controller
+      summary: listByAccountAndRegion
+      operationId: listByAccountAndRegionUsingGET_1
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: region
+        in: query
+        description: region
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: array
+              items:
+                $ref: '#/definitions/SecurityGroupSummary'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /securityGroups/{account}/{cloudProvider}:
+    get:
+      tags:
+      - security-group-controller
+      summary: listByAccountAndCloudProvider
+      operationId: listByAccountAndCloudProviderUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: array
+              items:
+                $ref: '#/definitions/SecurityGroupSummary'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /securityGroups/{account}/{cloudProvider}/{region}/{securityGroupNameOrId}:
+    get:
+      tags:
+      - security-group-controller
+      summary: get
+      operationId: getUsingGET_2
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        type: string
+      - name: getById
+        in: query
+        description: getById
+        required: false
+        type: boolean
+        default: false
+      - name: region
+        in: path
+        description: region
+        required: true
+        type: string
+      - name: securityGroupNameOrId
+        in: path
+        description: securityGroupNameOrId
+        required: true
+        type: string
+      - name: vpcId
+        in: query
+        description: vpcId
+        required: false
+        type: string
+        default: '*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/SecurityGroup'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /securityGroups/{account}/{cloudProvider}/{securityGroupName}:
+    get:
+      tags:
+      - security-group-controller
+      summary: listByAccountAndCloudProviderAndName
+      operationId: listByAccountAndCloudProviderAndNameUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        type: string
+      - name: securityGroupName
+        in: path
+        description: securityGroupName
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: array
+              items:
+                $ref: '#/definitions/SecurityGroupSummary'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /subnets:
+    get:
+      tags:
+      - subnet-controller
+      summary: list
+      operationId: listUsingGET_10
+      produces:
+      - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Subnet'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /subnets/{cloudProvider}:
+    get:
+      tags:
+      - subnet-controller
+      summary: listByCloudProvider
+      operationId: listByCloudProviderUsingGET_1
+      produces:
+      - '*/*'
+      parameters:
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Subnet'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /vpcs:
+    get:
+      tags:
+      - vpc-controller
+      summary: list
+      operationId: listUsingGET_11
+      produces:
+      - '*/*'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Network'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  ElasticIp:
+    type: object
+    properties:
+      accountName:
+        type: string
+      address:
+        type: string
+      attachedToId:
+        type: string
+      region:
+        type: string
+      type:
+        type: string
+    title: ElasticIp
+  InstanceType:
+    type: object
+    properties:
+      name:
+        type: string
+    title: InstanceType
+  Map«string,object»:
+    type: object
+    title: Map«string,object»
+    additionalProperties:
+      type: object
+  Moniker:
+    type: object
+    properties:
+      app:
+        type: string
+      cluster:
+        type: string
+      detail:
+        type: string
+      sequence:
+        type: integer
+        format: int32
+      stack:
+        type: string
+    title: Moniker
+  Network:
+    type: object
+    properties:
+      account:
+        type: string
+      cloudProvider:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      region:
+        type: string
+    title: Network
+  PortRange:
+    type: object
+    properties:
+      endPort:
+        type: integer
+        format: int32
+      startPort:
+        type: integer
+        format: int32
+    title: PortRange
+  ReservationReport:
+    type: object
+    title: ReservationReport
+  Rule:
+    type: object
+    properties:
+      portRanges:
+        type: array
+        items:
+          $ref: '#/definitions/PortRange'
+      protocol:
+        type: string
+    title: Rule
+  SearchResultSet:
+    type: object
+    properties:
+      pageNumber:
+        type: integer
+        format: int32
+      pageSize:
+        type: integer
+        format: int32
+      platform:
+        type: string
+      query:
+        type: string
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/Map«string,object»'
+      totalMatches:
+        type: integer
+        format: int32
+    title: SearchResultSet
+  SecurityGroup:
+    type: object
+    properties:
+      accountName:
+        type: string
+      application:
+        type: string
+      cloudProvider:
+        type: string
+      id:
+        type: string
+      inboundRules:
+        type: array
+        items:
+          $ref: '#/definitions/Rule'
+      labels:
+        type: object
+        additionalProperties:
+          type: string
+      moniker:
+        $ref: '#/definitions/Moniker'
+      name:
+        type: string
+      outboundRules:
+        type: array
+        items:
+          $ref: '#/definitions/Rule'
+      region:
+        type: string
+      summary:
+        $ref: '#/definitions/SecurityGroupSummary'
+      type:
+        type: string
+    title: SecurityGroup
+  SecurityGroupSummary:
+    type: object
+    properties:
+      id:
+        type: string
+      moniker:
+        $ref: '#/definitions/Moniker'
+      name:
+        type: string
+    title: SecurityGroupSummary
+  Subnet:
+    type: object
+    properties:
+      id:
+        type: string
+      purpose:
+        type: string
+      type:
+        type: string
+    title: Subnet

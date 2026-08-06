@@ -1,0 +1,105 @@
+generated: '2026-08-06'
+method: searched
+source: https://docs.armory.io/continuous-deployment/release-notes/
+scheme: semver-product
+product: Armory Continuous Deployment (Self-Hosted and Managed)
+current_version: 2.40.2
+current_release_date: '2026-07-27'
+note: >-
+  Armory publishes dated release notes per Armory CD version, each mapped to the upstream Spinnaker
+  release it tracks, and titled LTS or Feature to signal the support window. Breaking changes are
+  carried forward in the notes for three minor versions from introduction. Separate release-note
+  streams exist for the Armory Operator and for each plugin (Scale Agent service, Clouddriver plugin,
+  Pipelines-as-Code, Policy Engine, Terraform Integration, GitHub Integration, AWS Event Cache).
+  This is the recent window only; the live release-notes index is the source of truth.
+streams:
+- name: Armory Continuous Deployment
+  url: https://docs.armory.io/continuous-deployment/release-notes/
+- name: Armory Operator
+  url: https://docs.armory.io/continuous-deployment/release-notes/rn-armory-operator/
+- name: Armory Scale Agent
+  url: https://docs.armory.io/plugins/scale-agent/release-notes/
+- name: Pipelines-as-Code
+  url: https://docs.armory.io/plugins/pipelines-as-code/release-notes/
+- name: Policy Engine
+  url: https://docs.armory.io/plugins/policy-engine/release-notes/
+- name: Terraform Integration
+  url: https://docs.armory.io/plugins/terraform/release-notes/
+- name: GitHub Integration
+  url: https://docs.armory.io/plugins/github-integration/release-notes/
+- name: AWS Event Cache
+  url: https://docs.armory.io/plugins/aws-event-cache/release-notes/
+entries:
+- version: 2.40.2
+  date: '2026-07-27'
+  spinnaker: 2026.2.2
+  category: Release
+  breaking:
+  - Halyard fully deprecated
+  - MySQL 8+ now required
+  - Redis/Valkey 7+ now required
+  - AWS SDK v1 deprecated
+  - OSS Spinnaker images moved to GHCR
+  - Policy Engine (OPA) built into Armory CD - armory.opa block replaced by armory.policy-engine
+  - Kubernetes Agent (Kubesvc) built into Armory CD
+  - Gate Spring Security 5 OAuth2 migration
+  - Orca tasks configuration restructured under tasks.controller
+  highlights:
+  - Spring Boot 3.5 upgrade
+  - YAML parsing limits now configurable
+  - AWS JDBC driver update
+- version: 2.40.1
+  date: '2026-07-15'
+  spinnaker: 2026.2.2
+  category: Feature
+  breaking:
+  - EDDA support removed
+  - Halyard fully deprecated
+  - MySQL 8+ now required
+  - Redis/Valkey 7+ now required
+  - AWS SDK v1 deprecated
+  highlights:
+  - Spring Boot 3.5 upgrade
+  - OSS Spinnaker images moved to GHCR
+- version: 2.39.0
+  date: '2026-07-07'
+  spinnaker: 2026.1.1
+  category: Feature
+  breaking:
+  - Halyard fully deprecated
+  - Docker images moved to GHCR
+  - Spring Boot 3 upgrade
+  additions:
+  - 'Lambda: naming flexibility and performance'
+  - Kubernetes secret engine support
+  - 'GCP: certificate map support for load balancers'
+- version: 2.38.2
+  date: '2026-06-23'
+  spinnaker: 2025.3.2
+  category: Release
+  breaking:
+  - 'Clouddriver: AWS SDK v2 upgrade'
+  additions:
+  - 'Security enhancement: gitrepo allowed-hosts restriction'
+  - 'Clouddriver: long-lived Lambda operations'
+  - 'Clouddriver: gRPC/HTTP2 support for GCP load balancers'
+  - 'Clouddriver: account management API support for Azure'
+  - 'Gate: execution query enhancements'
+- version: 2.38.1
+  date: '2025-10-29'
+  category: Release
+  additions:
+  - 'Security enhancement: URL filtering/restriction on artifact accounts'
+  - 'Clouddriver: account management API enhancement for AWS, ECS and GCP accounts'
+  - Helm OCI registry chart support
+  - 'Front50: scheduled agent for disabling unused pipelines'
+- version: 2.38.0
+  date: '2025-10-21'
+  category: Release
+  additions:
+  - 'Orca: new pipeline stage configuration backOffPeriodMs'
+  - 'Orca: limit execution retrieval of disabled pipelines'
+x-evidence:
+- url: https://docs.armory.io/continuous-deployment/release-notes/
+  http_status: 200
+  fetched: '2026-08-06'

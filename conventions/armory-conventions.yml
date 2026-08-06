@@ -1,0 +1,128 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/_original/armory-scale-agent-swagger.json +
+  https://docs.armory.io/plugins/scale-agent/reference/dynamic-accounts/
+scope: Armory Scale Agent / Clouddriver REST surface
+authentication:
+  style: deployment-configured
+  detail: >-
+    No securityDefinitions in the spec. Access is controlled by the operator - mutual TLS between the
+    Agent and Clouddriver, x509 client certificates on the Gate automation port, and Fiat account/
+    application authorization. See authentication/armory-authentication.yml.
+  artifact: authentication/armory-authentication.yml
+idempotency:
+  supported: true
+  mechanism: query-parameter
+  parameter: clientRequestId
+  location: query
+  applies_to:
+  - operationsUsingPOST
+  - operationUsingPOST
+  - cloudProviderOperationsUsingPOST
+  - cloudProviderOperationUsingPOST
+  description: >-
+    Every operation-submission endpoint on the Clouddriver /ops surface accepts an optional
+    clientRequestId query parameter. Clouddriver keys the created Task on that value, so replaying a
+    submission with the same clientRequestId returns the existing Task instead of starting a second
+    cloud operation - the standard Spinnaker idempotency contract for orchestration retries.
+  echoed_back:
+    field: requestId
+    schema: Task
+    note: The Task object returned by GET /task/{id} carries requestId, the clientRequestId it was created with.
+  retention: not documented
+  source: openapi/_original/armory-scale-agent-swagger.json
+pagination:
+  style: page-and-limit
+  applies_to: Armory Scale Agent Dynamic Accounts endpoints
+  request_params:
+  - name: page
+    default: 1
+    description: Page number, starting from 1.
+  - name: limit
+    default: 100
+    description: How many accounts to return.
+  response_fields:
+  - items
+  - page
+  - limit
+  - total
+  ordering: Account list is sorted by account name ascending.
+  other_paging_params:
+  - name: pageSize
+    used_by: searchUsingGET
+  - name: startingAccountName
+    used_by: listAccountCredentialsUsingGET
+    note: Cursor-style continuation on the credentials listing rather than page/limit.
+  docs: https://docs.armory.io/plugins/scale-agent/reference/dynamic-accounts/
+field_expansion:
+  supported: true
+  parameters:
+  - name: expand
+    used_by: cluster and credentials listings
+  - name: includeDetails
+    used_by: instance-type and network listings
+  - name: restricted
+    used_by: listUsingGET (applications)
+  note: >-
+    Boolean widening flags rather than a general sparse-fieldset language. There is no field-selection
+    parameter in the spec.
+async_operations:
+  model: submit-then-poll
+  description: >-
+    Write operations are not synchronous. POST /{cloudProvider}/ops returns a StartOperationResult
+    with an id and a resourceUri; the caller then polls GET /task/{id} until Task.status reports
+    completion. Task carries history[], resultObjects[], sagaIds[] and a retryable flag. Interrupted
+    tasks can be restarted with POST /task/{id}:resume.
+  submit_operations:
+  - cloudProviderOperationsUsingPOST
+  - cloudProviderOperationUsingPOST
+  poll_operation: getUsingGET_1
+  resume_operation: resumeTaskUsingPOST
+  list_operation: listUsingGET_6
+versioning:
+  scheme: product-version
+  detail: >-
+    The API itself is unversioned - Clouddriver serves it at the root path with no version segment.
+    What is versioned is the Armory Scale Agent plugin that adds it: the docs publish one Swagger
+    document per plugin release (swagger.0.9.x through swagger.0.13.x) at
+    /reference/scale-agent/swagger.<version>.json, with /reference/scale-agent/swagger.json as the
+    current document. Armory CD itself versions on a 2.x train (v2.38, v2.39, v2.40).
+  artifact: lifecycle/armory-lifecycle.yml
+error_envelope:
+  documented_statuses:
+  - 200
+  - 201
+  - 204
+  - 400
+  - 401
+  - 403
+  - 404
+  format: not-rfc9457
+  detail: >-
+    The spec's 401/403/404 responses are Springfox boilerplate carrying no schema. The docs add a 400
+    for "the account name is not defined in Clouddriver". Error bodies are Spring Boot / Clouddriver
+    defaults; Armory publishes no problem-type registry, and no response declares
+    application/problem+json.
+  artifact: errors/armory-problem-types.yml
+rate_limiting:
+  documented: false
+  detail: >-
+    No rate-limit headers or parameters appear in the spec and Armory publishes no rate-limit policy.
+    This is self-hosted software - throughput is bounded by the operator's own Clouddriver capacity.
+content_types:
+  request: application/json
+  response: '*/*'
+  note: >-
+    Springfox emitted produces "*/*" on every operation rather than application/json, which is a spec
+    defect rather than a real content negotiation contract.
+request_tracing:
+  header: not documented
+  note: >-
+    No request-id header is declared. clientRequestId is the only correlation identifier in the
+    contract, and it correlates operations to Tasks rather than tracing HTTP calls.
+cross_links:
+  authentication: authentication/armory-authentication.yml
+  errors: errors/armory-problem-types.yml
+  lifecycle: lifecycle/armory-lifecycle.yml
+  data_model: data-model/armory-data-model.yml

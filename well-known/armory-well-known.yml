@@ -1,0 +1,54 @@
+generated: '2026-08-06'
+method: probed
+source: live HTTPS probes of every Armory host reachable on 2026-08-06
+note: >-
+  Armory publishes no /.well-known/ discovery surface. docs.armory.io (a Netlify-hosted Hugo site)
+  answers 404 with an HTML body for every well-known path, and the apex armory.io no longer completes
+  a TLS handshake at all - www.armory.io 301s to www.harness.io following the January 2024 asset
+  acquisition, so there is no Armory-controlled origin left to serve these documents.
+hosts:
+- host: docs.armory.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /robots.txt
+    status: 200
+    content_type: text/plain
+- host: www.armory.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 301
+    redirect: https://www.harness.io/products/continuous-delivery
+  - path: /llms.txt
+    status: 301
+    redirect: https://www.harness.io/products/continuous-delivery
+- host: armory.io
+  documents:
+  - path: /.well-known/security.txt
+    status: 0
+    note: TLS handshake never completes against 34.36.174.188; apex is effectively dark
+- host: developer.armory.io
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 0
+    note: >-
+      CNAME points at developer.prod.cloud.armory.io, which no longer resolves. The Armory
+      CD-as-a-Service developer portal and its api.cloud.armory.io API host are both gone.

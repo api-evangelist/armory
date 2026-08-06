@@ -1,0 +1,638 @@
+generated: '2026-08-06'
+method: generated
+source: openapi/armory-scale-agent-agent-accounts-openapi.yml, openapi/armory-scale-agent-applications-openapi.yml,
+  openapi/armory-scale-agent-credentials-openapi.yml, openapi/armory-scale-agent-infrastructure-openapi.yml,
+  openapi/armory-scale-agent-operations-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 56
+  by_action_class:
+    connected: 46
+    acting: 10
+  by_consequence:
+    read: 46
+    safety-critical: 10
+  human_in_the_loop_required: 10
+operations:
+- path: /agents/kubernetes/accounts/{accountName}
+  method: get
+  operationId: getAccountUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /agents/kubernetes/accounts/{accountName}/namespaces
+  method: get
+  operationId: getNamespacesUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications
+  method: get
+  operationId: listUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/clusters
+  method: get
+  operationId: listByAccountUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/clusters/{account}
+  method: get
+  operationId: getForAccountUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}
+  method: get
+  operationId: getTargetServerGroupUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}/{summaryType}
+  method: get
+  operationId: getServerGroupSummaryUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups
+  method: get
+  operationId: getServerGroupsUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups/{serverGroupName}
+  method: get
+  operationId: getServerGroupUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/clusters/{account}/{name}
+  method: get
+  operationId: getForAccountAndNameUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/clusters/{account}/{name}/{type}
+  method: get
+  operationId: getForAccountAndNameAndTypeUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/functions
+  method: get
+  operationId: listUsingGET_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/jobs/{account}/{location}/{id}
+  method: get
+  operationId: collectJobUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/jobs/{account}/{location}/{id}
+  method: delete
+  operationId: cancelJobUsingDELETE
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /applications/{application}/jobs/{account}/{location}/{id}/{fileName}
+  method: get
+  operationId: getFileContentsUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/loadBalancers
+  method: get
+  operationId: listUsingGET_4
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/rawResources
+  method: get
+  operationId: listUsingGET_7
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/serverGroupManagers
+  method: get
+  operationId: getForApplicationUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/serverGroups
+  method: get
+  operationId: listUsingGET_9
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{application}/serverGroups/{account}/{region}/{name}
+  method: get
+  operationId: getServerGroupByApplicationUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /applications/{name}
+  method: get
+  operationId: getUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /instances/{account}/{region}/{id}
+  method: get
+  operationId: getInstanceUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /instances/{account}/{region}/{id}/console
+  method: get
+  operationId: getConsoleOutputUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /artifacts/credentials
+  method: get
+  operationId: listUsingGET_1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /credentials
+  method: get
+  operationId: listAccountCredentialsUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /credentials
+  method: post
+  operationId: createAccountUsingPOST
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /credentials
+  method: put
+  operationId: updateAccountUsingPUT
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /credentials/type/{accountType}
+  method: get
+  operationId: listAccountsByTypeUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /credentials/{accountName}
+  method: get
+  operationId: getAccountCredentialsDetailsUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /credentials/{accountName}
+  method: delete
+  operationId: deleteAccountUsingDELETE
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /credentials/{accountName}/history
+  method: get
+  operationId: getAccountHistoryUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /elasticIps/{account}
+  method: get
+  operationId: listByAccountAndRegionUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /instanceTypes
+  method: get
+  operationId: listUsingGET_3
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /networks
+  method: get
+  operationId: listUsingGET_5
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /networks/{cloudProvider}
+  method: get
+  operationId: listByCloudProviderUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reports/reservation
+  method: get
+  operationId: getReservationReportsUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /reports/reservation/{name}
+  method: get
+  operationId: getReservationReportsByNameUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /search
+  method: get
+  operationId: searchUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /securityGroups
+  method: get
+  operationId: listUsingGET_8
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /securityGroups/{account}
+  method: get
+  operationId: listByAccountAndRegionUsingGET_1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /securityGroups/{account}/{cloudProvider}
+  method: get
+  operationId: listByAccountAndCloudProviderUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /securityGroups/{account}/{cloudProvider}/{region}/{securityGroupNameOrId}
+  method: get
+  operationId: getUsingGET_2
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /securityGroups/{account}/{cloudProvider}/{securityGroupName}
+  method: get
+  operationId: listByAccountAndCloudProviderAndNameUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /subnets
+  method: get
+  operationId: listUsingGET_10
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /subnets/{cloudProvider}
+  method: get
+  operationId: listByCloudProviderUsingGET_1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /vpcs
+  method: get
+  operationId: listUsingGET_11
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cache/introspection
+  method: get
+  operationId: getAgentIntrospectionsUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cache/{cloudProvider}/{type}
+  method: get
+  operationId: pendingOnDemandsUsingGET
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /cache/{cloudProvider}/{type}
+  method: post
+  operationId: handleOnDemandUsingPOST
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /ops
+  method: post
+  operationId: operationsUsingPOST
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /ops/{name}
+  method: post
+  operationId: operationUsingPOST
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /task
+  method: get
+  operationId: listUsingGET_6
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /task/{id}
+  method: get
+  operationId: getUsingGET_1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /task/{id}:resume
+  method: post
+  operationId: resumeTaskUsingPOST
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /{cloudProvider}/ops
+  method: post
+  operationId: cloudProviderOperationsUsingPOST
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /{cloudProvider}/ops/{name}
+  method: post
+  operationId: cloudProviderOperationUsingPOST
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required

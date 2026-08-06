@@ -1,0 +1,425 @@
+generated: '2026-08-06'
+method: derived
+source: mcp/armory-mcp.yml + openapi/armory-scale-agent-*-openapi.yml
+note: Armory ships no MCP server and no GraphQL endpoint, so this crosswalk binds a CANDIDATE tool set to the real
+  OpenAPI operations rather than reconciling two live surfaces. Every row is a 1:1 derivation from Armory's published
+  Swagger 2.0 document - there is no divergence to record because there is only one surface. If Armory (or Harness)
+  ever publishes an MCP server for this API, this file is where the drift between the two would be captured.
+surfaces:
+  openapi:
+    files:
+    - openapi/armory-scale-agent-agent-accounts-openapi.yml
+    - openapi/armory-scale-agent-credentials-openapi.yml
+    - openapi/armory-scale-agent-applications-openapi.yml
+    - openapi/armory-scale-agent-operations-openapi.yml
+    - openapi/armory-scale-agent-infrastructure-openapi.yml
+    origin: https://docs.armory.io/reference/scale-agent/swagger.json
+    gated: false
+  graphql:
+    endpoint: null
+    note: No GraphQL surface exists on any Armory host.
+  mcp:
+    url: null
+    gated: null
+    note: No MCP server published; tools/list could not be probed because there is no endpoint.
+coverage:
+  tools_named: 56
+  tools_bound: 56
+  mcp_only: 0
+  rest_operations_total: 56
+  rest_operations_with_tool: 56
+crosswalk:
+- tool: get_account
+  category: accounts
+  rest:
+  - getAccountUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_namespaces
+  category: accounts
+  rest:
+  - getNamespacesUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_applications
+  category: infrastructure-read
+  rest:
+  - listUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_by_account
+  category: infrastructure-read
+  rest:
+  - listByAccountUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_for_account
+  category: infrastructure-read
+  rest:
+  - getForAccountUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_target_server_group
+  category: infrastructure-read
+  rest:
+  - getTargetServerGroupUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_server_group_summary
+  category: infrastructure-read
+  rest:
+  - getServerGroupSummaryUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_server_groups
+  category: infrastructure-read
+  rest:
+  - getServerGroupsUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_server_group
+  category: infrastructure-read
+  rest:
+  - getServerGroupUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_for_account_and_name
+  category: infrastructure-read
+  rest:
+  - getForAccountAndNameUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_for_account_and_name_and_type
+  category: infrastructure-read
+  rest:
+  - getForAccountAndNameAndTypeUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_applications_functions
+  category: infrastructure-read
+  rest:
+  - listUsingGET_2
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: collect_job
+  category: infrastructure-read
+  rest:
+  - collectJobUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: cancel_job
+  category: infrastructure-read
+  rest:
+  - cancelJobUsingDELETE
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_file_contents
+  category: infrastructure-read
+  rest:
+  - getFileContentsUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_applications_loadbalancers
+  category: infrastructure-read
+  rest:
+  - listUsingGET_4
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_applications_rawresources
+  category: infrastructure-read
+  rest:
+  - listUsingGET_7
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_for_application
+  category: infrastructure-read
+  rest:
+  - getForApplicationUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_applications_servergroups
+  category: infrastructure-read
+  rest:
+  - listUsingGET_9
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_server_group_by_application
+  category: infrastructure-read
+  rest:
+  - getServerGroupByApplicationUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_applications
+  category: infrastructure-read
+  rest:
+  - getUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_instance
+  category: infrastructure-read
+  rest:
+  - getInstanceUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_console_output
+  category: infrastructure-read
+  rest:
+  - getConsoleOutputUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_artifacts_credentials
+  category: credentials
+  rest:
+  - listUsingGET_1
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_account_credentials
+  category: credentials
+  rest:
+  - listAccountCredentialsUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: create_account
+  category: credentials
+  rest:
+  - createAccountUsingPOST
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: update_account
+  category: credentials
+  rest:
+  - updateAccountUsingPUT
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_accounts_by_type
+  category: credentials
+  rest:
+  - listAccountsByTypeUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_account_credentials_details
+  category: credentials
+  rest:
+  - getAccountCredentialsDetailsUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: delete_account
+  category: credentials
+  rest:
+  - deleteAccountUsingDELETE
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_account_history
+  category: credentials
+  rest:
+  - getAccountHistoryUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_by_account_and_region
+  category: infrastructure-read
+  rest:
+  - listByAccountAndRegionUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_instancetypes
+  category: infrastructure-read
+  rest:
+  - listUsingGET_3
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_networks
+  category: infrastructure-read
+  rest:
+  - listUsingGET_5
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_by_cloud_provider
+  category: infrastructure-read
+  rest:
+  - listByCloudProviderUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_reservation_reports
+  category: infrastructure-read
+  rest:
+  - getReservationReportsUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_reservation_reports_by_name
+  category: infrastructure-read
+  rest:
+  - getReservationReportsByNameUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: search
+  category: infrastructure-read
+  rest:
+  - searchUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_securitygroups
+  category: infrastructure-read
+  rest:
+  - listUsingGET_8
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_by_account_and_region_securitygroups
+  category: infrastructure-read
+  rest:
+  - listByAccountAndRegionUsingGET_1
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_by_account_and_cloud_provider
+  category: infrastructure-read
+  rest:
+  - listByAccountAndCloudProviderUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_securitygroups
+  category: infrastructure-read
+  rest:
+  - getUsingGET_2
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_by_account_and_cloud_provider_and_name
+  category: infrastructure-read
+  rest:
+  - listByAccountAndCloudProviderAndNameUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_subnets
+  category: infrastructure-read
+  rest:
+  - listUsingGET_10
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_by_cloud_provider_subnets
+  category: infrastructure-read
+  rest:
+  - listByCloudProviderUsingGET_1
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_vpcs
+  category: infrastructure-read
+  rest:
+  - listUsingGET_11
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_agent_introspections
+  category: operations
+  rest:
+  - getAgentIntrospectionsUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: pending_on_demands
+  category: operations
+  rest:
+  - pendingOnDemandsUsingGET
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: handle_on_demand
+  category: operations
+  rest:
+  - handleOnDemandUsingPOST
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: operations
+  category: operations
+  rest:
+  - operationsUsingPOST
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: operation
+  category: operations
+  rest:
+  - operationUsingPOST
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: list_task
+  category: operations
+  rest:
+  - listUsingGET_6
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: get_task
+  category: operations
+  rest:
+  - getUsingGET_1
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: resume_task
+  category: operations
+  rest:
+  - resumeTaskUsingPOST
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: cloud_provider_operations
+  category: operations
+  rest:
+  - cloudProviderOperationsUsingPOST
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+- tool: cloud_provider_operation
+  category: operations
+  rest:
+  - cloudProviderOperationUsingPOST
+  binding: rest
+  confidence: high
+  note: Derived one-to-one from the published spec; the tool inherits this operation's parameters as its inputSchema.
+mcp_only: []
+rest_only: []

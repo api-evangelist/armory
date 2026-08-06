@@ -1,0 +1,93 @@
+generated: '2026-08-06'
+method: searched
+source: openapi/_original/armory-scale-agent-swagger.json + docs.armory.io authentication guides
+docs:
+- https://docs.armory.io/continuous-deployment/armory-admin/api-endpoint/
+- https://docs.armory.io/continuous-deployment/armory-admin/authorization/
+- https://docs.armory.io/plugins/scale-agent/tasks/configure-mtls/
+- https://docs.armory.io/plugins/scale-agent/concepts/service-permissions/
+note: >-
+  The harvested Swagger 2.0 declares no securityDefinitions and applies no security to any of its 56
+  operations - it is a Springfox dump of the Clouddriver controller surface, which in a real Armory
+  deployment is never exposed unauthenticated. The real authentication model is documented outside the
+  spec, in the Armory Continuous Deployment admin guides, and is entirely deployment-configured: Armory
+  is self-hosted software, so the operator chooses and provisions the identity provider.
+summary:
+  types:
+  - mutualTLS
+  - x509
+  - oauth2
+  - saml
+  - ldap
+  - basic
+  api_key_in: []
+  oauth2_flows: []
+  declared_in_spec: false
+schemes:
+- name: x509-client-certificate
+  type: mutualTLS
+  applies_to: Spinnaker Gate API (automation clients)
+  description: >-
+    Armory documents exposing the Gate API on a second port (8085) that requires an x509 client
+    certificate signed by a CA imported into Gate's Java KeyStore. TLS may not be terminated ahead of
+    this port, so the load balancer in front of it must be layer 4 or TLS pass-through.
+  source: https://docs.armory.io/continuous-deployment/armory-admin/api-endpoint/
+- name: primary-identity-provider
+  type: delegated
+  applies_to: Spinnaker Gate API (browser clients, port 8084)
+  description: >-
+    The browser-facing Gate endpoint authenticates against whatever primary provider the cluster is
+    configured with - LDAP, SAML, OAuth 2.0, GitHub OAuth or Okta are all documented by Armory. TLS can
+    be terminated at the load balancer for this endpoint.
+  providers:
+  - ldap
+  - saml
+  - oauth2
+  - github-oauth
+  - okta
+  source: https://docs.armory.io/continuous-deployment/armory-admin/authn-github/
+- name: agent-mtls
+  type: mutualTLS
+  applies_to: Armory Scale Agent <-> Clouddriver gRPC/HTTP channel
+  description: >-
+    The Scale Agent and the Clouddriver plugin authenticate to each other with mutual TLS. Armory
+    requires a CA certificate in PEM form plus a certificate/key pair for each side, mounted from
+    Kubernetes secrets. The Agent supports PKCS#8 private keys only, while the rest of the Armory CD
+    services use a PKCS#12 key store.
+  source: https://docs.armory.io/plugins/scale-agent/tasks/configure-mtls/
+- name: kubernetes-rbac
+  type: delegated
+  applies_to: Armory Scale Agent service -> target Kubernetes clusters
+  description: >-
+    Cluster access is carried either by a mounted kubeconfig secret or by the ServiceAccount attached
+    to the Agent pod. Armory documents ClusterRole for cross-namespace deployment and Role for
+    single-namespace deployment.
+  source: https://docs.armory.io/plugins/scale-agent/concepts/service-permissions/
+authorization:
+  model: fiat
+  description: >-
+    Authorization is handled by Fiat, the Spinnaker auth service, restricting users against accounts
+    and applications. Armory documents the interaction between the two and the Manual Judgment stage's
+    "Propagate Authentication" option, which runs subsequent stages as the approving user rather than
+    the initiating user.
+  docs:
+  - https://docs.armory.io/continuous-deployment/armory-admin/authorization/
+  - https://docs.armory.io/continuous-deployment/overview/fiat-permissions-overview/
+  policy_layer:
+    name: Armory Policy Engine
+    description: >-
+      An OPA-backed plugin that evaluates Rego policy at pipeline save time, stage execution time and
+      on inbound HTTP calls (the spinnaker.http.authz package), giving a second authorization layer on
+      top of Fiat.
+    docs: https://docs.armory.io/plugins/policy-engine/use/packages/spinnaker.http.authz/
+x-evidence:
+- url: https://docs.armory.io/continuous-deployment/armory-admin/api-endpoint/
+  http_status: 200
+  fetched: '2026-08-06'
+- url: https://docs.armory.io/plugins/scale-agent/tasks/configure-mtls/
+  http_status: 200
+  fetched: '2026-08-06'
+- url: https://docs.armory.io/reference/scale-agent/swagger.json
+  http_status: 200
+  fetched: '2026-08-06'
+  finding: securityDefinitions absent

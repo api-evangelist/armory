@@ -1,0 +1,104 @@
+generated: '2026-08-06'
+method: searched
+source: >-
+  pkg.go.dev / proxy.golang.org, hub.docker.com/u/armory, github.com/armory + github.com/armory-io,
+  and the Armory docs install pages
+note: >-
+  Armory never shipped conventional REST client SDKs. Its distribution model is container images and
+  Go libraries: 219 repositories under the armory Docker Hub organisation carry the Armory Spinnaker
+  service builds, plugins and CLI, and a handful of Go modules are published as importable client and
+  tooling libraries. Registries checked with no first-party result: npm (the armory-cli package on npm
+  belongs to an unrelated x402 project by TheGreatAxios, not Armory Inc), PyPI (the armory package
+  there is the TwoSix adversarial-robustness toolkit), Maven Central, NuGet, RubyGems, Packagist,
+  crates.io and the Terraform Registry.
+packages:
+- language: go
+  registry: proxy.golang.org
+  name: github.com/armory/plank
+  url: https://pkg.go.dev/github.com/armory/plank
+  install: go get github.com/armory/plank
+  description: Spinnaker SDK for Go - client library for the Spinnaker service APIs.
+  latest: v1.2.0
+  official: true
+- language: go
+  registry: proxy.golang.org
+  name: github.com/armory/dinghy
+  url: https://pkg.go.dev/github.com/armory/dinghy
+  install: go get github.com/armory/dinghy
+  description: Pipelines-as-code engine for Spinnaker; the library behind the ARM CLI's dinghy render.
+  latest: v1.0.1
+  official: true
+- language: go
+  registry: proxy.golang.org
+  name: github.com/armory/go-yaml-tools
+  url: https://pkg.go.dev/github.com/armory/go-yaml-tools
+  install: go get github.com/armory/go-yaml-tools
+  description: YAML configuration/merge helpers shared across Armory's Go services.
+  latest: v1.0.1
+  official: true
+- language: go
+  registry: proxy.golang.org
+  name: github.com/armory/spinnaker-operator
+  url: https://pkg.go.dev/github.com/armory/spinnaker-operator
+  install: go get github.com/armory/spinnaker-operator
+  description: >-
+    Open source Spinnaker Kubernetes Operator. Deprecated as an installation path as of the recent
+    Armory CD releases in favour of Kustomize.
+  official: true
+  status: deprecated
+containers:
+  registry: Docker Hub
+  organization: armory
+  url: https://hub.docker.com/u/armory
+  repository_count: 219
+  official: true
+  notable:
+  - image: armory/arm-cli
+    description: ARM CLI for rendering dinghyfiles.
+    pulls: 221187
+    last_updated: '2024-02-13'
+  - image: armory/spinnaker-operator
+    description: Kubernetes operator for Spinnaker.
+    pulls: 1954159
+    last_updated: '2024-01-05'
+  - image: armory/deck-armory
+    description: Armory's build of Deck, the Spinnaker UI.
+    pulls: 292068
+    last_updated: '2026-08-05'
+  - image: armory/kubesvc
+    description: Armory Scale Agent (Kubernetes service) image.
+    pulls: 44512
+  - image: armory/spinnaker-clouddriver
+    description: Armory build of Clouddriver - the service that exposes the Scale Agent REST API.
+    pulls: 367538
+  note: >-
+    The v2.40.x release notes record that OSS Spinnaker images have moved to GHCR, so newer upstream
+    images are no longer pulled from Docker Hub.
+binaries:
+- name: ARM CLI
+  url: https://github.com/armory-io/arm/releases
+  distribution: GitHub releases (per OS/arch archive)
+  official: true
+- name: avm (Armory Version Manager)
+  url: https://github.com/armory/avm/releases/latest
+  latest: v1.3.2
+  distribution: GitHub releases; the install script pulls artifacts from Armory's S3 bucket
+  official: true
+  status: historical
+registries_checked:
+- registry: npm
+  result: no first-party package
+- registry: PyPI
+  result: no first-party package
+- registry: Maven Central
+  result: no first-party package
+- registry: NuGet
+  result: no first-party package
+- registry: RubyGems
+  result: no first-party package
+- registry: Packagist
+  result: no first-party package
+- registry: crates.io
+  result: no first-party package
+- registry: Terraform Registry
+  result: 404 on the armory namespace

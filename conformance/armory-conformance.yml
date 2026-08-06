@@ -1,0 +1,91 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/_original/armory-scale-agent-swagger.json + docs.armory.io authentication, policy-engine and
+  release-notes pages
+note: >-
+  Derived posture only. Armory publishes no trust center, no certification page and no compliance
+  program on any live host - trust.armory.io, security.armory.io and /security all fail to resolve or
+  404 - so no Compliance pointer is claimed for this provider.
+standards:
+- id: openapi-3
+  conforms: false
+  evidence: >-
+    The published contract is Swagger 2.0 (Springfox), not OpenAPI 3.x. No OpenAPI 3 document is
+    served from any Armory host.
+- id: swagger-2.0
+  conforms: true
+  evidence: >-
+    https://docs.armory.io/reference/scale-agent/swagger.json declares swagger 2.0 with 51 paths and
+    56 operations.
+- id: oauth2
+  conforms: partial
+  evidence: >-
+    No oauth2 securityScheme is declared in the spec. Armory CD supports OAuth 2.0 as a Gate
+    authentication provider (Google and GitHub registrations documented in the v2.40 release notes,
+    migrated to the Spring Security 5 DSL), but it is operator-configured rather than part of the API
+    contract.
+- id: oidc
+  conforms: partial
+  evidence: >-
+    Okta and other OIDC providers are documented as Gate identity providers. No
+    /.well-known/openid-configuration is served by Armory; discovery belongs to the operator's own IdP.
+- id: mutual-tls
+  conforms: true
+  evidence: >-
+    Mutual TLS is required between the Scale Agent and the Clouddriver plugin (CA PEM plus a
+    certificate/key pair per side, PKCS#8 keys on the Agent). x509 client certificates secure the Gate
+    automation port.
+  source: https://docs.armory.io/plugins/scale-agent/tasks/configure-mtls/
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No response in the spec declares application/problem+json; 4xx responses carry no schema.
+- id: idempotency
+  conforms: true
+  evidence: >-
+    All four operation-submission endpoints accept a clientRequestId query parameter that keys the
+    resulting Task, and Task.requestId echoes it back.
+  source: conventions/armory-conventions.yml
+- id: pagination
+  conforms: true
+  evidence: >-
+    page/limit paging with an items/page/limit/total envelope on the Dynamic Accounts endpoints;
+    pageSize on search; startingAccountName as a continuation token on the credentials listing.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: >-
+    Deprecation is announced through a formal published policy and the release notes, not through
+    Sunset/Deprecation response headers.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on docs.armory.io; no other Armory host serves one.
+- id: json-api
+  conforms: false
+  evidence: Plain JSON resource representations; no JSON:API media type or document structure.
+- id: open-policy-agent
+  conforms: true
+  evidence: >-
+    The Armory Policy Engine evaluates OPA Rego policy against pipeline save, stage execution and
+    inbound HTTP calls (spinnaker.http.authz). As of the v2.40.2 release it is built into the Armory CD
+    distribution rather than shipped as a plugin.
+  source: https://docs.armory.io/plugins/policy-engine/
+- id: kubernetes-rbac
+  conforms: true
+  evidence: >-
+    The Scale Agent service authorizes against target clusters through a ClusterRole or Role bound to
+    a ServiceAccount, or through a mounted kubeconfig secret.
+  source: https://docs.armory.io/plugins/scale-agent/concepts/service-permissions/
+- id: asyncapi
+  conforms: false
+  evidence: No AsyncAPI document is published. The event surface is documented in prose only.
+compliance_program:
+  published: false
+  certifications: []
+  evidence:
+  - claim: >-
+      "Armory scans the codebase as we develop and release software. Contact your Armory account
+      representative for information about CVE scans for this release."
+    source: https://docs.armory.io/continuous-deployment/release-notes/
+    assessment: >-
+      CVE scanning is asserted but the results are gated behind an account representative, so nothing
+      public can be verified.

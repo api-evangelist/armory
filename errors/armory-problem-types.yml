@@ -1,0 +1,59 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/_original/armory-scale-agent-swagger.json (4xx responses) +
+  https://docs.armory.io/plugins/scale-agent/reference/dynamic-accounts/
+format: none
+rfc9457: false
+note: >-
+  Armory publishes no error-code registry and no problem-type namespace for the Scale Agent API. The
+  4xx responses in the harvested Swagger are Springfox defaults - a status and a one-word description,
+  no schema, no media type. The only error semantics Armory documents by hand are the 400 on the
+  Dynamic Accounts endpoints. Everything below is what the published contract actually says; nothing
+  has been invented to fill the gaps.
+envelope:
+  schema: undeclared
+  detail: >-
+    No 4xx response in the spec references a schema. The definitions block does carry Throwable,
+    StackTraceElement and Status, which are Spring/Clouddriver internals that surface in some error
+    bodies, but no operation binds them to an error response.
+problems:
+- status: 400
+  title: Account name not defined in Clouddriver
+  detail: >-
+    Returned by the Dynamic Accounts endpoints when the supplied account name does not match an
+    account Clouddriver knows about.
+  source_doc: https://docs.armory.io/plugins/scale-agent/reference/dynamic-accounts/
+  method: searched
+- status: 401
+  title: Unauthorized
+  detail: Declared on all 56 operations with no schema and no remediation guidance.
+  occurrences: 56
+  source_operation: openapi/_original/armory-scale-agent-swagger.json
+  method: derived
+- status: 403
+  title: Forbidden
+  detail: >-
+    Declared on all 56 operations. In a real deployment this is where Fiat account/application
+    authorization and the Armory Policy Engine's spinnaker.http.authz rules reject the call.
+  occurrences: 56
+  source_operation: openapi/_original/armory-scale-agent-swagger.json
+  method: derived
+- status: 404
+  title: Not Found
+  detail: Declared on 54 of 56 operations with no schema.
+  occurrences: 54
+  source_operation: openapi/_original/armory-scale-agent-swagger.json
+  method: derived
+success_statuses:
+- status: 200
+  occurrences: 56
+- status: 201
+  occurrences: 8
+  note: Declared on operations that cannot create anything (e.g. GET listings) - a Springfox artefact.
+- status: 204
+  occurrences: 2
+gaps:
+- No 5xx response is declared on any operation.
+- No error response declares a media type or a schema.
+- No error code, type URI, or remediation text is published anywhere in the Armory documentation.

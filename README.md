@@ -42,5 +42,35 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Armory is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/armory_stock/
+Armory, Inc. is a San Mateo, California software company founded in 2016 that built and sold an
+enterprise distribution of the open source Spinnaker continuous delivery platform. Its product line
+covered Armory Continuous Deployment (self-hosted and Armory-managed Spinnaker), Armory Continuous
+Deployment-as-a-Service, and a set of proprietary Spinnaker plugins — the Armory Scale Agent for
+Spinnaker and Kubernetes, Pipelines-as-Code (Dinghy), an OPA-backed Policy Engine, Terraform
+Integration, GitHub Integration and AWS Event Cache.
+
+Harness acquired Armory's continuous delivery assets in January 2024. `www.armory.io` now 301s to
+`harness.io/products/continuous-delivery` and the `armory.io` apex no longer completes a TLS
+handshake, but the product did not stop: **docs.armory.io remains live**, Armory CD releases were
+still shipping as recently as **v2.40.2 on 2026-07-27**, and Armory still publishes a real Swagger
+2.0 API reference for the Scale Agent.
+
+## API surface
+
+- **Armory Scale Agent API** — the REST surface Clouddriver exposes when the Armory Scale Agent
+  plugin is installed. **51 paths, 56 operations**, published as Swagger 2.0 at
+  [`/reference/scale-agent/swagger.json`](https://docs.armory.io/reference/scale-agent/swagger.json).
+  Self-hosted only — served by the operator's own Clouddriver, so there is no vendor base URL.
+- **Armory Continuous Deployment API** — the Spinnaker Gate API, which Armory documents exposing for
+  automation clients on a second port behind x509 client certificates.
+
+## What is gone
+
+`developer.armory.io` and `api.cloud.armory.io` — the Armory CD-as-a-Service developer portal and API
+host — no longer resolve. There is no status page, no `/.well-known/` surface, no security.txt, no
+trust center, no MCP server and no agent card on any Armory host.
+
+- Docs: https://docs.armory.io/
+- Source: https://github.com/armory · https://github.com/armory-io
+- Containers: https://hub.docker.com/u/armory (219 repositories)
+- Secondary-market listing: https://forgeglobal.com/armory_stock/

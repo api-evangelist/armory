@@ -1,18 +1,97 @@
 aid: armory
 name: Armory
-description: 'Armory is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Armory, Inc. is a San Mateo, California software company founded in 2016 that built and sold an enterprise
+  distribution of the open source Spinnaker continuous delivery platform. Its product line covered Armory Continuous
+  Deployment (self-hosted and Armory-managed Spinnaker), Armory Continuous Deployment-as-a-Service, and a set of
+  proprietary Spinnaker plugins - the Armory Scale Agent for Spinnaker and Kubernetes, Pipelines-as-Code (Dinghy), an
+  OPA-backed Policy Engine, Terraform Integration, GitHub Integration and AWS Event Cache. Armory raised more than $82M
+  including a $40M Series C, and its assets were acquired by Harness in January 2024. www.armory.io now redirects to
+  harness.io, but docs.armory.io remains live and still publishes the full product documentation plus a real Swagger 2.0
+  API reference for the Armory Scale Agent Clouddriver surface.
+image: https://docs.armory.io/favicons/android-192x192.png
 url: https://raw.githubusercontent.com/api-evangelist/armory/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
-- Company
-apis: []
+- Continuous Delivery
+- Spinnaker
+- Kubernetes
+- DevOps
+- Deployment Automation
+- Multi-Cloud
+- Pipelines
+- Developer Tools
+- Plugins
+- Continuous Deployment
+apis:
+- aid: armory:armory-scale-agent-api
+  name: Armory Scale Agent API
+  description: >-
+    REST surface exposed by Clouddriver when the Armory Scale Agent plugin is installed. Covers the Armory-specific
+    Dynamic Accounts endpoints (/agents/kubernetes/accounts) alongside the Clouddriver application, cluster, server
+    group, instance, job, credential, operation, task and infrastructure endpoints. Self-hosted only - the endpoints
+    are served by the customer's own Clouddriver instance, which the docs describe reaching at
+    https://<clouddriver-loadbalancer-url>:<clouddriver-port>, so there is no vendor-hosted base URL.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - Kubernetes
+  - Continuous Delivery
+  - Spinnaker
+  - Deployment Automation
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-scale-agent-agent-accounts-openapi.yml
+  - type: OpenAPI
+    url: openapi/armory-scale-agent-credentials-openapi.yml
+  - type: OpenAPI
+    url: openapi/armory-scale-agent-applications-openapi.yml
+  - type: OpenAPI
+    url: openapi/armory-scale-agent-operations-openapi.yml
+  - type: OpenAPI
+    url: openapi/armory-scale-agent-infrastructure-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: Overlay
+    url: overlays/armory-scale-agent-overlay.yaml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-cd-gate-api
+  name: Armory Continuous Deployment API (Spinnaker Gate)
+  description: >-
+    Armory Continuous Deployment ships the Spinnaker Gate API as its programmatic interface. Armory documents how to
+    expose it for automation clients on a second Gate port (8085) secured with x509 client certificates, separately
+    from the browser-facing endpoint on 8084 that uses the cluster's primary identity provider. The OpenAPI contract
+    for Gate itself is the upstream Spinnaker one; Armory publishes the deployment and authentication guidance.
+  humanURL: https://docs.armory.io/continuous-deployment/armory-admin/api-endpoint/
+  tags:
+  - Continuous Delivery
+  - Spinnaker
+  - Multi-Cloud
+  properties:
+  - type: Documentation
+    url: https://docs.armory.io/continuous-deployment/armory-admin/api-endpoint/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Webhooks
+    url: asyncapi/armory-webhooks.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -20,4 +99,77 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://docs.armory.io/
+- type: DeveloperPortal
+  url: https://docs.armory.io/
+- type: Documentation
+  url: https://docs.armory.io/
+- type: APIReference
+  url: https://docs.armory.io/plugins/scale-agent/reference/
+- type: GettingStarted
+  url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+- type: Support
+  url: https://support.armory.io/
+- type: GitHubOrganization
+  url: https://github.com/armory
+- type: ChangeLog
+  url: changelog/armory-changelog.yml
+- type: ReleaseNotes
+  url: https://docs.armory.io/continuous-deployment/release-notes/
+- type: AgenticAccess
+  url: agentic-access/armory-agentic-access.yml
+- type: Authentication
+  url: authentication/armory-authentication.yml
+- type: Conventions
+  url: conventions/armory-conventions.yml
+- type: Idempotency
+  url: conventions/armory-conventions.yml
+- type: ErrorCatalog
+  url: errors/armory-problem-types.yml
+- type: DataModel
+  url: data-model/armory-data-model.yml
+- type: Lifecycle
+  url: lifecycle/armory-lifecycle.yml
+- type: Deprecation
+  url: https://docs.armory.io/continuous-deployment/feature-status/deprecations/
+- type: Overlay
+  url: overlays/armory-scale-agent-overlay.yaml
+- type: Conformance
+  url: conformance/armory-conformance.yml
+- type: Packages
+  url: packages/armory-packages.yml
+- type: SDKs
+  url: packages/armory-packages.yml
+- type: CLI
+  url: cli/armory-cli.yml
+- type: Webhooks
+  url: asyncapi/armory-webhooks.yml
+- type: MCPCandidate
+  url: mcp/armory-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/armory-tool-crosswalk.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/armory-llms.txt
+- type: WellKnown
+  url: well-known/armory-well-known.yml
+- type: DomainSecurity
+  url: security/armory-domain-security.yml
+- type: SourceCode
+  url: https://github.com/armory
+- type: DockerHub
+  url: https://hub.docker.com/u/armory
+- type: Community
+  url: https://join.slack.com/t/spinnakerteam/shared_invite/zt-7juwxmx0-nQ4Ud4pJcbuPykX3SXwQrg
+- type: Twitter
+  url: https://twitter.com/cloudarmory
+- type: YouTube
+  url: https://www.youtube.com/channel/UC9ESNuSCMXLsdRdBDhjSzcA/
+- type: SecondaryMarket
   url: https://forgeglobal.com/armory_stock/
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 27
+  pass: local-v1

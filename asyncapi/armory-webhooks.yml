@@ -1,0 +1,86 @@
+generated: '2026-08-06'
+method: searched
+source: docs.armory.io webhook, pubsub and notification documentation
+spec_type: none
+asyncapi_published: false
+note: >-
+  Armory publishes no AsyncAPI document. It does document a real event surface in prose, in three
+  distinct directions, and this artifact records what the documentation actually supports. Because
+  Armory CD is self-hosted, every channel below is an endpoint the operator stands up in their own
+  cluster - there is no Armory-hosted event bus and no vendor-side subscription API.
+surfaces:
+- name: Inbound webhook triggers
+  direction: inbound
+  description: >-
+    A pipeline can be configured with a webhook trigger, so an external system starts a pipeline
+    execution by POSTing to the Spinnaker Gate webhook endpoint in the operator's own cluster. Armory
+    documents the feature and defers the trigger configuration detail to the upstream Spinnaker guide.
+  docs: https://docs.armory.io/continuous-deployment/spinnaker-user-guides/webhooks/
+- name: Outbound webhook stage
+  direction: outbound
+  description: >-
+    The Webhook stage calls an arbitrary HTTP API as a pipeline step. The stage supports pipeline
+    expressions in both the URL and the payload, and a "Wait for completion" mode that polls for
+    terminal status three ways - re-GET the webhook URL, follow the Location header, or follow a URL
+    parsed out of the response body. A Status JsonPath expression extracts the status value, which is
+    then matched against the SUCCESS, CANCELLED and TERMINAL status mappings. A "Progress location"
+    expression can surface interim progress in the stage details.
+  docs: https://docs.armory.io/continuous-deployment/spinnaker-user-guides/webhooks/
+  configuration:
+    status_lookup_modes:
+    - GET against the webhook URL
+    - from the Location header
+    - from a URL in the webhook's response body
+    status_extraction: JsonPath expression (Status JsonPath)
+    status_mappings:
+    - SUCCESS
+    - CANCELLED
+    - TERMINAL
+- name: Pub/Sub subscriptions and publishers
+  direction: bidirectional
+  description: >-
+    spec.spinnakerConfig.config.pubsub configures Google Cloud Pub/Sub subscriptions that trigger
+    pipelines, and publishers that emit to a topic. Each subscription declares a project,
+    subscriptionName, a service-account jsonPath, a templatePath, ackDeadlineSeconds and a
+    messageFormat; each publisher declares a project, topicName, jsonPath and content.
+  docs: https://docs.armory.io/continuous-deployment/installation/armory-operator/op-manifest-reference/pubsub/
+  providers:
+  - google
+- name: Notifications
+  direction: outbound
+  description: >-
+    spec.spinnakerConfig.config.notifications configures push notification channels driven by pipeline
+    and stage events. Slack supports a bot token or a forced incoming-webhook endpoint, Twilio sends
+    SMS from a configured number, and github-status writes commit statuses back to GitHub.
+  docs: https://docs.armory.io/continuous-deployment/installation/armory-operator/op-manifest-reference/notification/
+  channels:
+  - slack
+  - twilio
+  - github-status
+- name: AWS Event Cache plugin
+  direction: inbound
+  description: >-
+    An Armory plugin that consumes AWS infrastructure events to keep the Clouddriver cache warm
+    instead of relying solely on polling.
+  docs: https://docs.armory.io/plugins/aws-event-cache/overview/
+- name: GitHub commit-status notifications
+  direction: outbound
+  description: >-
+    The Armory GitHub Integration plugin writes pipeline outcomes back to GitHub as commit statuses.
+  docs: https://docs.armory.io/plugins/github-integration/commit-status-notifications/
+event_catalog:
+  published: false
+  detail: >-
+    No enumerated event-type catalog, no payload schemas and no AsyncAPI channel definitions are
+    published for any of the surfaces above. What Armory documents is the configuration of the
+    transports, not the shape of the messages that cross them.
+x-evidence:
+- url: https://docs.armory.io/continuous-deployment/spinnaker-user-guides/webhooks/
+  http_status: 200
+  fetched: '2026-08-06'
+- url: https://docs.armory.io/continuous-deployment/installation/armory-operator/op-manifest-reference/pubsub/
+  http_status: 200
+  fetched: '2026-08-06'
+- url: https://docs.armory.io/continuous-deployment/installation/armory-operator/op-manifest-reference/notification/
+  http_status: 200
+  fetched: '2026-08-06'

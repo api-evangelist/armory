@@ -1,0 +1,1312 @@
+swagger: '2.0'
+info:
+  title: Armory Scale Agent Applications & Clusters API
+  description: Read operations across applications, clusters, server groups, server group managers, instances, load balancers,
+    functions, raw resources and jobs.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+basePath: /
+schemes:
+- https
+tags:
+- name: applications-controller
+- name: cluster-controller
+- name: function-controller
+- name: instance-controller
+- name: job-controller
+- name: load-balancer-controller
+- name: raw-resource-controller
+- name: server-group-controller
+- name: server-group-manager-controller
+paths:
+  /applications:
+    get:
+      tags:
+      - applications-controller
+      summary: list
+      operationId: listUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: expand
+        in: query
+        description: expand
+        required: false
+        type: boolean
+        default: true
+      - name: restricted
+        in: query
+        description: restricted
+        required: false
+        type: boolean
+        default: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Application'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters:
+    get:
+      tags:
+      - cluster-controller
+      summary: listByAccount
+      operationId: listByAccountUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}:
+    get:
+      tags:
+      - cluster-controller
+      summary: getForAccount
+      operationId: getForAccountUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ClusterViewModel'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}:
+    get:
+      tags:
+      - cluster-controller
+      summary: getTargetServerGroup
+      operationId: getTargetServerGroupUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        type: string
+      - name: clusterName
+        in: path
+        description: clusterName
+        required: true
+        type: string
+      - name: onlyEnabled
+        in: query
+        description: onlyEnabled
+        required: false
+        type: string
+        default: 'false'
+      - name: scope
+        in: path
+        description: scope
+        required: true
+        type: string
+      - name: target
+        in: path
+        description: target
+        required: true
+        type: string
+      - name: validateOldest
+        in: query
+        description: validateOldest
+        required: false
+        type: string
+        default: 'true'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ServerGroup'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  ? /applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}/{summaryType}
+  : get:
+      tags:
+      - cluster-controller
+      summary: getServerGroupSummary
+      operationId: getServerGroupSummaryUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        type: string
+      - name: clusterName
+        in: path
+        description: clusterName
+        required: true
+        type: string
+      - name: onlyEnabled
+        in: query
+        description: onlyEnabled
+        required: false
+        type: string
+        default: 'false'
+      - name: scope
+        in: path
+        description: scope
+        required: true
+        type: string
+      - name: summaryType
+        in: path
+        description: summaryType
+        required: true
+        type: string
+      - name: target
+        in: path
+        description: target
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Summary'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups:
+    get:
+      tags:
+      - cluster-controller
+      summary: getServerGroups
+      operationId: getServerGroupsUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      - name: clusterName
+        in: path
+        description: clusterName
+        required: true
+        type: string
+      - name: expand
+        in: query
+        description: expand
+        required: false
+        type: boolean
+        default: true
+      - name: region
+        in: query
+        description: region
+        required: false
+        type: string
+      - name: type
+        in: path
+        description: type
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServerGroup'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups/{serverGroupName}:
+    get:
+      tags:
+      - cluster-controller
+      summary: getServerGroup
+      operationId: getServerGroupUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      - name: clusterName
+        in: path
+        description: clusterName
+        required: true
+        type: string
+      - name: region
+        in: query
+        description: region
+        required: false
+        type: string
+      - name: serverGroupName
+        in: path
+        description: serverGroupName
+        required: true
+        type: string
+      - name: type
+        in: path
+        description: type
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}/{name}:
+    get:
+      tags:
+      - cluster-controller
+      summary: getForAccountAndName
+      operationId: getForAccountAndNameUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      - name: expand
+        in: query
+        description: expand
+        required: false
+        type: boolean
+        default: true
+      - name: name
+        in: path
+        description: name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cluster'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}/{name}/{type}:
+    get:
+      tags:
+      - cluster-controller
+      summary: getForAccountAndNameAndType
+      operationId: getForAccountAndNameAndTypeUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      - name: expand
+        in: query
+        description: expand
+        required: false
+        type: boolean
+        default: true
+      - name: name
+        in: path
+        description: name
+        required: true
+        type: string
+      - name: type
+        in: path
+        description: type
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Cluster'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/functions:
+    get:
+      tags:
+      - function-controller
+      summary: list
+      operationId: listUsingGET_2
+      produces:
+      - '*/*'
+      parameters:
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Function'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/jobs/{account}/{location}/{id}:
+    get:
+      tags:
+      - job-controller
+      summary: Collect a JobStatus
+      description: Collects the output of the job.
+      operationId: collectJobUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: Account job was created by
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: Application name
+        required: true
+        type: string
+      - name: id
+        in: path
+        description: Unique identifier of job being looked up
+        required: true
+        type: string
+      - name: location
+        in: path
+        description: Namespace, region, or zone job is running in
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/JobStatus'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+      - job-controller
+      summary: Cancel a Job
+      description: Cancels the job.
+      operationId: cancelJobUsingDELETE
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: Account job is running in
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: Application name
+        required: true
+        type: string
+      - name: id
+        in: path
+        description: Unique identifier of job to be canceled
+        required: true
+        type: string
+      - name: location
+        in: path
+        description: Namespace, region, or zone job is running in
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /applications/{application}/jobs/{account}/{location}/{id}/{fileName}:
+    get:
+      tags:
+      - job-controller
+      summary: Collect a file from a job
+      description: Collects the file result of a job.
+      operationId: getFileContentsUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: Account job was created by
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: Application name
+        required: true
+        type: string
+      - name: fileName
+        in: path
+        description: File name to look up
+        required: true
+        type: string
+      - name: id
+        in: path
+        description: Unique identifier of job being looked up
+        required: true
+        type: string
+      - name: location
+        in: path
+        description: Namespace, region, or zone job is running in
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/loadBalancers:
+    get:
+      tags:
+      - load-balancer-controller
+      summary: list
+      operationId: listUsingGET_4
+      produces:
+      - application/json
+      parameters:
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LoadBalancer'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/rawResources:
+    get:
+      tags:
+      - raw-resource-controller
+      summary: list
+      operationId: listUsingGET_7
+      produces:
+      - application/json
+      parameters:
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/KubernetesRawResource'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/serverGroupManagers:
+    get:
+      tags:
+      - server-group-manager-controller
+      summary: getForApplication
+      operationId: getForApplicationUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServerGroupManager'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/serverGroups:
+    get:
+      tags:
+      - server-group-controller
+      summary: list
+      operationId: listUsingGET_9
+      produces:
+      - '*/*'
+      parameters:
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      - name: cloudProvider
+        in: query
+        description: cloudProvider
+        required: false
+        type: string
+      - name: clusters
+        in: query
+        description: clusters
+        required: false
+        type: array
+        items:
+          type: string
+        collectionFormat: multi
+      - name: expand
+        in: query
+        description: expand
+        required: false
+        type: string
+        default: 'false'
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/serverGroups/{account}/{region}/{name}:
+    get:
+      tags:
+      - server-group-controller
+      summary: getServerGroupByApplication
+      operationId: getServerGroupByApplicationUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        type: string
+      - name: includeDetails
+        in: query
+        description: includeDetails
+        required: false
+        type: string
+        default: 'true'
+      - name: name
+        in: path
+        description: name
+        required: true
+        type: string
+      - name: region
+        in: path
+        description: region
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ServerGroup'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{name}:
+    get:
+      tags:
+      - applications-controller
+      summary: get
+      operationId: getUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: name
+        in: path
+        description: name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ApplicationViewModel'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /instances/{account}/{region}/{id}:
+    get:
+      tags:
+      - instance-controller
+      summary: getInstance
+      operationId: getInstanceUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      - name: region
+        in: path
+        description: region
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Instance'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /instances/{account}/{region}/{id}/console:
+    get:
+      tags:
+      - instance-controller
+      summary: getConsoleOutput
+      operationId: getConsoleOutputUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        type: string
+      - name: cloudProvider
+        in: query
+        description: cloudProvider
+        required: false
+        type: string
+      - name: id
+        in: path
+        description: id
+        required: true
+        type: string
+      - name: provider
+        in: query
+        description: provider
+        required: false
+        type: string
+      - name: region
+        in: path
+        description: region
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  Application:
+    type: object
+    properties:
+      attributes:
+        type: object
+        additionalProperties:
+          type: string
+      clusterNames:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      name:
+        type: string
+    title: Application
+  ApplicationClusterViewModel:
+    type: object
+    properties:
+      loadBalancers:
+        type: array
+        items:
+          type: string
+      name:
+        type: string
+      provider:
+        type: string
+      serverGroups:
+        type: array
+        items:
+          type: string
+    title: ApplicationClusterViewModel
+  ApplicationViewModel:
+    type: object
+    properties:
+      attributes:
+        type: object
+        additionalProperties:
+          type: string
+      clusters:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            $ref: '#/definitions/ApplicationClusterViewModel'
+      name:
+        type: string
+    title: ApplicationViewModel
+  Capacity:
+    type: object
+    properties:
+      desired:
+        type: integer
+        format: int32
+      max:
+        type: integer
+        format: int32
+      min:
+        type: integer
+        format: int32
+      pinned:
+        type: boolean
+    title: Capacity
+  Cluster:
+    type: object
+    properties:
+      accountName:
+        type: string
+      loadBalancers:
+        type: array
+        items:
+          $ref: '#/definitions/LoadBalancer'
+      moniker:
+        $ref: '#/definitions/Moniker'
+      name:
+        type: string
+      serverGroups:
+        type: array
+        items:
+          $ref: '#/definitions/ServerGroup'
+      type:
+        type: string
+    title: Cluster
+  ClusterViewModel:
+    type: object
+    properties:
+      account:
+        type: string
+      loadBalancers:
+        type: array
+        items:
+          type: string
+      moniker:
+        $ref: '#/definitions/Moniker'
+      name:
+        type: string
+      serverGroups:
+        type: array
+        items:
+          type: string
+    title: ClusterViewModel
+  Function:
+    type: object
+    properties:
+      account:
+        type: string
+      cloudProvider:
+        type: string
+      region:
+        type: string
+    title: Function
+  Instance:
+    type: object
+    properties:
+      cloudProvider:
+        type: string
+      health:
+        type: array
+        items:
+          $ref: '#/definitions/Map«string,object»'
+      healthState:
+        type: string
+        enum:
+        - Failed
+        - Down
+        - OutOfService
+        - Unknown
+        - Starting
+        - Succeeded
+        - Up
+        - Draining
+      humanReadableName:
+        type: string
+      labels:
+        type: object
+        additionalProperties:
+          type: string
+      launchTime:
+        type: integer
+        format: int64
+      name:
+        type: string
+      providerType:
+        type: string
+      zone:
+        type: string
+    title: Instance
+  InstanceCounts:
+    type: object
+    properties:
+      down:
+        type: integer
+        format: int32
+      outOfService:
+        type: integer
+        format: int32
+      starting:
+        type: integer
+        format: int32
+      total:
+        type: integer
+        format: int32
+      unknown:
+        type: integer
+        format: int32
+      up:
+        type: integer
+        format: int32
+    title: InstanceCounts
+  JobStatus:
+    type: object
+    properties:
+      account:
+        type: string
+      completedTime:
+        type: integer
+        format: int64
+      completionDetails:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/Serializable'
+      createdTime:
+        type: integer
+        format: int64
+      id:
+        type: string
+      jobState:
+        type: string
+        enum:
+        - Starting
+        - Running
+        - Failed
+        - Succeeded
+        - Unknown
+      location:
+        type: string
+      name:
+        type: string
+      provider:
+        type: string
+    title: JobStatus
+  KubernetesApiGroup:
+    type: object
+    properties:
+      nativeGroup:
+        type: boolean
+    title: KubernetesApiGroup
+  KubernetesApiVersion:
+    type: object
+    properties:
+      apiGroup:
+        $ref: '#/definitions/KubernetesApiGroup'
+    title: KubernetesApiVersion
+  KubernetesKind:
+    type: object
+    properties:
+      apiGroup:
+        $ref: '#/definitions/KubernetesApiGroup'
+    title: KubernetesKind
+  KubernetesRawResource:
+    type: object
+    properties:
+      account:
+        type: string
+      apiVersion:
+        $ref: '#/definitions/KubernetesApiVersion'
+      createdTime:
+        type: integer
+        format: int64
+      displayName:
+        type: string
+      kind:
+        $ref: '#/definitions/KubernetesKind'
+      labels:
+        type: object
+        additionalProperties:
+          type: string
+      moniker:
+        $ref: '#/definitions/Moniker'
+      name:
+        type: string
+      namespace:
+        type: string
+      region:
+        type: string
+    title: KubernetesRawResource
+  LoadBalancer:
+    type: object
+    properties:
+      account:
+        type: string
+      cloudProvider:
+        type: string
+      labels:
+        type: object
+        additionalProperties:
+          type: string
+      moniker:
+        $ref: '#/definitions/Moniker'
+      name:
+        type: string
+      serverGroups:
+        type: array
+        items:
+          $ref: '#/definitions/LoadBalancerServerGroup'
+      type:
+        type: string
+    title: LoadBalancer
+  LoadBalancerInstance:
+    type: object
+    properties:
+      health:
+        type: object
+      id:
+        type: string
+      name:
+        type: string
+      zone:
+        type: string
+    title: LoadBalancerInstance
+  LoadBalancerServerGroup:
+    type: object
+    properties:
+      account:
+        type: string
+      cloudProvider:
+        type: string
+      detachedInstances:
+        type: array
+        items:
+          type: string
+      instances:
+        type: array
+        items:
+          $ref: '#/definitions/LoadBalancerInstance'
+      isDisabled:
+        type: boolean
+      name:
+        type: string
+      region:
+        type: string
+    title: LoadBalancerServerGroup
+  Map«string,object»:
+    type: object
+    title: Map«string,object»
+    additionalProperties:
+      type: object
+  Moniker:
+    type: object
+    properties:
+      app:
+        type: string
+      cluster:
+        type: string
+      detail:
+        type: string
+      sequence:
+        type: integer
+        format: int32
+      stack:
+        type: string
+    title: Moniker
+  Serializable:
+    type: object
+    title: Serializable
+  ServerGroup:
+    type: object
+    properties:
+      capacity:
+        $ref: '#/definitions/Capacity'
+      cloudProvider:
+        type: string
+      createdTime:
+        type: integer
+        format: int64
+      disabled:
+        type: boolean
+      instanceCounts:
+        $ref: '#/definitions/InstanceCounts'
+      instanceType:
+        type: string
+      instances:
+        type: array
+        items:
+          $ref: '#/definitions/Instance'
+      labels:
+        type: object
+        additionalProperties:
+          type: string
+      launchConfig:
+        type: object
+      loadBalancers:
+        type: array
+        items:
+          type: string
+      moniker:
+        $ref: '#/definitions/Moniker'
+      name:
+        type: string
+      region:
+        type: string
+      securityGroups:
+        type: array
+        items:
+          type: string
+      serverGroupManagers:
+        type: array
+        items:
+          $ref: '#/definitions/ServerGroupManagerSummary'
+      tags:
+        type: object
+      type:
+        type: string
+      zones:
+        type: array
+        items:
+          type: string
+    title: ServerGroup
+  ServerGroupManager:
+    type: object
+    properties:
+      account:
+        type: string
+      labels:
+        type: object
+        additionalProperties:
+          type: string
+      moniker:
+        $ref: '#/definitions/Moniker'
+      name:
+        type: string
+      region:
+        type: string
+      serverGroups:
+        type: array
+        items:
+          $ref: '#/definitions/ServerGroupSummary'
+    title: ServerGroupManager
+  ServerGroupManagerSummary:
+    type: object
+    properties:
+      account:
+        type: string
+      location:
+        type: string
+      name:
+        type: string
+    title: ServerGroupManagerSummary
+  ServerGroupSummary:
+    type: object
+    properties:
+      account:
+        type: string
+      moniker:
+        $ref: '#/definitions/Moniker'
+      name:
+        type: string
+      region:
+        type: string
+    title: ServerGroupSummary
+  Summary:
+    type: object
+    title: Summary

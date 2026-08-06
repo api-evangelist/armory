@@ -1,0 +1,124 @@
+generated: '2026-08-06'
+method: searched
+source: https://docs.armory.io/continuous-deployment/feature-status/
+versioning:
+  scheme: product-version
+  current: 2.40.2
+  current_released: '2026-07-27'
+  train: >-
+    Armory Continuous Deployment ships on a 2.x train tracking an upstream Spinnaker release (2.40.2
+    corresponds to Spinnaker 2026.2.2). Releases are labelled LTS or Feature in the release-note title
+    so customers can tell the support window apart.
+  docs: https://docs.armory.io/continuous-deployment/release-notes/
+  api_versioning:
+    detail: >-
+      The Scale Agent REST surface itself carries no version segment. Versioning happens at the plugin
+      level - the docs publish one Swagger 2.0 document per Scale Agent plugin release at
+      /reference/scale-agent/swagger.<plugin-version>.json (0.9.x through 0.13.x are all still online),
+      with /reference/scale-agent/swagger.json as the current document.
+    current_document: https://docs.armory.io/reference/scale-agent/swagger.json
+support_window:
+  policy: current minor release plus the two previous minor releases
+  detail: >-
+    "All supported versions" in the compatibility matrix means the current minor release and the two
+    minor releases before it. For third-party software it means whatever the vendor actively maintains.
+  docs: https://docs.armory.io/continuous-deployment/feature-status/continuous-deployment-matrix/
+feature_status:
+  ladder:
+  - Experiment
+  - Early Access
+  - Beta
+  - GA
+  detail: >-
+    Every Armory feature and plugin carries a maturity badge. Early Access is limited to selected
+    technology partners and explicitly not for production; Beta is production-capable with caution;
+    GA is available to all customers on the corresponding Armory CD release.
+  docs: https://docs.armory.io/continuous-deployment/feature-status/release-definitions/
+deprecation:
+  policy_url: https://docs.armory.io/continuous-deployment/feature-status/deprecations/
+  has_formal_policy: true
+  definitions:
+    deprecated: >-
+      The feature enters the end-of-support cycle. No new development except critical (P0/P1) bugs and
+      security CVE fixes specific to the feature.
+    end_of_support: >-
+      The feature is no longer available for customer or technical support, including critical bugs and
+      CVE fixes.
+  notice_period:
+    standard: 6 months minimum between deprecation and end of support
+    complex_migrations: 12 months target where migration requires significant support
+    acceleration_clauses:
+    - platform integrity and stability
+    - third-party software changed or withdrawn
+    - data security or legal compliance
+  announcement_channels:
+  - deprecations page on docs.armory.io
+  - email series ahead of the date
+  - Armory newsletter
+  - direct contact via CSM / account executive
+  sunset_header: false
+  breaking_change_disclosure:
+    detail: >-
+      Breaking changes are listed in the release notes and retained for three minor versions from
+      introduction - a change landing in 2.21.0 appears through 2.24.x and drops off at 2.25.x.
+  deprecated_features:
+  - feature: Pipelines as CRD (PaCRD)
+    deprecated: '2021-08-01'
+    end_of_support: '2021-11-01'
+    last_compatible_release: not applicable
+  - feature: Halyard
+    deprecated: '2021-09-01'
+    end_of_support: '2021-12-30'
+    last_compatible_release: 2.26.x
+  - feature: Armory Operator
+    deprecated: announced in-release
+    status: deprecated / considered EOL
+    migration: Kustomize-based deployment
+    evidence: >-
+      Every release note from at least v2.38 through v2.40.2 carries a warning box stating the Armory
+      Operator is deprecated and directing customers to the operator-to-Kustomize migration guide.
+  - feature: Armory Policy Engine plugin
+    status: absorbed
+    detail: >-
+      As of the v2.40.2 release the Policy Engine is built into the Armory CD distribution. The
+      Armory.PolicyEngine plugin and the armory.opa configuration block are replaced by a native
+      armory.policy-engine block, requiring a configuration change in clouddriver-local.yml,
+      front50-local.yml and any other service profile referencing OPA.
+deprecated_operations:
+- operation: operationsUsingPOST
+  path: POST /ops
+  source: openapi/armory-scale-agent-operations-openapi.yml
+  successor: POST /{cloudProvider}/ops
+- operation: operationUsingPOST
+  path: POST /ops/{name}
+  source: openapi/armory-scale-agent-operations-openapi.yml
+  successor: POST /{cloudProvider}/ops/{name}
+status_page:
+  published: false
+  detail: >-
+    Armory publishes no status page. status.armory.io resolves as a CNAME back to the armory.io apex,
+    which no longer completes a TLS handshake. This is self-hosted software, so there is no Armory-run
+    control plane to report on - the one hosted product, Armory CD-as-a-Service, is gone with
+    developer.armory.io and api.cloud.armory.io no longer resolving.
+sla:
+  published: false
+  detail: Support terms are contractual; no public SLA document is served from any live Armory host.
+support:
+  help_center: https://support.armory.io/
+  note: support.armory.io 301s to harnesssupport.zendesk.com following the Harness acquisition.
+  email: support@armory.io
+company_status:
+  event: asset acquisition
+  acquirer: Harness
+  announced: '2024-01-11'
+  detail: >-
+    Harness acquired Armory's continuous delivery assets in January 2024. www.armory.io 301s to
+    harness.io/products/continuous-delivery and armory.io no longer serves TLS, but the product has not
+    stopped: docs.armory.io remains live and Armory CD releases were still shipping as recently as
+    v2.40.2 on 2026-07-27.
+  evidence:
+  - url: https://www.armory.io/
+    http_status: 301
+    redirect: https://www.harness.io/products/continuous-delivery
+  - url: https://docs.armory.io/
+    http_status: 200
