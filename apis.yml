@@ -28,31 +28,36 @@ tags:
 - Plugins
 - Continuous Deployment
 apis:
-- aid: armory:armory-scale-agent-api
-  name: Armory Scale Agent API
+- aid: armory:armory-cd-gate-api
+  name: Armory Continuous Deployment API (Spinnaker Gate)
   description: >-
-    REST surface exposed by Clouddriver when the Armory Scale Agent plugin is installed. Covers the Armory-specific
-    Dynamic Accounts endpoints (/agents/kubernetes/accounts) alongside the Clouddriver application, cluster, server
-    group, instance, job, credential, operation, task and infrastructure endpoints. Self-hosted only - the endpoints
-    are served by the customer's own Clouddriver instance, which the docs describe reaching at
-    https://<clouddriver-loadbalancer-url>:<clouddriver-port>, so there is no vendor-hosted base URL.
-  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+    Armory Continuous Deployment ships the Spinnaker Gate API as its programmatic interface. Armory documents
+    how to expose it for automation clients on a second Gate port (8085) secured with x509 client certificates,
+    separately from the browser-facing endpoint on 8084 that uses the cluster's primary identity provider.
+    The OpenAPI contract for Gate itself is the upstream Spinnaker one; Armory publishes the deployment
+    and authentication guidance.
+  humanURL: https://docs.armory.io/continuous-deployment/armory-admin/api-endpoint/
   tags:
-  - Kubernetes
   - Continuous Delivery
   - Spinnaker
-  - Deployment Automation
+  - Multi-Cloud
+  properties:
+  - type: Documentation
+    url: https://docs.armory.io/continuous-deployment/armory-admin/api-endpoint/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Webhooks
+    url: asyncapi/armory-webhooks.yml
+- aid: armory:armory-agent-accounts-controller-api
+  name: Armory Agent Accounts Controller API
+  description: >-
+    The agent-accounts-controller API from Armory — 2 operation(s) for agent-accounts-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - agent-accounts-controller
   properties:
   - type: OpenAPI
-    url: openapi/armory-scale-agent-agent-accounts-openapi.yml
-  - type: OpenAPI
-    url: openapi/armory-scale-agent-credentials-openapi.yml
-  - type: OpenAPI
-    url: openapi/armory-scale-agent-applications-openapi.yml
-  - type: OpenAPI
-    url: openapi/armory-scale-agent-operations-openapi.yml
-  - type: OpenAPI
-    url: openapi/armory-scale-agent-infrastructure-openapi.yml
+    url: openapi/armory-agent-accounts-controller-api-openapi.yml
   - type: Swagger
     url: https://docs.armory.io/reference/scale-agent/swagger.json
   - type: Documentation
@@ -69,35 +74,596 @@ apis:
     url: errors/armory-problem-types.yml
   - type: DataModel
     url: data-model/armory-data-model.yml
-  - type: Overlay
-    url: overlays/armory-scale-agent-overlay.yaml
   - type: GitHubRepository
     url: https://github.com/armory/docs
-- aid: armory:armory-cd-gate-api
-  name: Armory Continuous Deployment API (Spinnaker Gate)
+- aid: armory:armory-applications-controller-api
+  name: Armory Applications Controller API
   description: >-
-    Armory Continuous Deployment ships the Spinnaker Gate API as its programmatic interface. Armory documents how to
-    expose it for automation clients on a second Gate port (8085) secured with x509 client certificates, separately
-    from the browser-facing endpoint on 8084 that uses the cluster's primary identity provider. The OpenAPI contract
-    for Gate itself is the upstream Spinnaker one; Armory publishes the deployment and authentication guidance.
-  humanURL: https://docs.armory.io/continuous-deployment/armory-admin/api-endpoint/
+    The applications-controller API from Armory — 2 operation(s) for applications-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
   tags:
-  - Continuous Delivery
-  - Spinnaker
-  - Multi-Cloud
+  - applications-controller
   properties:
+  - type: OpenAPI
+    url: openapi/armory-applications-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
   - type: Documentation
-    url: https://docs.armory.io/continuous-deployment/armory-admin/api-endpoint/
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
   - type: Authentication
     url: authentication/armory-authentication.yml
-  - type: Webhooks
-    url: asyncapi/armory-webhooks.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-artifact-controller-api
+  name: Armory Artifact Controller API
+  description: The artifact-controller API from Armory — 1 operation(s) for artifact-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - artifact-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-artifact-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-cache-controller-api
+  name: Armory Cache Controller API
+  description: The cache-controller API from Armory — 2 operation(s) for cache-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - cache-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-cache-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-cluster-controller-api
+  name: Armory Cluster Controller API
+  description: The cluster-controller API from Armory — 8 operation(s) for cluster-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - cluster-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-cluster-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-credentials-controller-api
+  name: Armory Credentials Controller API
+  description: The credentials-controller API from Armory — 4 operation(s) for credentials-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - credentials-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-credentials-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-elastic-ip-controller-api
+  name: Armory Elastic Ip Controller API
+  description: The elastic-ip-controller API from Armory — 1 operation(s) for elastic-ip-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - elastic-ip-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-elastic-ip-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-function-controller-api
+  name: Armory Function Controller API
+  description: The function-controller API from Armory — 1 operation(s) for function-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - function-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-function-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-instance-controller-api
+  name: Armory Instance Controller API
+  description: The instance-controller API from Armory — 2 operation(s) for instance-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - instance-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-instance-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-instance-type-controller-api
+  name: Armory Instance Type Controller API
+  description: >-
+    The instance-type-controller API from Armory — 1 operation(s) for instance-type-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - instance-type-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-instance-type-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-job-controller-api
+  name: Armory Job Controller API
+  description: The job-controller API from Armory — 2 operation(s) for job-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - job-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-job-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-load-balancer-controller-api
+  name: Armory Load Balancer Controller API
+  description: >-
+    The load-balancer-controller API from Armory — 1 operation(s) for load-balancer-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - load-balancer-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-load-balancer-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-network-controller-api
+  name: Armory Network Controller API
+  description: The network-controller API from Armory — 2 operation(s) for network-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - network-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-network-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-operations-controller-api
+  name: Armory Operations Controller API
+  description: The operations-controller API from Armory — 7 operation(s) for operations-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - operations-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-operations-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-raw-resource-controller-api
+  name: Armory Raw Resource Controller API
+  description: >-
+    The raw-resource-controller API from Armory — 1 operation(s) for raw-resource-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - raw-resource-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-raw-resource-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-reservation-report-controller-api
+  name: Armory Reservation Report Controller API
+  description: >-
+    The reservation-report-controller API from Armory — 2 operation(s) for reservation-report-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - reservation-report-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-reservation-report-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-search-controller-api
+  name: Armory Search Controller API
+  description: The search-controller API from Armory — 1 operation(s) for search-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - search-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-search-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-security-group-controller-api
+  name: Armory Security Group Controller API
+  description: >-
+    The security-group-controller API from Armory — 5 operation(s) for security-group-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - security-group-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-security-group-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-server-group-controller-api
+  name: Armory Server Group Controller API
+  description: >-
+    The server-group-controller API from Armory — 2 operation(s) for server-group-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - server-group-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-server-group-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-server-group-manager-controller-api
+  name: Armory Server Group Manager Controller API
+  description: >-
+    The server-group-manager-controller API from Armory — 1 operation(s) for server-group-manager-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - server-group-manager-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-server-group-manager-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-subnet-controller-api
+  name: Armory Subnet Controller API
+  description: The subnet-controller API from Armory — 2 operation(s) for subnet-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - subnet-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-subnet-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
+- aid: armory:armory-vpc-controller-api
+  name: Armory Vpc Controller API
+  description: The vpc-controller API from Armory — 1 operation(s) for vpc-controller.
+  humanURL: https://docs.armory.io/plugins/scale-agent/reference/
+  tags:
+  - vpc-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/armory-vpc-controller-api-openapi.yml
+  - type: Swagger
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+  - type: Documentation
+    url: https://docs.armory.io/plugins/scale-agent/
+  - type: APIReference
+    url: https://docs.armory.io/plugins/scale-agent/reference/
+  - type: GettingStarted
+    url: https://docs.armory.io/plugins/scale-agent/install/quickstart/
+  - type: Authentication
+    url: authentication/armory-authentication.yml
+  - type: Conventions
+    url: conventions/armory-conventions.yml
+  - type: ErrorCatalog
+    url: errors/armory-problem-types.yml
+  - type: DataModel
+    url: data-model/armory-data-model.yml
+  - type: GitHubRepository
+    url: https://github.com/armory/docs
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: IssueTracker
+  url: https://github.com/armory/docs/issues
+- type: ContributionGuide
+  url: https://github.com/armory/docs/blob/master/CONTRIBUTING.md
+- type: License
+  name: Apache-2.0
+  url: https://github.com/armory/docs/blob/master/LICENSE
 - type: Website
   url: https://docs.armory.io/
 - type: DeveloperPortal
