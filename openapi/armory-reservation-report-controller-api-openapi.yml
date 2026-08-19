@@ -1,0 +1,92 @@
+openapi: 3.2.0
+info:
+  title: Armory Scale Agent Infrastructure Reservation Report Controller API
+  description: Cloud infrastructure lookups - networks, subnets, VPCs, security groups, elastic IPs, instance types, reservation reports and search.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+servers:
+- url: /
+tags:
+- name: reservation-report-controller
+paths:
+  /reports/reservation:
+    get:
+      tags:
+      - reservation-report-controller
+      summary: getReservationReports
+      operationId: getReservationReportsUsingGET
+      parameters:
+      - name: filters
+        in: query
+        description: filters
+        required: true
+        schema:
+          items:
+            type: object
+            additionalProperties:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReservationReport'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /reports/reservation/{name}:
+    get:
+      tags:
+      - reservation-report-controller
+      summary: getReservationReportsByName
+      operationId: getReservationReportsByNameUsingGET
+      parameters:
+      - name: filters
+        in: query
+        description: filters
+        required: true
+        schema:
+          items:
+            type: object
+            additionalProperties:
+              type: string
+      - name: name
+        in: path
+        description: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReservationReport'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+components:
+  schemas:
+    ReservationReport:
+      type: object
+      title: ReservationReport

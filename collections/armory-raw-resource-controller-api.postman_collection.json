@@ -1,0 +1,236 @@
+{
+  "item": [
+    {
+      "id": "720f4a2f-3201-463c-8060-cc03030843c2",
+      "name": "raw-resource-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0ee9e08e-cbac-4f55-a90d-a4bf73a0b288",
+          "name": "list",
+          "request": {
+            "name": "list",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "rawResources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bcee23a-d675-4339-b9b5-99a857223150",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "rawResources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"account\": \"string\",\n    \"apiVersion\": {\n      \"apiGroup\": {\n        \"nativeGroup\": false\n      }\n    },\n    \"createdTime\": 2313,\n    \"displayName\": \"string\",\n    \"kind\": {\n      \"apiGroup\": {\n        \"nativeGroup\": true\n      }\n    },\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 8311,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"region\": \"string\"\n  },\n  {\n    \"account\": \"string\",\n    \"apiVersion\": {\n      \"apiGroup\": {\n        \"nativeGroup\": true\n      }\n    },\n    \"createdTime\": 971,\n    \"displayName\": \"string\",\n    \"kind\": {\n      \"apiGroup\": {\n        \"nativeGroup\": false\n      }\n    },\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 7021,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"namespace\": \"string\",\n    \"region\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6133103-c7f7-4f63-a6b8-3625916dd558",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "rawResources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb898b9a-efac-4f81-b41f-4f884e52b294",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "rawResources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56bc76b3-0d08-41b1-8c18-5ec4d9d80fa9",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "rawResources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "905d38f5-ac8f-4756-b514-0f9414c8b892",
+    "name": "Armory Scale Agent Applications & Clusters Raw Resource Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.\n\nContact Support:\n Name: Armory Docs",
+      "type": "text/plain"
+    }
+  }
+}

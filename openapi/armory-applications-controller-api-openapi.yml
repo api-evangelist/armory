@@ -1,0 +1,131 @@
+openapi: 3.2.0
+info:
+  title: Armory Scale Agent Applications & Clusters Applications Controller API
+  description: Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+servers:
+- url: /
+tags:
+- name: applications-controller
+paths:
+  /applications:
+    get:
+      tags:
+      - applications-controller
+      summary: list
+      operationId: listUsingGET
+      parameters:
+      - name: expand
+        in: query
+        description: expand
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - name: restricted
+        in: query
+        description: restricted
+        required: false
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{name}:
+    get:
+      tags:
+      - applications-controller
+      summary: get
+      operationId: getUsingGET
+      parameters:
+      - name: name
+        in: path
+        description: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApplicationViewModel'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+components:
+  schemas:
+    Application:
+      type: object
+      properties:
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+        clusterNames:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        name:
+          type: string
+      title: Application
+    ApplicationViewModel:
+      type: object
+      properties:
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+        clusters:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ApplicationClusterViewModel'
+        name:
+          type: string
+      title: ApplicationViewModel
+    ApplicationClusterViewModel:
+      type: object
+      properties:
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        provider:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            type: string
+      title: ApplicationClusterViewModel

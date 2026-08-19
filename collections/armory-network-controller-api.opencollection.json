@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Infrastructure Network Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "network-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/networks"
+          },
+          "docs": "list"
+        },
+        {
+          "info": {
+            "name": "listByCloudProvider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/networks/:cloudProvider",
+            "params": [
+              {
+                "name": "cloudProvider",
+                "value": "",
+                "type": "path",
+                "description": "cloudProvider"
+              }
+            ]
+          },
+          "docs": "listByCloudProvider"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

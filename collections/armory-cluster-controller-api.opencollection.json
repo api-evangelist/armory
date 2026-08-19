@@ -1,0 +1,362 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Applications & Clusters Cluster Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cluster-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listByAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/clusters",
+            "params": [
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "application"
+              }
+            ]
+          },
+          "docs": "listByAccount"
+        },
+        {
+          "info": {
+            "name": "getForAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/clusters/:account",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "application"
+              }
+            ]
+          },
+          "docs": "getForAccount"
+        },
+        {
+          "info": {
+            "name": "getTargetServerGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/clusters/:account/:clusterName/:cloudProvider/:scope/serverGroups/target/:target",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "application"
+              },
+              {
+                "name": "cloudProvider",
+                "value": "",
+                "type": "path",
+                "description": "cloudProvider"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "clusterName"
+              },
+              {
+                "name": "onlyEnabled",
+                "value": "",
+                "type": "query",
+                "description": "onlyEnabled"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "path",
+                "description": "scope"
+              },
+              {
+                "name": "target",
+                "value": "",
+                "type": "path",
+                "description": "target"
+              },
+              {
+                "name": "validateOldest",
+                "value": "",
+                "type": "query",
+                "description": "validateOldest"
+              }
+            ]
+          },
+          "docs": "getTargetServerGroup"
+        },
+        {
+          "info": {
+            "name": "getServerGroupSummary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/clusters/:account/:clusterName/:cloudProvider/:scope/serverGroups/target/:target/:summaryType",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "application"
+              },
+              {
+                "name": "cloudProvider",
+                "value": "",
+                "type": "path",
+                "description": "cloudProvider"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "clusterName"
+              },
+              {
+                "name": "onlyEnabled",
+                "value": "",
+                "type": "query",
+                "description": "onlyEnabled"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "path",
+                "description": "scope"
+              },
+              {
+                "name": "summaryType",
+                "value": "",
+                "type": "path",
+                "description": "summaryType"
+              },
+              {
+                "name": "target",
+                "value": "",
+                "type": "path",
+                "description": "target"
+              }
+            ]
+          },
+          "docs": "getServerGroupSummary"
+        },
+        {
+          "info": {
+            "name": "getServerGroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/clusters/:account/:clusterName/:type/serverGroups",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "application"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "clusterName"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "expand"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "region"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "type"
+              }
+            ]
+          },
+          "docs": "getServerGroups"
+        },
+        {
+          "info": {
+            "name": "getServerGroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/clusters/:account/:clusterName/:type/serverGroups/:serverGroupName",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "application"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "clusterName"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "region"
+              },
+              {
+                "name": "serverGroupName",
+                "value": "",
+                "type": "path",
+                "description": "serverGroupName"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "type"
+              }
+            ]
+          },
+          "docs": "getServerGroup"
+        },
+        {
+          "info": {
+            "name": "getForAccountAndName",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/clusters/:account/:name",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "application"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "expand"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "name"
+              }
+            ]
+          },
+          "docs": "getForAccountAndName"
+        },
+        {
+          "info": {
+            "name": "getForAccountAndNameAndType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/clusters/:account/:name/:type",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "application"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "expand"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "name"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "type"
+              }
+            ]
+          },
+          "docs": "getForAccountAndNameAndType"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

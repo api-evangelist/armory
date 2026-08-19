@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Applications & Clusters Instance Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "instance-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getInstance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/instances/:account/:region/:id",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "path",
+                "description": "region"
+              }
+            ]
+          },
+          "docs": "getInstance"
+        },
+        {
+          "info": {
+            "name": "getConsoleOutput",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/instances/:account/:region/:id/console",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "cloudProvider",
+                "value": "",
+                "type": "query",
+                "description": "cloudProvider"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id"
+              },
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "provider"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "path",
+                "description": "region"
+              }
+            ]
+          },
+          "docs": "getConsoleOutput"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

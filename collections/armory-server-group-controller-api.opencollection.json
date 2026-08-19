@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Applications & Clusters Server Group Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "server-group-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/serverGroups",
+            "params": [
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "application"
+              },
+              {
+                "name": "cloudProvider",
+                "value": "",
+                "type": "query",
+                "description": "cloudProvider"
+              },
+              {
+                "name": "clusters",
+                "value": "",
+                "type": "query",
+                "description": "clusters"
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "expand"
+              }
+            ]
+          },
+          "docs": "list"
+        },
+        {
+          "info": {
+            "name": "getServerGroupByApplication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/serverGroups/:account/:region/:name",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "application"
+              },
+              {
+                "name": "includeDetails",
+                "value": "",
+                "type": "query",
+                "description": "includeDetails"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "name"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "path",
+                "description": "region"
+              }
+            ]
+          },
+          "docs": "getServerGroupByApplication"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

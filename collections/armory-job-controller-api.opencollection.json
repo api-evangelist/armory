@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Applications & Clusters Job Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "job-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Collect a JobStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/jobs/:account/:location/:id",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "Account job was created by"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of job being looked up"
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "path",
+                "description": "Namespace, region, or zone job is running in"
+              }
+            ]
+          },
+          "docs": "Collects the output of the job."
+        },
+        {
+          "info": {
+            "name": "Cancel a Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/applications/:application/jobs/:account/:location/:id",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "Account job is running in"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of job to be canceled"
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "path",
+                "description": "Namespace, region, or zone job is running in"
+              }
+            ]
+          },
+          "docs": "Cancels the job."
+        },
+        {
+          "info": {
+            "name": "Collect a file from a job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/applications/:application/jobs/:account/:location/:id/:fileName",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "Account job was created by"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "path",
+                "description": "Application name"
+              },
+              {
+                "name": "fileName",
+                "value": "",
+                "type": "path",
+                "description": "File name to look up"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of job being looked up"
+              },
+              {
+                "name": "location",
+                "value": "",
+                "type": "path",
+                "description": "Namespace, region, or zone job is running in"
+              }
+            ]
+          },
+          "docs": "Collects the file result of a job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

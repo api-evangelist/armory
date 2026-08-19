@@ -1,0 +1,279 @@
+openapi: 3.2.0
+info:
+  title: Armory Scale Agent Applications & Clusters Server Group Controller API
+  description: Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+servers:
+- url: /
+tags:
+- name: server-group-controller
+paths:
+  /applications/{application}/serverGroups:
+    get:
+      tags:
+      - server-group-controller
+      summary: list
+      operationId: listUsingGET_9
+      parameters:
+      - name: application
+        in: path
+        description: application
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        description: cloudProvider
+        required: false
+        schema:
+          type: string
+      - name: clusters
+        in: query
+        description: clusters
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: expand
+        in: query
+        description: expand
+        required: false
+        schema:
+          type: string
+          default: 'false'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/serverGroups/{account}/{region}/{name}:
+    get:
+      tags:
+      - server-group-controller
+      summary: getServerGroupByApplication
+      operationId: getServerGroupByApplicationUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        schema:
+          type: string
+      - name: includeDetails
+        in: query
+        description: includeDetails
+        required: false
+        schema:
+          type: string
+          default: 'true'
+      - name: name
+        in: path
+        description: name
+        required: true
+        schema:
+          type: string
+      - name: region
+        in: path
+        description: region
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ServerGroup'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+components:
+  schemas:
+    Instance:
+      type: object
+      properties:
+        cloudProvider:
+          type: string
+        health:
+          type: array
+          items:
+            $ref: '#/components/schemas/Map_string_object'
+        healthState:
+          type: string
+          enum:
+          - Failed
+          - Down
+          - OutOfService
+          - Unknown
+          - Starting
+          - Succeeded
+          - Up
+          - Draining
+        humanReadableName:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchTime:
+          type: integer
+          format: int64
+        name:
+          type: string
+        providerType:
+          type: string
+        zone:
+          type: string
+      title: Instance
+    InstanceCounts:
+      type: object
+      properties:
+        down:
+          type: integer
+          format: int32
+        outOfService:
+          type: integer
+          format: int32
+        starting:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        unknown:
+          type: integer
+          format: int32
+        up:
+          type: integer
+          format: int32
+      title: InstanceCounts
+    ServerGroupManagerSummary:
+      type: object
+      properties:
+        account:
+          type: string
+        location:
+          type: string
+        name:
+          type: string
+      title: ServerGroupManagerSummary
+    ServerGroup:
+      type: object
+      properties:
+        capacity:
+          $ref: '#/components/schemas/Capacity'
+        cloudProvider:
+          type: string
+        createdTime:
+          type: integer
+          format: int64
+        disabled:
+          type: boolean
+        instanceCounts:
+          $ref: '#/components/schemas/InstanceCounts'
+        instanceType:
+          type: string
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instance'
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchConfig:
+          type: object
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        region:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            type: string
+        serverGroupManagers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerGroupManagerSummary'
+        tags:
+          type: object
+        type:
+          type: string
+        zones:
+          type: array
+          items:
+            type: string
+      title: ServerGroup
+    Capacity:
+      type: object
+      properties:
+        desired:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        min:
+          type: integer
+          format: int32
+        pinned:
+          type: boolean
+      title: Capacity
+    Map_string_object:
+      type: object
+      title: Map«string,object»
+      additionalProperties:
+        type: object
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker

@@ -1,0 +1,236 @@
+{
+  "item": [
+    {
+      "id": "ce536d4d-4b03-4ff4-a6ad-2b649f4f4775",
+      "name": "load-balancer-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09298f07-52b4-4ba0-b917-d96d9a7f23c1",
+          "name": "list",
+          "request": {
+            "name": "list",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "loadBalancers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb471db9-f352-4d47-89d0-db0cf69cef34",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "loadBalancers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"account\": \"string\",\n    \"cloudProvider\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 8524,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"serverGroups\": [\n      {\n        \"account\": \"string\",\n        \"cloudProvider\": \"string\",\n        \"detachedInstances\": [\n          \"string\",\n          \"string\"\n        ],\n        \"instances\": [\n          {\n            \"health\": {},\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"zone\": \"string\"\n          },\n          {\n            \"health\": {},\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"zone\": \"string\"\n          }\n        ],\n        \"isDisabled\": false,\n        \"name\": \"string\",\n        \"region\": \"string\"\n      },\n      {\n        \"account\": \"string\",\n        \"cloudProvider\": \"string\",\n        \"detachedInstances\": [\n          \"string\",\n          \"string\"\n        ],\n        \"instances\": [\n          {\n            \"health\": {},\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"zone\": \"string\"\n          },\n          {\n            \"health\": {},\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"zone\": \"string\"\n          }\n        ],\n        \"isDisabled\": true,\n        \"name\": \"string\",\n        \"region\": \"string\"\n      }\n    ],\n    \"type\": \"string\"\n  },\n  {\n    \"account\": \"string\",\n    \"cloudProvider\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 2756,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"serverGroups\": [\n      {\n        \"account\": \"string\",\n        \"cloudProvider\": \"string\",\n        \"detachedInstances\": [\n          \"string\",\n          \"string\"\n        ],\n        \"instances\": [\n          {\n            \"health\": {},\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"zone\": \"string\"\n          },\n          {\n            \"health\": {},\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"zone\": \"string\"\n          }\n        ],\n        \"isDisabled\": false,\n        \"name\": \"string\",\n        \"region\": \"string\"\n      },\n      {\n        \"account\": \"string\",\n        \"cloudProvider\": \"string\",\n        \"detachedInstances\": [\n          \"string\",\n          \"string\"\n        ],\n        \"instances\": [\n          {\n            \"health\": {},\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"zone\": \"string\"\n          },\n          {\n            \"health\": {},\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"zone\": \"string\"\n          }\n        ],\n        \"isDisabled\": true,\n        \"name\": \"string\",\n        \"region\": \"string\"\n      }\n    ],\n    \"type\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2548e81-23d9-4385-adbc-a8d5fb0e8e59",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "loadBalancers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "47506020-46bb-45a6-87b8-bc43c224a55a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "loadBalancers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4828be3a-108a-4292-ae6b-df2cec3eace5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "loadBalancers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "317d4c33-4599-41ef-a6a9-3c4057906034",
+    "name": "Armory Scale Agent Applications & Clusters Load Balancer Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.\n\nContact Support:\n Name: Armory Docs",
+      "type": "text/plain"
+    }
+  }
+}

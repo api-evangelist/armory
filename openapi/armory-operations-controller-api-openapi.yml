@@ -1,0 +1,333 @@
+openapi: 3.2.0
+info:
+  title: Armory Scale Agent Operations & Tasks Operations Controller API
+  description: Cloud operation submission (the /ops surface), task polling/resume, and on-demand cache introspection.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+servers:
+- url: /
+tags:
+- name: operations-controller
+paths:
+  /ops:
+    post:
+      tags:
+      - operations-controller
+      summary: operations
+      operationId: operationsUsingPOST
+      parameters:
+      - name: clientRequestId
+        in: query
+        description: clientRequestId
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StartOperationResult'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Map_string_Map'
+        description: requestBody
+        required: true
+  /ops/{name}:
+    post:
+      tags:
+      - operations-controller
+      summary: operation
+      operationId: operationUsingPOST
+      parameters:
+      - name: clientRequestId
+        in: query
+        description: clientRequestId
+        required: false
+        schema:
+          type: string
+      - name: name
+        in: path
+        description: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StartOperationResult'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: requestBody
+        required: true
+  /task:
+    get:
+      tags:
+      - operations-controller
+      summary: list
+      operationId: listUsingGET_6
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /task/{id}:
+    get:
+      tags:
+      - operations-controller
+      summary: get
+      operationId: getUsingGET_1
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Task'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /task/{id}:resume:
+    post:
+      tags:
+      - operations-controller
+      summary: resumeTask
+      operationId: resumeTaskUsingPOST
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StartOperationResult'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /{cloudProvider}/ops:
+    post:
+      tags:
+      - operations-controller
+      summary: cloudProviderOperations
+      operationId: cloudProviderOperationsUsingPOST
+      parameters:
+      - name: clientRequestId
+        in: query
+        description: clientRequestId
+        required: false
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StartOperationResult'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Map_string_Map'
+        description: requestBody
+        required: true
+  /{cloudProvider}/ops/{name}:
+    post:
+      tags:
+      - operations-controller
+      summary: cloudProviderOperation
+      operationId: cloudProviderOperationUsingPOST
+      parameters:
+      - name: clientRequestId
+        in: query
+        description: clientRequestId
+        required: false
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        schema:
+          type: string
+      - name: name
+        in: path
+        description: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StartOperationResult'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: requestBody
+        required: true
+components:
+  schemas:
+    Map_string_Map:
+      type: object
+      title: Map«string,Map»
+      additionalProperties:
+        $ref: '#/components/schemas/Map'
+    SagaId:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      title: SagaId
+    Task:
+      type: object
+      properties:
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/Status'
+        id:
+          type: string
+        ownerId:
+          type: string
+        requestId:
+          type: string
+        resultObjects:
+          type: array
+          items:
+            type: object
+        retryable:
+          type: boolean
+        sagaIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/SagaId'
+        startTimeMs:
+          type: integer
+          format: int64
+        status:
+          $ref: '#/components/schemas/Status'
+      title: Task
+    StartOperationResult:
+      type: object
+      properties:
+        id:
+          type: string
+        resourceUri:
+          type: string
+      title: StartOperationResult
+    Status:
+      type: object
+      properties:
+        completed:
+          type: boolean
+        failed:
+          type: boolean
+        phase:
+          type: string
+        retryable:
+          type: boolean
+        status:
+          type: string
+      title: Status

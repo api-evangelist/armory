@@ -2,13 +2,12 @@ generated: '2026-08-06'
 method: derived
 status: candidate
 source: openapi/armory-scale-agent-*-openapi.yml
-note: >-
-  Armory publishes no MCP server. mcp.armory.io does not resolve, docs.armory.io/mcp returns 404, and
-  the MCP registry carries no com.armory / io.github.armory entry. The tools below are a CANDIDATE
+note: Armory publishes no MCP server. mcp.armory.io does not resolve, docs.armory.io/mcp returns 404,
+  and the MCP registry carries no com.armory / io.github.armory entry. The tools below are a CANDIDATE
   surface derived one-to-one from the 56 operations in Armory's published Swagger 2.0 document - they
-  are what an MCP server over the Armory Scale Agent API would expose, not something Armory ships.
-  Each tool's real inputSchema is the backing operation's parameters and requestBody in the linked
-  spec; see mcp/armory-tool-crosswalk.yml for the binding.
+  are what an MCP server over the Armory Scale Agent API would expose, not something Armory ships. Each
+  tool's real inputSchema is the backing operation's parameters and requestBody in the linked spec; see
+  mcp/armory-tool-crosswalk.yml for the binding.
 server:
   name: armory-scale-agent
   published: false
@@ -18,417 +17,421 @@ third_party:
 - name: io.github.GeiserX/spinnaker-mcp
   registry: https://registry.modelcontextprotocol.io
   package: spinnaker-mcp (npm)
-  description: >-
-    Community MCP server exposing the Spinnaker Gate API for pipeline and deployment management. Not
-    an Armory product and not affiliated with Armory - listed here only so the ecosystem gap is
-    visible.
+  description: Community MCP server exposing the Spinnaker Gate API for pipeline and deployment management.
+    Not an Armory product and not affiliated with Armory - listed here only so the ecosystem gap is visible.
   official: false
 tools:
-  - name: get_account
-    description: Retrieve account by name if handled by armory agent
-    http: GET /agents/kubernetes/accounts/{accountName}
-    source_operation: openapi/armory-scale-agent-agent-accounts-openapi.yml#getAccountUsingGET
-    inputs:
-    - accountName
-  - name: get_namespaces
-    description: Retrieve namespaces by account name if handled by armory agent
-    http: GET /agents/kubernetes/accounts/{accountName}/namespaces
-    source_operation: openapi/armory-scale-agent-agent-accounts-openapi.yml#getNamespacesUsingGET
-    inputs:
-    - accountName
-  - name: list_applications
-    description: list
-    http: GET /applications
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#listUsingGET
-    inputs:
-    - expand
-    - restricted
-  - name: list_by_account
-    description: listByAccount
-    http: GET /applications/{application}/clusters
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#listByAccountUsingGET
-    inputs:
-    - application
-  - name: get_for_account
-    description: getForAccount
-    http: GET /applications/{application}/clusters/{account}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getForAccountUsingGET
-    inputs:
-    - account
-    - application
-  - name: get_target_server_group
-    description: getTargetServerGroup
-    http: GET /applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getTargetServerGroupUsingGET
-    inputs:
-    - account
-    - application
-    - cloudProvider
-    - clusterName
-    - onlyEnabled
-    - scope
-    - target
-    - validateOldest
-  - name: get_server_group_summary
-    description: getServerGroupSummary
-    http: GET /applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}/{summaryType}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getServerGroupSummaryUsingGET
-    inputs:
-    - account
-    - application
-    - cloudProvider
-    - clusterName
-    - onlyEnabled
-    - scope
-    - summaryType
-    - target
-  - name: get_server_groups
-    description: getServerGroups
-    http: GET /applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getServerGroupsUsingGET
-    inputs:
-    - account
-    - application
-    - clusterName
-    - expand
-    - region
-    - type
-  - name: get_server_group
-    description: getServerGroup
-    http: GET /applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups/{serverGroupName}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getServerGroupUsingGET
-    inputs:
-    - account
-    - application
-    - clusterName
-    - region
-    - serverGroupName
-    - type
-  - name: get_for_account_and_name
-    description: getForAccountAndName
-    http: GET /applications/{application}/clusters/{account}/{name}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getForAccountAndNameUsingGET
-    inputs:
-    - account
-    - application
-    - expand
-    - name
-  - name: get_for_account_and_name_and_type
-    description: getForAccountAndNameAndType
-    http: GET /applications/{application}/clusters/{account}/{name}/{type}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getForAccountAndNameAndTypeUsingGET
-    inputs:
-    - account
-    - application
-    - expand
-    - name
-    - type
-  - name: list_applications_functions
-    description: list
-    http: GET /applications/{application}/functions
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#listUsingGET_2
-    inputs:
-    - application
-  - name: collect_job
-    description: Collect a JobStatus
-    http: GET /applications/{application}/jobs/{account}/{location}/{id}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#collectJobUsingGET
-    inputs:
-    - account
-    - application
-    - id
-    - location
-  - name: cancel_job
-    description: Cancel a Job
-    http: DELETE /applications/{application}/jobs/{account}/{location}/{id}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#cancelJobUsingDELETE
-    inputs:
-    - account
-    - application
-    - id
-    - location
-  - name: get_file_contents
-    description: Collect a file from a job
-    http: GET /applications/{application}/jobs/{account}/{location}/{id}/{fileName}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getFileContentsUsingGET
-    inputs:
-    - account
-    - application
-    - fileName
-    - id
-    - location
-  - name: list_applications_loadbalancers
-    description: list
-    http: GET /applications/{application}/loadBalancers
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#listUsingGET_4
-    inputs:
-    - application
-  - name: list_applications_rawresources
-    description: list
-    http: GET /applications/{application}/rawResources
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#listUsingGET_7
-    inputs:
-    - application
-  - name: get_for_application
-    description: getForApplication
-    http: GET /applications/{application}/serverGroupManagers
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getForApplicationUsingGET
-    inputs:
-    - application
-  - name: list_applications_servergroups
-    description: list
-    http: GET /applications/{application}/serverGroups
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#listUsingGET_9
-    inputs:
-    - application
-    - cloudProvider
-    - clusters
-    - expand
-  - name: get_server_group_by_application
-    description: getServerGroupByApplication
-    http: GET /applications/{application}/serverGroups/{account}/{region}/{name}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getServerGroupByApplicationUsingGET
-    inputs:
-    - account
-    - application
-    - includeDetails
-    - name
-    - region
-  - name: get_applications
-    description: get
-    http: GET /applications/{name}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getUsingGET
-    inputs:
-    - name
-  - name: get_instance
-    description: getInstance
-    http: GET /instances/{account}/{region}/{id}
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getInstanceUsingGET
-    inputs:
-    - account
-    - id
-    - region
-  - name: get_console_output
-    description: getConsoleOutput
-    http: GET /instances/{account}/{region}/{id}/console
-    source_operation: openapi/armory-scale-agent-applications-openapi.yml#getConsoleOutputUsingGET
-    inputs:
-    - account
-    - cloudProvider
-    - id
-    - provider
-    - region
-  - name: list_artifacts_credentials
-    description: list
-    http: GET /artifacts/credentials
-    source_operation: openapi/armory-scale-agent-credentials-openapi.yml#listUsingGET_1
-    inputs: []
-  - name: list_account_credentials
-    description: listAccountCredentials
-    http: GET /credentials
-    source_operation: openapi/armory-scale-agent-credentials-openapi.yml#listAccountCredentialsUsingGET
-    inputs:
-    - expand
-  - name: create_account
-    description: createAccount
-    http: POST /credentials
-    source_operation: openapi/armory-scale-agent-credentials-openapi.yml#createAccountUsingPOST
-    inputs: []
-  - name: update_account
-    description: updateAccount
-    http: PUT /credentials
-    source_operation: openapi/armory-scale-agent-credentials-openapi.yml#updateAccountUsingPUT
-    inputs: []
-  - name: list_accounts_by_type
-    description: listAccountsByType
-    http: GET /credentials/type/{accountType}
-    source_operation: openapi/armory-scale-agent-credentials-openapi.yml#listAccountsByTypeUsingGET
-    inputs:
-    - accountType
-    - limit
-    - startingAccountName
-  - name: get_account_credentials_details
-    description: getAccountCredentialsDetails
-    http: GET /credentials/{accountName}
-    source_operation: openapi/armory-scale-agent-credentials-openapi.yml#getAccountCredentialsDetailsUsingGET
-    inputs:
-    - accountName
-  - name: delete_account
-    description: deleteAccount
-    http: DELETE /credentials/{accountName}
-    source_operation: openapi/armory-scale-agent-credentials-openapi.yml#deleteAccountUsingDELETE
-    inputs:
-    - accountName
-  - name: get_account_history
-    description: getAccountHistory
-    http: GET /credentials/{accountName}/history
-    source_operation: openapi/armory-scale-agent-credentials-openapi.yml#getAccountHistoryUsingGET
-    inputs:
-    - accountName
-  - name: list_by_account_and_region
-    description: listByAccountAndRegion
-    http: GET /elasticIps/{account}
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByAccountAndRegionUsingGET
-    inputs:
-    - account
-    - region
-  - name: list_instancetypes
-    description: list
-    http: GET /instanceTypes
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listUsingGET_3
-    inputs: []
-  - name: list_networks
-    description: list
-    http: GET /networks
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listUsingGET_5
-    inputs: []
-  - name: list_by_cloud_provider
-    description: listByCloudProvider
-    http: GET /networks/{cloudProvider}
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByCloudProviderUsingGET
-    inputs:
-    - cloudProvider
-  - name: get_reservation_reports
-    description: getReservationReports
-    http: GET /reports/reservation
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#getReservationReportsUsingGET
-    inputs:
-    - filters
-  - name: get_reservation_reports_by_name
-    description: getReservationReportsByName
-    http: GET /reports/reservation/{name}
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#getReservationReportsByNameUsingGET
-    inputs:
-    - filters
-    - name
-  - name: search
-    description: search
-    http: GET /search
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#searchUsingGET
-    inputs:
-    - page
-    - pageSize
-    - platform
-    - q
-    - type
-  - name: list_securitygroups
-    description: list
-    http: GET /securityGroups
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listUsingGET_8
-    inputs: []
-  - name: list_by_account_and_region_securitygroups
-    description: listByAccountAndRegion
-    http: GET /securityGroups/{account}
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByAccountAndRegionUsingGET_1
-    inputs:
-    - account
-    - region
-  - name: list_by_account_and_cloud_provider
-    description: listByAccountAndCloudProvider
-    http: GET /securityGroups/{account}/{cloudProvider}
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByAccountAndCloudProviderUsingGET
-    inputs:
-    - account
-    - cloudProvider
-  - name: get_securitygroups
-    description: get
-    http: GET /securityGroups/{account}/{cloudProvider}/{region}/{securityGroupNameOrId}
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#getUsingGET_2
-    inputs:
-    - account
-    - cloudProvider
-    - getById
-    - region
-    - securityGroupNameOrId
-    - vpcId
-  - name: list_by_account_and_cloud_provider_and_name
-    description: listByAccountAndCloudProviderAndName
-    http: GET /securityGroups/{account}/{cloudProvider}/{securityGroupName}
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByAccountAndCloudProviderAndNameUsingGET
-    inputs:
-    - account
-    - cloudProvider
-    - securityGroupName
-  - name: list_subnets
-    description: list
-    http: GET /subnets
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listUsingGET_10
-    inputs: []
-  - name: list_by_cloud_provider_subnets
-    description: listByCloudProvider
-    http: GET /subnets/{cloudProvider}
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByCloudProviderUsingGET_1
-    inputs:
-    - cloudProvider
-  - name: list_vpcs
-    description: list
-    http: GET /vpcs
-    source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listUsingGET_11
-    inputs: []
-  - name: get_agent_introspections
-    description: getAgentIntrospections
-    http: GET /cache/introspection
-    source_operation: openapi/armory-scale-agent-operations-openapi.yml#getAgentIntrospectionsUsingGET
-    inputs: []
-  - name: pending_on_demands
-    description: pendingOnDemands
-    http: GET /cache/{cloudProvider}/{type}
-    source_operation: openapi/armory-scale-agent-operations-openapi.yml#pendingOnDemandsUsingGET
-    inputs:
-    - cloudProvider
-    - id
-    - type
-  - name: handle_on_demand
-    description: handleOnDemand
-    http: POST /cache/{cloudProvider}/{type}
-    source_operation: openapi/armory-scale-agent-operations-openapi.yml#handleOnDemandUsingPOST
-    inputs:
-    - cloudProvider
-    - type
-  - name: operations
-    description: operations
-    http: POST /ops
-    source_operation: openapi/armory-scale-agent-operations-openapi.yml#operationsUsingPOST
-    inputs:
-    - clientRequestId
-    deprecated: true
-  - name: operation
-    description: operation
-    http: POST /ops/{name}
-    source_operation: openapi/armory-scale-agent-operations-openapi.yml#operationUsingPOST
-    inputs:
-    - clientRequestId
-    - name
-    deprecated: true
-  - name: list_task
-    description: list
-    http: GET /task
-    source_operation: openapi/armory-scale-agent-operations-openapi.yml#listUsingGET_6
-    inputs: []
-  - name: get_task
-    description: get
-    http: GET /task/{id}
-    source_operation: openapi/armory-scale-agent-operations-openapi.yml#getUsingGET_1
-    inputs:
-    - id
-  - name: resume_task
-    description: resumeTask
-    http: POST /task/{id}:resume
-    source_operation: openapi/armory-scale-agent-operations-openapi.yml#resumeTaskUsingPOST
-    inputs:
-    - id
-  - name: cloud_provider_operations
-    description: cloudProviderOperations
-    http: POST /{cloudProvider}/ops
-    source_operation: openapi/armory-scale-agent-operations-openapi.yml#cloudProviderOperationsUsingPOST
-    inputs:
-    - clientRequestId
-    - cloudProvider
-  - name: cloud_provider_operation
-    description: cloudProviderOperation
-    http: POST /{cloudProvider}/ops/{name}
-    source_operation: openapi/armory-scale-agent-operations-openapi.yml#cloudProviderOperationUsingPOST
-    inputs:
-    - clientRequestId
-    - cloudProvider
-    - name
+- name: get_account
+  description: Retrieve account by name if handled by armory agent
+  http: GET /agents/kubernetes/accounts/{accountName}
+  source_operation: openapi/armory-scale-agent-agent-accounts-openapi.yml#getAccountUsingGET
+  inputs:
+  - accountName
+- name: get_namespaces
+  description: Retrieve namespaces by account name if handled by armory agent
+  http: GET /agents/kubernetes/accounts/{accountName}/namespaces
+  source_operation: openapi/armory-scale-agent-agent-accounts-openapi.yml#getNamespacesUsingGET
+  inputs:
+  - accountName
+- name: list_applications
+  description: list
+  http: GET /applications
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#listUsingGET
+  inputs:
+  - expand
+  - restricted
+- name: list_by_account
+  description: listByAccount
+  http: GET /applications/{application}/clusters
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#listByAccountUsingGET
+  inputs:
+  - application
+- name: get_for_account
+  description: getForAccount
+  http: GET /applications/{application}/clusters/{account}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getForAccountUsingGET
+  inputs:
+  - account
+  - application
+- name: get_target_server_group
+  description: getTargetServerGroup
+  http: GET /applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getTargetServerGroupUsingGET
+  inputs:
+  - account
+  - application
+  - cloudProvider
+  - clusterName
+  - onlyEnabled
+  - scope
+  - target
+  - validateOldest
+- name: get_server_group_summary
+  description: getServerGroupSummary
+  http: GET /applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}/{summaryType}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getServerGroupSummaryUsingGET
+  inputs:
+  - account
+  - application
+  - cloudProvider
+  - clusterName
+  - onlyEnabled
+  - scope
+  - summaryType
+  - target
+- name: get_server_groups
+  description: getServerGroups
+  http: GET /applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getServerGroupsUsingGET
+  inputs:
+  - account
+  - application
+  - clusterName
+  - expand
+  - region
+  - type
+- name: get_server_group
+  description: getServerGroup
+  http: GET /applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups/{serverGroupName}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getServerGroupUsingGET
+  inputs:
+  - account
+  - application
+  - clusterName
+  - region
+  - serverGroupName
+  - type
+- name: get_for_account_and_name
+  description: getForAccountAndName
+  http: GET /applications/{application}/clusters/{account}/{name}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getForAccountAndNameUsingGET
+  inputs:
+  - account
+  - application
+  - expand
+  - name
+- name: get_for_account_and_name_and_type
+  description: getForAccountAndNameAndType
+  http: GET /applications/{application}/clusters/{account}/{name}/{type}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getForAccountAndNameAndTypeUsingGET
+  inputs:
+  - account
+  - application
+  - expand
+  - name
+  - type
+- name: list_applications_functions
+  description: list
+  http: GET /applications/{application}/functions
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#listUsingGET_2
+  inputs:
+  - application
+- name: collect_job
+  description: Collect a JobStatus
+  http: GET /applications/{application}/jobs/{account}/{location}/{id}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#collectJobUsingGET
+  inputs:
+  - account
+  - application
+  - id
+  - location
+- name: cancel_job
+  description: Cancel a Job
+  http: DELETE /applications/{application}/jobs/{account}/{location}/{id}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#cancelJobUsingDELETE
+  inputs:
+  - account
+  - application
+  - id
+  - location
+- name: get_file_contents
+  description: Collect a file from a job
+  http: GET /applications/{application}/jobs/{account}/{location}/{id}/{fileName}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getFileContentsUsingGET
+  inputs:
+  - account
+  - application
+  - fileName
+  - id
+  - location
+- name: list_applications_loadbalancers
+  description: list
+  http: GET /applications/{application}/loadBalancers
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#listUsingGET_4
+  inputs:
+  - application
+- name: list_applications_rawresources
+  description: list
+  http: GET /applications/{application}/rawResources
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#listUsingGET_7
+  inputs:
+  - application
+- name: get_for_application
+  description: getForApplication
+  http: GET /applications/{application}/serverGroupManagers
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getForApplicationUsingGET
+  inputs:
+  - application
+- name: list_applications_servergroups
+  description: list
+  http: GET /applications/{application}/serverGroups
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#listUsingGET_9
+  inputs:
+  - application
+  - cloudProvider
+  - clusters
+  - expand
+- name: get_server_group_by_application
+  description: getServerGroupByApplication
+  http: GET /applications/{application}/serverGroups/{account}/{region}/{name}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getServerGroupByApplicationUsingGET
+  inputs:
+  - account
+  - application
+  - includeDetails
+  - name
+  - region
+- name: get_applications
+  description: get
+  http: GET /applications/{name}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getUsingGET
+  inputs:
+  - name
+- name: get_instance
+  description: getInstance
+  http: GET /instances/{account}/{region}/{id}
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getInstanceUsingGET
+  inputs:
+  - account
+  - id
+  - region
+- name: get_console_output
+  description: getConsoleOutput
+  http: GET /instances/{account}/{region}/{id}/console
+  source_operation: openapi/armory-scale-agent-applications-openapi.yml#getConsoleOutputUsingGET
+  inputs:
+  - account
+  - cloudProvider
+  - id
+  - provider
+  - region
+- name: list_artifacts_credentials
+  description: list
+  http: GET /artifacts/credentials
+  source_operation: openapi/armory-scale-agent-credentials-openapi.yml#listUsingGET_1
+  inputs: []
+- name: list_account_credentials
+  description: listAccountCredentials
+  http: GET /credentials
+  source_operation: openapi/armory-scale-agent-credentials-openapi.yml#listAccountCredentialsUsingGET
+  inputs:
+  - expand
+- name: create_account
+  description: createAccount
+  http: POST /credentials
+  source_operation: openapi/armory-scale-agent-credentials-openapi.yml#createAccountUsingPOST
+  inputs: []
+- name: update_account
+  description: updateAccount
+  http: PUT /credentials
+  source_operation: openapi/armory-scale-agent-credentials-openapi.yml#updateAccountUsingPUT
+  inputs: []
+- name: list_accounts_by_type
+  description: listAccountsByType
+  http: GET /credentials/type/{accountType}
+  source_operation: openapi/armory-scale-agent-credentials-openapi.yml#listAccountsByTypeUsingGET
+  inputs:
+  - accountType
+  - limit
+  - startingAccountName
+- name: get_account_credentials_details
+  description: getAccountCredentialsDetails
+  http: GET /credentials/{accountName}
+  source_operation: openapi/armory-scale-agent-credentials-openapi.yml#getAccountCredentialsDetailsUsingGET
+  inputs:
+  - accountName
+- name: delete_account
+  description: deleteAccount
+  http: DELETE /credentials/{accountName}
+  source_operation: openapi/armory-scale-agent-credentials-openapi.yml#deleteAccountUsingDELETE
+  inputs:
+  - accountName
+- name: get_account_history
+  description: getAccountHistory
+  http: GET /credentials/{accountName}/history
+  source_operation: openapi/armory-scale-agent-credentials-openapi.yml#getAccountHistoryUsingGET
+  inputs:
+  - accountName
+- name: list_by_account_and_region
+  description: listByAccountAndRegion
+  http: GET /elasticIps/{account}
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByAccountAndRegionUsingGET
+  inputs:
+  - account
+  - region
+- name: list_instancetypes
+  description: list
+  http: GET /instanceTypes
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listUsingGET_3
+  inputs: []
+- name: list_networks
+  description: list
+  http: GET /networks
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listUsingGET_5
+  inputs: []
+- name: list_by_cloud_provider
+  description: listByCloudProvider
+  http: GET /networks/{cloudProvider}
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByCloudProviderUsingGET
+  inputs:
+  - cloudProvider
+- name: get_reservation_reports
+  description: getReservationReports
+  http: GET /reports/reservation
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#getReservationReportsUsingGET
+  inputs:
+  - filters
+- name: get_reservation_reports_by_name
+  description: getReservationReportsByName
+  http: GET /reports/reservation/{name}
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#getReservationReportsByNameUsingGET
+  inputs:
+  - filters
+  - name
+- name: search
+  description: search
+  http: GET /search
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#searchUsingGET
+  inputs:
+  - page
+  - pageSize
+  - platform
+  - q
+  - type
+- name: list_securitygroups
+  description: list
+  http: GET /securityGroups
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listUsingGET_8
+  inputs: []
+- name: list_by_account_and_region_securitygroups
+  description: listByAccountAndRegion
+  http: GET /securityGroups/{account}
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByAccountAndRegionUsingGET_1
+  inputs:
+  - account
+  - region
+- name: list_by_account_and_cloud_provider
+  description: listByAccountAndCloudProvider
+  http: GET /securityGroups/{account}/{cloudProvider}
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByAccountAndCloudProviderUsingGET
+  inputs:
+  - account
+  - cloudProvider
+- name: get_securitygroups
+  description: get
+  http: GET /securityGroups/{account}/{cloudProvider}/{region}/{securityGroupNameOrId}
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#getUsingGET_2
+  inputs:
+  - account
+  - cloudProvider
+  - getById
+  - region
+  - securityGroupNameOrId
+  - vpcId
+- name: list_by_account_and_cloud_provider_and_name
+  description: listByAccountAndCloudProviderAndName
+  http: GET /securityGroups/{account}/{cloudProvider}/{securityGroupName}
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByAccountAndCloudProviderAndNameUsingGET
+  inputs:
+  - account
+  - cloudProvider
+  - securityGroupName
+- name: list_subnets
+  description: list
+  http: GET /subnets
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listUsingGET_10
+  inputs: []
+- name: list_by_cloud_provider_subnets
+  description: listByCloudProvider
+  http: GET /subnets/{cloudProvider}
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listByCloudProviderUsingGET_1
+  inputs:
+  - cloudProvider
+- name: list_vpcs
+  description: list
+  http: GET /vpcs
+  source_operation: openapi/armory-scale-agent-infrastructure-openapi.yml#listUsingGET_11
+  inputs: []
+- name: get_agent_introspections
+  description: getAgentIntrospections
+  http: GET /cache/introspection
+  source_operation: openapi/armory-scale-agent-operations-openapi.yml#getAgentIntrospectionsUsingGET
+  inputs: []
+- name: pending_on_demands
+  description: pendingOnDemands
+  http: GET /cache/{cloudProvider}/{type}
+  source_operation: openapi/armory-scale-agent-operations-openapi.yml#pendingOnDemandsUsingGET
+  inputs:
+  - cloudProvider
+  - id
+  - type
+- name: handle_on_demand
+  description: handleOnDemand
+  http: POST /cache/{cloudProvider}/{type}
+  source_operation: openapi/armory-scale-agent-operations-openapi.yml#handleOnDemandUsingPOST
+  inputs:
+  - cloudProvider
+  - type
+- name: operations
+  description: operations
+  http: POST /ops
+  source_operation: openapi/armory-scale-agent-operations-openapi.yml#operationsUsingPOST
+  inputs:
+  - clientRequestId
+  deprecated: true
+- name: operation
+  description: operation
+  http: POST /ops/{name}
+  source_operation: openapi/armory-scale-agent-operations-openapi.yml#operationUsingPOST
+  inputs:
+  - clientRequestId
+  - name
+  deprecated: true
+- name: list_task
+  description: list
+  http: GET /task
+  source_operation: openapi/armory-scale-agent-operations-openapi.yml#listUsingGET_6
+  inputs: []
+- name: get_task
+  description: get
+  http: GET /task/{id}
+  source_operation: openapi/armory-scale-agent-operations-openapi.yml#getUsingGET_1
+  inputs:
+  - id
+- name: resume_task
+  description: resumeTask
+  http: POST /task/{id}:resume
+  source_operation: openapi/armory-scale-agent-operations-openapi.yml#resumeTaskUsingPOST
+  inputs:
+  - id
+- name: cloud_provider_operations
+  description: cloudProviderOperations
+  http: POST /{cloudProvider}/ops
+  source_operation: openapi/armory-scale-agent-operations-openapi.yml#cloudProviderOperationsUsingPOST
+  inputs:
+  - clientRequestId
+  - cloudProvider
+- name: cloud_provider_operation
+  description: cloudProviderOperation
+  http: POST /{cloudProvider}/ops/{name}
+  source_operation: openapi/armory-scale-agent-operations-openapi.yml#cloudProviderOperationUsingPOST
+  inputs:
+  - clientRequestId
+  - cloudProvider
+  - name
+deployment:
+  mode: none
+  verified: derived
+  tools: 56
+  checked: '2026-08-12'
+  source: catalog MCP census

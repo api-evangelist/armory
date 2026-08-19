@@ -1,0 +1,150 @@
+openapi: 3.2.0
+info:
+  title: Armory Scale Agent Applications & Clusters Instance Controller API
+  description: Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+servers:
+- url: /
+tags:
+- name: instance-controller
+paths:
+  /instances/{account}/{region}/{id}:
+    get:
+      tags:
+      - instance-controller
+      summary: getInstance
+      operationId: getInstanceUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: region
+        in: path
+        description: region
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Instance'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /instances/{account}/{region}/{id}/console:
+    get:
+      tags:
+      - instance-controller
+      summary: getConsoleOutput
+      operationId: getConsoleOutputUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: query
+        description: cloudProvider
+        required: false
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: provider
+        in: query
+        description: provider
+        required: false
+        schema:
+          type: string
+      - name: region
+        in: path
+        description: region
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+components:
+  schemas:
+    Map_string_object:
+      type: object
+      title: Map«string,object»
+      additionalProperties:
+        type: object
+    Instance:
+      type: object
+      properties:
+        cloudProvider:
+          type: string
+        health:
+          type: array
+          items:
+            $ref: '#/components/schemas/Map_string_object'
+        healthState:
+          type: string
+          enum:
+          - Failed
+          - Down
+          - OutOfService
+          - Unknown
+          - Starting
+          - Succeeded
+          - Up
+          - Draining
+        humanReadableName:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchTime:
+          type: integer
+          format: int64
+        name:
+          type: string
+        providerType:
+          type: string
+        zone:
+          type: string
+      title: Instance

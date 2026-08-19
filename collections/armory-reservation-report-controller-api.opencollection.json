@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Infrastructure Reservation Report Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "reservation-report-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getReservationReports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/reports/reservation",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "filters"
+              }
+            ]
+          },
+          "docs": "getReservationReports"
+        },
+        {
+          "info": {
+            "name": "getReservationReportsByName",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/reports/reservation/:name",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "filters"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "name"
+              }
+            ]
+          },
+          "docs": "getReservationReportsByName"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2860 @@
+{
+  "item": [
+    {
+      "id": "65aaf1e8-9f5a-4893-af8b-cc1af1d62f04",
+      "name": "cluster-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "52aa031c-9d80-4dff-b8d0-30dd129e38f4",
+          "name": "listByAccount",
+          "request": {
+            "name": "listByAccount",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "clusters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12450e02-6208-4a98-b982-18dea835b57f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"key_0\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5e4a115-9095-4295-82d6-e02058ddd181",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e19bc290-4782-4a45-b020-5cbaffb98c88",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e70c57cf-0523-41de-a63c-163372b13d14",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abb8f11d-4ac7-4628-be19-4103b771e09a",
+          "name": "getForAccount",
+          "request": {
+            "name": "getForAccount",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "clusters",
+                ":account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37cc06b4-b54f-4987-9a16-e4d3bb53ce02",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"account\": \"string\",\n    \"loadBalancers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 7340,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"serverGroups\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"account\": \"string\",\n    \"loadBalancers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 266,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"serverGroups\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7753eb1-f45c-4cb8-9cb1-3c06cf9cc10b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9717dad9-1aa7-4af6-88b0-e9cefcf51137",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "274b9809-3a9e-4651-8c3f-c4615ed22cd3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15488177-fb3f-4068-beae-31bfc379b921",
+          "name": "getTargetServerGroup",
+          "request": {
+            "name": "getTargetServerGroup",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "clusters",
+                ":account",
+                ":clusterName",
+                ":cloudProvider",
+                ":scope",
+                "serverGroups",
+                "target",
+                ":target"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "onlyEnabled",
+                  "value": "false",
+                  "description": "onlyEnabled"
+                },
+                {
+                  "disabled": false,
+                  "key": "validateOldest",
+                  "value": "true",
+                  "description": "validateOldest"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cloudProvider",
+                  "description": "(Required) cloudProvider"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clusterName",
+                  "description": "(Required) clusterName"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scope",
+                  "description": "(Required) scope"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "target",
+                  "description": "(Required) target"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "10fdda5e-022b-4e46-b340-c5c7b31e1582",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":cloudProvider",
+                    ":scope",
+                    "serverGroups",
+                    "target",
+                    ":target"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "onlyEnabled",
+                      "value": "false"
+                    },
+                    {
+                      "key": "validateOldest",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cloudProvider",
+                      "description": "(Required) cloudProvider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) scope"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "target",
+                      "description": "(Required) target"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"capacity\": {\n    \"desired\": 6448,\n    \"max\": 2751,\n    \"min\": 410,\n    \"pinned\": false\n  },\n  \"cloudProvider\": \"string\",\n  \"createdTime\": 3104,\n  \"disabled\": false,\n  \"instanceCounts\": {\n    \"down\": 8226,\n    \"outOfService\": 1871,\n    \"starting\": 411,\n    \"total\": 7590,\n    \"unknown\": 7000,\n    \"up\": 8706\n  },\n  \"instanceType\": \"string\",\n  \"instances\": [\n    {\n      \"cloudProvider\": \"string\",\n      \"health\": [\n        {\n          \"key_0\": {}\n        },\n        {\n          \"key_0\": {}\n        }\n      ],\n      \"healthState\": \"Draining\",\n      \"humanReadableName\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"launchTime\": 3607,\n      \"name\": \"string\",\n      \"providerType\": \"string\",\n      \"zone\": \"string\"\n    },\n    {\n      \"cloudProvider\": \"string\",\n      \"health\": [\n        {\n          \"key_0\": {}\n        },\n        {\n          \"key_0\": {}\n        }\n      ],\n      \"healthState\": \"Starting\",\n      \"humanReadableName\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"launchTime\": 8060,\n      \"name\": \"string\",\n      \"providerType\": \"string\",\n      \"zone\": \"string\"\n    }\n  ],\n  \"labels\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"launchConfig\": {},\n  \"loadBalancers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"moniker\": {\n    \"app\": \"string\",\n    \"cluster\": \"string\",\n    \"detail\": \"string\",\n    \"sequence\": 8589,\n    \"stack\": \"string\"\n  },\n  \"name\": \"string\",\n  \"region\": \"string\",\n  \"securityGroups\": [\n    \"string\",\n    \"string\"\n  ],\n  \"serverGroupManagers\": [\n    {\n      \"account\": \"string\",\n      \"location\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"account\": \"string\",\n      \"location\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"tags\": {},\n  \"type\": \"string\",\n  \"zones\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e48f9289-133b-43d7-b45f-39b6cacad4f6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":cloudProvider",
+                    ":scope",
+                    "serverGroups",
+                    "target",
+                    ":target"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "onlyEnabled",
+                      "value": "false"
+                    },
+                    {
+                      "key": "validateOldest",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cloudProvider",
+                      "description": "(Required) cloudProvider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) scope"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "target",
+                      "description": "(Required) target"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36e0ade9-7176-40db-b3a7-b0b19bc72007",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":cloudProvider",
+                    ":scope",
+                    "serverGroups",
+                    "target",
+                    ":target"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "onlyEnabled",
+                      "value": "false"
+                    },
+                    {
+                      "key": "validateOldest",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cloudProvider",
+                      "description": "(Required) cloudProvider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) scope"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "target",
+                      "description": "(Required) target"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e977b39e-70a3-4498-a206-64a210daa5cb",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":cloudProvider",
+                    ":scope",
+                    "serverGroups",
+                    "target",
+                    ":target"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "onlyEnabled",
+                      "value": "false"
+                    },
+                    {
+                      "key": "validateOldest",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cloudProvider",
+                      "description": "(Required) cloudProvider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) scope"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "target",
+                      "description": "(Required) target"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ebe3877-a970-4937-a9d5-6c5da27f9b65",
+          "name": "getServerGroupSummary",
+          "request": {
+            "name": "getServerGroupSummary",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "clusters",
+                ":account",
+                ":clusterName",
+                ":cloudProvider",
+                ":scope",
+                "serverGroups",
+                "target",
+                ":target",
+                ":summaryType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "onlyEnabled",
+                  "value": "false",
+                  "description": "onlyEnabled"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cloudProvider",
+                  "description": "(Required) cloudProvider"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clusterName",
+                  "description": "(Required) clusterName"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "scope",
+                  "description": "(Required) scope"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "summaryType",
+                  "description": "(Required) summaryType"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "target",
+                  "description": "(Required) target"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e16e849-1d4e-4fad-9f8a-cd75cae2058f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":cloudProvider",
+                    ":scope",
+                    "serverGroups",
+                    "target",
+                    ":target",
+                    ":summaryType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "onlyEnabled",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cloudProvider",
+                      "description": "(Required) cloudProvider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) scope"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "summaryType",
+                      "description": "(Required) summaryType"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "target",
+                      "description": "(Required) target"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6facf71d-2a37-4e58-9af1-2bb3a875ba12",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":cloudProvider",
+                    ":scope",
+                    "serverGroups",
+                    "target",
+                    ":target",
+                    ":summaryType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "onlyEnabled",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cloudProvider",
+                      "description": "(Required) cloudProvider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) scope"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "summaryType",
+                      "description": "(Required) summaryType"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "target",
+                      "description": "(Required) target"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60b2df83-ce80-4f6f-b0dc-ca92f1d75acd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":cloudProvider",
+                    ":scope",
+                    "serverGroups",
+                    "target",
+                    ":target",
+                    ":summaryType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "onlyEnabled",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cloudProvider",
+                      "description": "(Required) cloudProvider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) scope"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "summaryType",
+                      "description": "(Required) summaryType"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "target",
+                      "description": "(Required) target"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "46a0a1c0-9ee8-4c83-9eb4-3220331fd838",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":cloudProvider",
+                    ":scope",
+                    "serverGroups",
+                    "target",
+                    ":target",
+                    ":summaryType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "onlyEnabled",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cloudProvider",
+                      "description": "(Required) cloudProvider"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "scope",
+                      "description": "(Required) scope"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "summaryType",
+                      "description": "(Required) summaryType"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "target",
+                      "description": "(Required) target"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e00b81d2-e539-42be-9941-2942e91ac922",
+          "name": "getServerGroups",
+          "request": {
+            "name": "getServerGroups",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "clusters",
+                ":account",
+                ":clusterName",
+                ":type",
+                "serverGroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "true",
+                  "description": "expand"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "region"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clusterName",
+                  "description": "(Required) clusterName"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05fea6da-8a81-499a-b420-c1b51aab78e1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":type",
+                    "serverGroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"capacity\": {\n      \"desired\": 8572,\n      \"max\": 5662,\n      \"min\": 4152,\n      \"pinned\": true\n    },\n    \"cloudProvider\": \"string\",\n    \"createdTime\": 4907,\n    \"disabled\": false,\n    \"instanceCounts\": {\n      \"down\": 733,\n      \"outOfService\": 8691,\n      \"starting\": 7680,\n      \"total\": 5711,\n      \"unknown\": 3931,\n      \"up\": 3756\n    },\n    \"instanceType\": \"string\",\n    \"instances\": [\n      {\n        \"cloudProvider\": \"string\",\n        \"health\": [\n          {\n            \"key_0\": {}\n          },\n          {\n            \"key_0\": {}\n          }\n        ],\n        \"healthState\": \"Starting\",\n        \"humanReadableName\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"launchTime\": 7915,\n        \"name\": \"string\",\n        \"providerType\": \"string\",\n        \"zone\": \"string\"\n      },\n      {\n        \"cloudProvider\": \"string\",\n        \"health\": [\n          {\n            \"key_0\": {}\n          },\n          {\n            \"key_0\": {}\n          }\n        ],\n        \"healthState\": \"Failed\",\n        \"humanReadableName\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"launchTime\": 1969,\n        \"name\": \"string\",\n        \"providerType\": \"string\",\n        \"zone\": \"string\"\n      }\n    ],\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"launchConfig\": {},\n    \"loadBalancers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 7782,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"region\": \"string\",\n    \"securityGroups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"serverGroupManagers\": [\n      {\n        \"account\": \"string\",\n        \"location\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"account\": \"string\",\n        \"location\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"tags\": {},\n    \"type\": \"string\",\n    \"zones\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"capacity\": {\n      \"desired\": 4058,\n      \"max\": 1099,\n      \"min\": 7927,\n      \"pinned\": false\n    },\n    \"cloudProvider\": \"string\",\n    \"createdTime\": 5009,\n    \"disabled\": false,\n    \"instanceCounts\": {\n      \"down\": 2678,\n      \"outOfService\": 1045,\n      \"starting\": 7711,\n      \"total\": 3211,\n      \"unknown\": 1236,\n      \"up\": 8212\n    },\n    \"instanceType\": \"string\",\n    \"instances\": [\n      {\n        \"cloudProvider\": \"string\",\n        \"health\": [\n          {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {}\n          },\n          {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        ],\n        \"healthState\": \"OutOfService\",\n        \"humanReadableName\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"launchTime\": 9648,\n        \"name\": \"string\",\n        \"providerType\": \"string\",\n        \"zone\": \"string\"\n      },\n      {\n        \"cloudProvider\": \"string\",\n        \"health\": [\n          {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        ],\n        \"healthState\": \"OutOfService\",\n        \"humanReadableName\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"launchTime\": 9797,\n        \"name\": \"string\",\n        \"providerType\": \"string\",\n        \"zone\": \"string\"\n      }\n    ],\n    \"labels\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"launchConfig\": {},\n    \"loadBalancers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 8093,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"region\": \"string\",\n    \"securityGroups\": [\n      \"string\",\n      \"string\"\n    ],\n    \"serverGroupManagers\": [\n      {\n        \"account\": \"string\",\n        \"location\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"account\": \"string\",\n        \"location\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"tags\": {},\n    \"type\": \"string\",\n    \"zones\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09a38b01-883b-4bcc-bff5-984e5f6d5110",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":type",
+                    "serverGroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07880474-c00b-4275-92f1-404d1d85f4c3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":type",
+                    "serverGroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "342b8604-fe13-461e-bec6-86c5be3bd273",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":type",
+                    "serverGroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec483bc7-e476-4e4d-b327-894020714a0a",
+          "name": "getServerGroup",
+          "request": {
+            "name": "getServerGroup",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "clusters",
+                ":account",
+                ":clusterName",
+                ":type",
+                "serverGroups",
+                ":serverGroupName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "region"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clusterName",
+                  "description": "(Required) clusterName"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverGroupName",
+                  "description": "(Required) serverGroupName"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c00b6b9-b913-4214-b9ef-5fa54d75a0f3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":type",
+                    "serverGroups",
+                    ":serverGroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverGroupName",
+                      "description": "(Required) serverGroupName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "919a9bf2-94ba-4b8a-ad46-a6614c36184c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":type",
+                    "serverGroups",
+                    ":serverGroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverGroupName",
+                      "description": "(Required) serverGroupName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a44735b4-a821-4fa1-a919-affd4639f625",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":type",
+                    "serverGroups",
+                    ":serverGroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverGroupName",
+                      "description": "(Required) serverGroupName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c609b7da-6ea5-40ca-be3d-5cec330ba13a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":clusterName",
+                    ":type",
+                    "serverGroups",
+                    ":serverGroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterName",
+                      "description": "(Required) clusterName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverGroupName",
+                      "description": "(Required) serverGroupName"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44d7759d-3330-4d96-ac89-e882177ac391",
+          "name": "getForAccountAndName",
+          "request": {
+            "name": "getForAccountAndName",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "clusters",
+                ":account",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "true",
+                  "description": "expand"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53c0271c-9e33-471d-9dbc-ec04559c48d0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"accountName\": \"string\",\n    \"loadBalancers\": [\n      {\n        \"account\": \"string\",\n        \"cloudProvider\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 2049,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"serverGroups\": [\n          {\n            \"account\": \"string\",\n            \"cloudProvider\": \"string\",\n            \"detachedInstances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"instances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"isDisabled\": true,\n            \"name\": \"string\",\n            \"region\": \"string\"\n          },\n          {\n            \"account\": \"string\",\n            \"cloudProvider\": \"string\",\n            \"detachedInstances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"instances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"isDisabled\": true,\n            \"name\": \"string\",\n            \"region\": \"string\"\n          }\n        ],\n        \"type\": \"string\"\n      },\n      {\n        \"account\": \"string\",\n        \"cloudProvider\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 6921,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"serverGroups\": [\n          {\n            \"account\": \"string\",\n            \"cloudProvider\": \"string\",\n            \"detachedInstances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"instances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"isDisabled\": true,\n            \"name\": \"string\",\n            \"region\": \"string\"\n          },\n          {\n            \"account\": \"string\",\n            \"cloudProvider\": \"string\",\n            \"detachedInstances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"instances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"isDisabled\": true,\n            \"name\": \"string\",\n            \"region\": \"string\"\n          }\n        ],\n        \"type\": \"string\"\n      }\n    ],\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 1248,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"serverGroups\": [\n      {\n        \"capacity\": {\n          \"desired\": 8782,\n          \"max\": 8328,\n          \"min\": 9401,\n          \"pinned\": false\n        },\n        \"cloudProvider\": \"string\",\n        \"createdTime\": 1914,\n        \"disabled\": false,\n        \"instanceCounts\": {\n          \"down\": 9955,\n          \"outOfService\": 4051,\n          \"starting\": 5334,\n          \"total\": 5525,\n          \"unknown\": 1380,\n          \"up\": 9348\n        },\n        \"instanceType\": \"string\",\n        \"instances\": [\n          {\n            \"cloudProvider\": \"string\",\n            \"health\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"healthState\": \"Draining\",\n            \"humanReadableName\": \"string\",\n            \"labels\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"launchTime\": 4371,\n            \"name\": \"string\",\n            \"providerType\": \"string\",\n            \"zone\": \"string\"\n          },\n          {\n            \"cloudProvider\": \"string\",\n            \"health\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"healthState\": \"Succeeded\",\n            \"humanReadableName\": \"string\",\n            \"labels\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"launchTime\": 6092,\n            \"name\": \"string\",\n            \"providerType\": \"string\",\n            \"zone\": \"string\"\n          }\n        ],\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        },\n        \"launchConfig\": {},\n        \"loadBalancers\": [\n          \"string\",\n          \"string\"\n        ],\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 5522,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"region\": \"string\",\n        \"securityGroups\": [\n          \"string\",\n          \"string\"\n        ],\n        \"serverGroupManagers\": [\n          {\n            \"account\": \"string\",\n            \"location\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"account\": \"string\",\n            \"location\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"tags\": {},\n        \"type\": \"string\",\n        \"zones\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"capacity\": {\n          \"desired\": 4103,\n          \"max\": 8905,\n          \"min\": 5210,\n          \"pinned\": true\n        },\n        \"cloudProvider\": \"string\",\n        \"createdTime\": 2774,\n        \"disabled\": true,\n        \"instanceCounts\": {\n          \"down\": 1599,\n          \"outOfService\": 5913,\n          \"starting\": 9438,\n          \"total\": 574,\n          \"unknown\": 4777,\n          \"up\": 1743\n        },\n        \"instanceType\": \"string\",\n        \"instances\": [\n          {\n            \"cloudProvider\": \"string\",\n            \"health\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"healthState\": \"Succeeded\",\n            \"humanReadableName\": \"string\",\n            \"labels\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"launchTime\": 7766,\n            \"name\": \"string\",\n            \"providerType\": \"string\",\n            \"zone\": \"string\"\n          },\n          {\n            \"cloudProvider\": \"string\",\n            \"health\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"healthState\": \"Up\",\n            \"humanReadableName\": \"string\",\n            \"labels\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"launchTime\": 5606,\n            \"name\": \"string\",\n            \"providerType\": \"string\",\n            \"zone\": \"string\"\n          }\n        ],\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"launchConfig\": {},\n        \"loadBalancers\": [\n          \"string\",\n          \"string\"\n        ],\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 2622,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"region\": \"string\",\n        \"securityGroups\": [\n          \"string\",\n          \"string\"\n        ],\n        \"serverGroupManagers\": [\n          {\n            \"account\": \"string\",\n            \"location\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"account\": \"string\",\n            \"location\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"tags\": {},\n        \"type\": \"string\",\n        \"zones\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"type\": \"string\"\n  },\n  {\n    \"accountName\": \"string\",\n    \"loadBalancers\": [\n      {\n        \"account\": \"string\",\n        \"cloudProvider\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 3502,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"serverGroups\": [\n          {\n            \"account\": \"string\",\n            \"cloudProvider\": \"string\",\n            \"detachedInstances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"instances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"isDisabled\": true,\n            \"name\": \"string\",\n            \"region\": \"string\"\n          },\n          {\n            \"account\": \"string\",\n            \"cloudProvider\": \"string\",\n            \"detachedInstances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"instances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"isDisabled\": true,\n            \"name\": \"string\",\n            \"region\": \"string\"\n          }\n        ],\n        \"type\": \"string\"\n      },\n      {\n        \"account\": \"string\",\n        \"cloudProvider\": \"string\",\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 401,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"serverGroups\": [\n          {\n            \"account\": \"string\",\n            \"cloudProvider\": \"string\",\n            \"detachedInstances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"instances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"isDisabled\": false,\n            \"name\": \"string\",\n            \"region\": \"string\"\n          },\n          {\n            \"account\": \"string\",\n            \"cloudProvider\": \"string\",\n            \"detachedInstances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"instances\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"isDisabled\": false,\n            \"name\": \"string\",\n            \"region\": \"string\"\n          }\n        ],\n        \"type\": \"string\"\n      }\n    ],\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 2353,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"serverGroups\": [\n      {\n        \"capacity\": {\n          \"desired\": 4101,\n          \"max\": 1451,\n          \"min\": 3246,\n          \"pinned\": true\n        },\n        \"cloudProvider\": \"string\",\n        \"createdTime\": 5488,\n        \"disabled\": false,\n        \"instanceCounts\": {\n          \"down\": 4268,\n          \"outOfService\": 2346,\n          \"starting\": 9211,\n          \"total\": 5265,\n          \"unknown\": 9019,\n          \"up\": 6227\n        },\n        \"instanceType\": \"string\",\n        \"instances\": [\n          {\n            \"cloudProvider\": \"string\",\n            \"health\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"healthState\": \"Failed\",\n            \"humanReadableName\": \"string\",\n            \"labels\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"launchTime\": 1755,\n            \"name\": \"string\",\n            \"providerType\": \"string\",\n            \"zone\": \"string\"\n          },\n          {\n            \"cloudProvider\": \"string\",\n            \"health\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"healthState\": \"OutOfService\",\n            \"humanReadableName\": \"string\",\n            \"labels\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"launchTime\": 6158,\n            \"name\": \"string\",\n            \"providerType\": \"string\",\n            \"zone\": \"string\"\n          }\n        ],\n        \"labels\": {\n          \"key_0\": \"string\"\n        },\n        \"launchConfig\": {},\n        \"loadBalancers\": [\n          \"string\",\n          \"string\"\n        ],\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 7548,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"region\": \"string\",\n        \"securityGroups\": [\n          \"string\",\n          \"string\"\n        ],\n        \"serverGroupManagers\": [\n          {\n            \"account\": \"string\",\n            \"location\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"account\": \"string\",\n            \"location\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"tags\": {},\n        \"type\": \"string\",\n        \"zones\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"capacity\": {\n          \"desired\": 9856,\n          \"max\": 419,\n          \"min\": 8708,\n          \"pinned\": true\n        },\n        \"cloudProvider\": \"string\",\n        \"createdTime\": 5950,\n        \"disabled\": false,\n        \"instanceCounts\": {\n          \"down\": 209,\n          \"outOfService\": 3444,\n          \"starting\": 9392,\n          \"total\": 3461,\n          \"unknown\": 6853,\n          \"up\": 1513\n        },\n        \"instanceType\": \"string\",\n        \"instances\": [\n          {\n            \"cloudProvider\": \"string\",\n            \"health\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"healthState\": \"OutOfService\",\n            \"humanReadableName\": \"string\",\n            \"labels\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"launchTime\": 9953,\n            \"name\": \"string\",\n            \"providerType\": \"string\",\n            \"zone\": \"string\"\n          },\n          {\n            \"cloudProvider\": \"string\",\n            \"health\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"healthState\": \"Failed\",\n            \"humanReadableName\": \"string\",\n            \"labels\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"launchTime\": 2036,\n            \"name\": \"string\",\n            \"providerType\": \"string\",\n            \"zone\": \"string\"\n          }\n        ],\n        \"labels\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"launchConfig\": {},\n        \"loadBalancers\": [\n          \"string\",\n          \"string\"\n        ],\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 1364,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"region\": \"string\",\n        \"securityGroups\": [\n          \"string\",\n          \"string\"\n        ],\n        \"serverGroupManagers\": [\n          {\n            \"account\": \"string\",\n            \"location\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"account\": \"string\",\n            \"location\": \"string\",\n            \"name\": \"string\"\n          }\n        ],\n        \"tags\": {},\n        \"type\": \"string\",\n        \"zones\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"type\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9468b6dd-638e-4561-b619-e3c2c89da528",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) name"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75ebb6ac-4626-4cc5-bf2d-cb898fb3f3ec",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) name"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "58c5d71e-b098-4e16-a601-05be33fc051b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) name"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ecf9fcb-ab0d-4e20-9f09-f070f9b5d4e7",
+          "name": "getForAccountAndNameAndType",
+          "request": {
+            "name": "getForAccountAndNameAndType",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "clusters",
+                ":account",
+                ":name",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "true",
+                  "description": "expand"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account",
+                  "description": "(Required) account"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39088f85-b807-497f-8365-0c759756feef",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":name",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"accountName\": \"string\",\n  \"loadBalancers\": [\n    {\n      \"account\": \"string\",\n      \"cloudProvider\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"moniker\": {\n        \"app\": \"string\",\n        \"cluster\": \"string\",\n        \"detail\": \"string\",\n        \"sequence\": 7502,\n        \"stack\": \"string\"\n      },\n      \"name\": \"string\",\n      \"serverGroups\": [\n        {\n          \"account\": \"string\",\n          \"cloudProvider\": \"string\",\n          \"detachedInstances\": [\n            \"string\",\n            \"string\"\n          ],\n          \"instances\": [\n            {\n              \"health\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"health\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isDisabled\": true,\n          \"name\": \"string\",\n          \"region\": \"string\"\n        },\n        {\n          \"account\": \"string\",\n          \"cloudProvider\": \"string\",\n          \"detachedInstances\": [\n            \"string\",\n            \"string\"\n          ],\n          \"instances\": [\n            {\n              \"health\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"health\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isDisabled\": true,\n          \"name\": \"string\",\n          \"region\": \"string\"\n        }\n      ],\n      \"type\": \"string\"\n    },\n    {\n      \"account\": \"string\",\n      \"cloudProvider\": \"string\",\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"moniker\": {\n        \"app\": \"string\",\n        \"cluster\": \"string\",\n        \"detail\": \"string\",\n        \"sequence\": 3040,\n        \"stack\": \"string\"\n      },\n      \"name\": \"string\",\n      \"serverGroups\": [\n        {\n          \"account\": \"string\",\n          \"cloudProvider\": \"string\",\n          \"detachedInstances\": [\n            \"string\",\n            \"string\"\n          ],\n          \"instances\": [\n            {\n              \"health\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"health\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isDisabled\": true,\n          \"name\": \"string\",\n          \"region\": \"string\"\n        },\n        {\n          \"account\": \"string\",\n          \"cloudProvider\": \"string\",\n          \"detachedInstances\": [\n            \"string\",\n            \"string\"\n          ],\n          \"instances\": [\n            {\n              \"health\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"health\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"zone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"isDisabled\": false,\n          \"name\": \"string\",\n          \"region\": \"string\"\n        }\n      ],\n      \"type\": \"string\"\n    }\n  ],\n  \"moniker\": {\n    \"app\": \"string\",\n    \"cluster\": \"string\",\n    \"detail\": \"string\",\n    \"sequence\": 3169,\n    \"stack\": \"string\"\n  },\n  \"name\": \"string\",\n  \"serverGroups\": [\n    {\n      \"capacity\": {\n        \"desired\": 7166,\n        \"max\": 258,\n        \"min\": 4939,\n        \"pinned\": false\n      },\n      \"cloudProvider\": \"string\",\n      \"createdTime\": 1076,\n      \"disabled\": true,\n      \"instanceCounts\": {\n        \"down\": 6507,\n        \"outOfService\": 5946,\n        \"starting\": 4203,\n        \"total\": 3677,\n        \"unknown\": 3177,\n        \"up\": 8441\n      },\n      \"instanceType\": \"string\",\n      \"instances\": [\n        {\n          \"cloudProvider\": \"string\",\n          \"health\": [\n            {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"healthState\": \"Failed\",\n          \"humanReadableName\": \"string\",\n          \"labels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"launchTime\": 1673,\n          \"name\": \"string\",\n          \"providerType\": \"string\",\n          \"zone\": \"string\"\n        },\n        {\n          \"cloudProvider\": \"string\",\n          \"health\": [\n            {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"healthState\": \"Starting\",\n          \"humanReadableName\": \"string\",\n          \"labels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"launchTime\": 8808,\n          \"name\": \"string\",\n          \"providerType\": \"string\",\n          \"zone\": \"string\"\n        }\n      ],\n      \"labels\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"launchConfig\": {},\n      \"loadBalancers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"moniker\": {\n        \"app\": \"string\",\n        \"cluster\": \"string\",\n        \"detail\": \"string\",\n        \"sequence\": 2107,\n        \"stack\": \"string\"\n      },\n      \"name\": \"string\",\n      \"region\": \"string\",\n      \"securityGroups\": [\n        \"string\",\n        \"string\"\n      ],\n      \"serverGroupManagers\": [\n        {\n          \"account\": \"string\",\n          \"location\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"account\": \"string\",\n          \"location\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"tags\": {},\n      \"type\": \"string\",\n      \"zones\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"capacity\": {\n        \"desired\": 5556,\n        \"max\": 4036,\n        \"min\": 5007,\n        \"pinned\": false\n      },\n      \"cloudProvider\": \"string\",\n      \"createdTime\": 116,\n      \"disabled\": true,\n      \"instanceCounts\": {\n        \"down\": 4210,\n        \"outOfService\": 1111,\n        \"starting\": 5801,\n        \"total\": 8141,\n        \"unknown\": 4459,\n        \"up\": 4956\n      },\n      \"instanceType\": \"string\",\n      \"instances\": [\n        {\n          \"cloudProvider\": \"string\",\n          \"health\": [\n            {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"healthState\": \"Unknown\",\n          \"humanReadableName\": \"string\",\n          \"labels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"launchTime\": 3769,\n          \"name\": \"string\",\n          \"providerType\": \"string\",\n          \"zone\": \"string\"\n        },\n        {\n          \"cloudProvider\": \"string\",\n          \"health\": [\n            {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"healthState\": \"Starting\",\n          \"humanReadableName\": \"string\",\n          \"labels\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"launchTime\": 2601,\n          \"name\": \"string\",\n          \"providerType\": \"string\",\n          \"zone\": \"string\"\n        }\n      ],\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"launchConfig\": {},\n      \"loadBalancers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"moniker\": {\n        \"app\": \"string\",\n        \"cluster\": \"string\",\n        \"detail\": \"string\",\n        \"sequence\": 1593,\n        \"stack\": \"string\"\n      },\n      \"name\": \"string\",\n      \"region\": \"string\",\n      \"securityGroups\": [\n        \"string\",\n        \"string\"\n      ],\n      \"serverGroupManagers\": [\n        {\n          \"account\": \"string\",\n          \"location\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"account\": \"string\",\n          \"location\": \"string\",\n          \"name\": \"string\"\n        }\n      ],\n      \"tags\": {},\n      \"type\": \"string\",\n      \"zones\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afd501cc-cfbe-4035-abf1-42ff509d47d2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":name",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dfc2327b-bc39-4174-83db-bc25346c2334",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":name",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9734a372-e858-4155-b681-1450d8617034",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "clusters",
+                    ":account",
+                    ":name",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account",
+                      "description": "(Required) account"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) type"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5ad24f98-b070-40a0-a9f5-706e23c3cfe4",
+    "name": "Armory Scale Agent Applications & Clusters Cluster Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.\n\nContact Support:\n Name: Armory Docs",
+      "type": "text/plain"
+    }
+  }
+}

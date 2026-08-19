@@ -1,0 +1,236 @@
+{
+  "item": [
+    {
+      "id": "67210366-1918-4823-b0a7-be82b6b268d6",
+      "name": "server-group-manager-controller",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "69041871-d06b-4286-8be9-2e42073dfcdf",
+          "name": "getForApplication",
+          "request": {
+            "name": "getForApplication",
+            "description": {},
+            "url": {
+              "path": [
+                "applications",
+                ":application",
+                "serverGroupManagers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "application",
+                  "description": "(Required) application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "014dae70-ca94-437d-b85c-e7982e84850c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "serverGroupManagers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "[\n  {\n    \"account\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 1783,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"region\": \"string\",\n    \"serverGroups\": [\n      {\n        \"account\": \"string\",\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 2414,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"region\": \"string\"\n      },\n      {\n        \"account\": \"string\",\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 9147,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"region\": \"string\"\n      }\n    ]\n  },\n  {\n    \"account\": \"string\",\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"moniker\": {\n      \"app\": \"string\",\n      \"cluster\": \"string\",\n      \"detail\": \"string\",\n      \"sequence\": 6162,\n      \"stack\": \"string\"\n    },\n    \"name\": \"string\",\n    \"region\": \"string\",\n    \"serverGroups\": [\n      {\n        \"account\": \"string\",\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 4207,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"region\": \"string\"\n      },\n      {\n        \"account\": \"string\",\n        \"moniker\": {\n          \"app\": \"string\",\n          \"cluster\": \"string\",\n          \"detail\": \"string\",\n          \"sequence\": 2249,\n          \"stack\": \"string\"\n        },\n        \"name\": \"string\",\n        \"region\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "468d48cb-6668-47a6-8c5b-8f865e7e5183",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "serverGroupManagers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f68f2eb-648c-4057-b201-4cbadc485f34",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "serverGroupManagers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c39d0d6d-e23d-4af6-8f1b-dd9bc2cf0b78",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "applications",
+                    ":application",
+                    "serverGroupManagers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "application",
+                      "description": "(Required) application"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b1480f6c-7e52-48db-bf8a-ffa5816323dc",
+    "name": "Armory Scale Agent Applications & Clusters Server Group Manager Controller API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.\n\nContact Support:\n Name: Armory Docs",
+      "type": "text/plain"
+    }
+  }
+}

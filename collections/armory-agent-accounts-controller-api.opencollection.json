@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Dynamic Accounts Agent Accounts Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "agent-accounts-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve account by name if handled by armory agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/agents/kubernetes/accounts/:accountName",
+            "params": [
+              {
+                "name": "accountName",
+                "value": "",
+                "type": "path",
+                "description": "accountName"
+              }
+            ]
+          },
+          "docs": "Retrieve account by name if handled by armory agent"
+        },
+        {
+          "info": {
+            "name": "Retrieve namespaces by account name if handled by armory agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/agents/kubernetes/accounts/:accountName/namespaces",
+            "params": [
+              {
+                "name": "accountName",
+                "value": "",
+                "type": "path",
+                "description": "accountName"
+              }
+            ]
+          },
+          "docs": "Retrieve namespaces by account name if handled by armory agent"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

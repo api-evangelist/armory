@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Infrastructure Search Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "search-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/search",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "pageSize"
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "platform"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "q"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "type"
+              }
+            ]
+          },
+          "docs": "search"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

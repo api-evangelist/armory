@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Infrastructure Elastic Ip Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "elastic-ip-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "listByAccountAndRegion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/elasticIps/:account",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "region"
+              }
+            ]
+          },
+          "docs": "listByAccountAndRegion"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

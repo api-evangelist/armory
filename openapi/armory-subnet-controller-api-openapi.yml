@@ -1,0 +1,80 @@
+openapi: 3.2.0
+info:
+  title: Armory Scale Agent Infrastructure Subnet Controller API
+  description: Cloud infrastructure lookups - networks, subnets, VPCs, security groups, elastic IPs, instance types, reservation reports and search.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+servers:
+- url: /
+tags:
+- name: subnet-controller
+paths:
+  /subnets:
+    get:
+      tags:
+      - subnet-controller
+      summary: list
+      operationId: listUsingGET_10
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subnet'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /subnets/{cloudProvider}:
+    get:
+      tags:
+      - subnet-controller
+      summary: listByCloudProvider
+      operationId: listByCloudProviderUsingGET_1
+      parameters:
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Subnet'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+components:
+  schemas:
+    Subnet:
+      type: object
+      properties:
+        id:
+          type: string
+        purpose:
+          type: string
+        type:
+          type: string
+      title: Subnet

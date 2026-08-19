@@ -1,0 +1,696 @@
+openapi: 3.2.0
+info:
+  title: Armory Scale Agent Applications & Clusters Cluster Controller API
+  description: Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+servers:
+- url: /
+tags:
+- name: cluster-controller
+paths:
+  /applications/{application}/clusters:
+    get:
+      tags:
+      - cluster-controller
+      summary: listByAccount
+      operationId: listByAccountUsingGET
+      parameters:
+      - name: application
+        in: path
+        description: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}:
+    get:
+      tags:
+      - cluster-controller
+      summary: getForAccount
+      operationId: getForAccountUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClusterViewModel'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}:
+    get:
+      tags:
+      - cluster-controller
+      summary: getTargetServerGroup
+      operationId: getTargetServerGroupUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        schema:
+          type: string
+      - name: clusterName
+        in: path
+        description: clusterName
+        required: true
+        schema:
+          type: string
+      - name: onlyEnabled
+        in: query
+        description: onlyEnabled
+        required: false
+        schema:
+          type: string
+          default: 'false'
+      - name: scope
+        in: path
+        description: scope
+        required: true
+        schema:
+          type: string
+      - name: target
+        in: path
+        description: target
+        required: true
+        schema:
+          type: string
+      - name: validateOldest
+        in: query
+        description: validateOldest
+        required: false
+        schema:
+          type: string
+          default: 'true'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ServerGroup'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  ? /applications/{application}/clusters/{account}/{clusterName}/{cloudProvider}/{scope}/serverGroups/target/{target}/{summaryType}
+  : get:
+      tags:
+      - cluster-controller
+      summary: getServerGroupSummary
+      operationId: getServerGroupSummaryUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        schema:
+          type: string
+      - name: clusterName
+        in: path
+        description: clusterName
+        required: true
+        schema:
+          type: string
+      - name: onlyEnabled
+        in: query
+        description: onlyEnabled
+        required: false
+        schema:
+          type: string
+          default: 'false'
+      - name: scope
+        in: path
+        description: scope
+        required: true
+        schema:
+          type: string
+      - name: summaryType
+        in: path
+        description: summaryType
+        required: true
+        schema:
+          type: string
+      - name: target
+        in: path
+        description: target
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Summary'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups:
+    get:
+      tags:
+      - cluster-controller
+      summary: getServerGroups
+      operationId: getServerGroupsUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        schema:
+          type: string
+      - name: clusterName
+        in: path
+        description: clusterName
+        required: true
+        schema:
+          type: string
+      - name: expand
+        in: query
+        description: expand
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - name: region
+        in: query
+        description: region
+        required: false
+        schema:
+          type: string
+      - name: type
+        in: path
+        description: type
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServerGroup'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}/{clusterName}/{type}/serverGroups/{serverGroupName}:
+    get:
+      tags:
+      - cluster-controller
+      summary: getServerGroup
+      operationId: getServerGroupUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        schema:
+          type: string
+      - name: clusterName
+        in: path
+        description: clusterName
+        required: true
+        schema:
+          type: string
+      - name: region
+        in: query
+        description: region
+        required: false
+        schema:
+          type: string
+      - name: serverGroupName
+        in: path
+        description: serverGroupName
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: path
+        description: type
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}/{name}:
+    get:
+      tags:
+      - cluster-controller
+      summary: getForAccountAndName
+      operationId: getForAccountAndNameUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        schema:
+          type: string
+      - name: expand
+        in: query
+        description: expand
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - name: name
+        in: path
+        description: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cluster'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /applications/{application}/clusters/{account}/{name}/{type}:
+    get:
+      tags:
+      - cluster-controller
+      summary: getForAccountAndNameAndType
+      operationId: getForAccountAndNameAndTypeUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: application
+        required: true
+        schema:
+          type: string
+      - name: expand
+        in: query
+        description: expand
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - name: name
+        in: path
+        description: name
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: path
+        description: type
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Cluster'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+components:
+  schemas:
+    LoadBalancerServerGroup:
+      type: object
+      properties:
+        account:
+          type: string
+        cloudProvider:
+          type: string
+        detachedInstances:
+          type: array
+          items:
+            type: string
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadBalancerInstance'
+        isDisabled:
+          type: boolean
+        name:
+          type: string
+        region:
+          type: string
+      title: LoadBalancerServerGroup
+    Instance:
+      type: object
+      properties:
+        cloudProvider:
+          type: string
+        health:
+          type: array
+          items:
+            $ref: '#/components/schemas/Map_string_object'
+        healthState:
+          type: string
+          enum:
+          - Failed
+          - Down
+          - OutOfService
+          - Unknown
+          - Starting
+          - Succeeded
+          - Up
+          - Draining
+        humanReadableName:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchTime:
+          type: integer
+          format: int64
+        name:
+          type: string
+        providerType:
+          type: string
+        zone:
+          type: string
+      title: Instance
+    Cluster:
+      type: object
+      properties:
+        accountName:
+          type: string
+        loadBalancers:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadBalancer'
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerGroup'
+        type:
+          type: string
+      title: Cluster
+    InstanceCounts:
+      type: object
+      properties:
+        down:
+          type: integer
+          format: int32
+        outOfService:
+          type: integer
+          format: int32
+        starting:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        unknown:
+          type: integer
+          format: int32
+        up:
+          type: integer
+          format: int32
+      title: InstanceCounts
+    ServerGroupManagerSummary:
+      type: object
+      properties:
+        account:
+          type: string
+        location:
+          type: string
+        name:
+          type: string
+      title: ServerGroupManagerSummary
+    ServerGroup:
+      type: object
+      properties:
+        capacity:
+          $ref: '#/components/schemas/Capacity'
+        cloudProvider:
+          type: string
+        createdTime:
+          type: integer
+          format: int64
+        disabled:
+          type: boolean
+        instanceCounts:
+          $ref: '#/components/schemas/InstanceCounts'
+        instanceType:
+          type: string
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instance'
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchConfig:
+          type: object
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        region:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            type: string
+        serverGroupManagers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerGroupManagerSummary'
+        tags:
+          type: object
+        type:
+          type: string
+        zones:
+          type: array
+          items:
+            type: string
+      title: ServerGroup
+    Capacity:
+      type: object
+      properties:
+        desired:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        min:
+          type: integer
+          format: int32
+        pinned:
+          type: boolean
+      title: Capacity
+    LoadBalancer:
+      type: object
+      properties:
+        account:
+          type: string
+        cloudProvider:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadBalancerServerGroup'
+        type:
+          type: string
+      title: LoadBalancer
+    LoadBalancerInstance:
+      type: object
+      properties:
+        health:
+          type: object
+        id:
+          type: string
+        name:
+          type: string
+        zone:
+          type: string
+      title: LoadBalancerInstance
+    Map_string_object:
+      type: object
+      title: Map«string,object»
+      additionalProperties:
+        type: object
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker
+    ClusterViewModel:
+      type: object
+      properties:
+        account:
+          type: string
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            type: string
+      title: ClusterViewModel
+    Summary:
+      type: object
+      title: Summary

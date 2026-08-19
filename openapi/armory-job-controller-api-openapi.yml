@@ -1,0 +1,193 @@
+openapi: 3.2.0
+info:
+  title: Armory Scale Agent Applications & Clusters Job Controller API
+  description: Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+servers:
+- url: /
+tags:
+- name: job-controller
+paths:
+  /applications/{application}/jobs/{account}/{location}/{id}:
+    get:
+      tags:
+      - job-controller
+      summary: Collect a JobStatus
+      description: Collects the output of the job.
+      operationId: collectJobUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: Account job was created by
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: Application name
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Unique identifier of job being looked up
+        required: true
+        schema:
+          type: string
+      - name: location
+        in: path
+        description: Namespace, region, or zone job is running in
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JobStatus'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+      - job-controller
+      summary: Cancel a Job
+      description: Cancels the job.
+      operationId: cancelJobUsingDELETE
+      parameters:
+      - name: account
+        in: path
+        description: Account job is running in
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: Application name
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Unique identifier of job to be canceled
+        required: true
+        schema:
+          type: string
+      - name: location
+        in: path
+        description: Namespace, region, or zone job is running in
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /applications/{application}/jobs/{account}/{location}/{id}/{fileName}:
+    get:
+      tags:
+      - job-controller
+      summary: Collect a file from a job
+      description: Collects the file result of a job.
+      operationId: getFileContentsUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: Account job was created by
+        required: true
+        schema:
+          type: string
+      - name: application
+        in: path
+        description: Application name
+        required: true
+        schema:
+          type: string
+      - name: fileName
+        in: path
+        description: File name to look up
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Unique identifier of job being looked up
+        required: true
+        schema:
+          type: string
+      - name: location
+        in: path
+        description: Namespace, region, or zone job is running in
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+components:
+  schemas:
+    Serializable:
+      type: object
+      title: Serializable
+    JobStatus:
+      type: object
+      properties:
+        account:
+          type: string
+        completedTime:
+          type: integer
+          format: int64
+        completionDetails:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Serializable'
+        createdTime:
+          type: integer
+          format: int64
+        id:
+          type: string
+        jobState:
+          type: string
+          enum:
+          - Starting
+          - Running
+          - Failed
+          - Succeeded
+          - Unknown
+        location:
+          type: string
+        name:
+          type: string
+        provider:
+          type: string
+      title: JobStatus

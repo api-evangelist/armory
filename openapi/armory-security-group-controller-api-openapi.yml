@@ -1,0 +1,302 @@
+openapi: 3.2.0
+info:
+  title: Armory Scale Agent Infrastructure Security Group Controller API
+  description: Cloud infrastructure lookups - networks, subnets, VPCs, security groups, elastic IPs, instance types, reservation reports and search.
+  version: 0.13.x
+  contact:
+    name: Armory Docs
+    url: https://docs.armory.io/plugins/scale-agent/
+  x-origin:
+  - format: swagger
+    version: '2.0'
+    url: https://docs.armory.io/reference/scale-agent/swagger.json
+servers:
+- url: /
+tags:
+- name: security-group-controller
+paths:
+  /securityGroups:
+    get:
+      tags:
+      - security-group-controller
+      summary: list
+      operationId: listUsingGET_8
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  additionalProperties:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/SecurityGroupSummary'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /securityGroups/{account}:
+    get:
+      tags:
+      - security-group-controller
+      summary: listByAccountAndRegion
+      operationId: listByAccountAndRegionUsingGET_1
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: region
+        in: query
+        description: region
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SecurityGroupSummary'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /securityGroups/{account}/{cloudProvider}:
+    get:
+      tags:
+      - security-group-controller
+      summary: listByAccountAndCloudProvider
+      operationId: listByAccountAndCloudProviderUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SecurityGroupSummary'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /securityGroups/{account}/{cloudProvider}/{region}/{securityGroupNameOrId}:
+    get:
+      tags:
+      - security-group-controller
+      summary: get
+      operationId: getUsingGET_2
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        schema:
+          type: string
+      - name: getById
+        in: query
+        description: getById
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: region
+        in: path
+        description: region
+        required: true
+        schema:
+          type: string
+      - name: securityGroupNameOrId
+        in: path
+        description: securityGroupNameOrId
+        required: true
+        schema:
+          type: string
+      - name: vpcId
+        in: query
+        description: vpcId
+        required: false
+        schema:
+          type: string
+          default: '*'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SecurityGroup'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /securityGroups/{account}/{cloudProvider}/{securityGroupName}:
+    get:
+      tags:
+      - security-group-controller
+      summary: listByAccountAndCloudProviderAndName
+      operationId: listByAccountAndCloudProviderAndNameUsingGET
+      parameters:
+      - name: account
+        in: path
+        description: account
+        required: true
+        schema:
+          type: string
+      - name: cloudProvider
+        in: path
+        description: cloudProvider
+        required: true
+        schema:
+          type: string
+      - name: securityGroupName
+        in: path
+        description: securityGroupName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SecurityGroupSummary'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+components:
+  schemas:
+    Rule:
+      type: object
+      properties:
+        portRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortRange'
+        protocol:
+          type: string
+      title: Rule
+    SecurityGroupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+      title: SecurityGroupSummary
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker
+    PortRange:
+      type: object
+      properties:
+        endPort:
+          type: integer
+          format: int32
+        startPort:
+          type: integer
+          format: int32
+      title: PortRange
+    SecurityGroup:
+      type: object
+      properties:
+        accountName:
+          type: string
+        application:
+          type: string
+        cloudProvider:
+          type: string
+        id:
+          type: string
+        inboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        outboundRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        region:
+          type: string
+        summary:
+          $ref: '#/components/schemas/SecurityGroupSummary'
+        type:
+          type: string
+      title: SecurityGroup

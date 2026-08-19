@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Operations & Tasks Cache Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "cache-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getAgentIntrospections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/cache/introspection"
+          },
+          "docs": "getAgentIntrospections"
+        },
+        {
+          "info": {
+            "name": "pendingOnDemands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/cache/:cloudProvider/:type",
+            "params": [
+              {
+                "name": "cloudProvider",
+                "value": "",
+                "type": "path",
+                "description": "cloudProvider"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "id"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "type"
+              }
+            ]
+          },
+          "docs": "pendingOnDemands"
+        },
+        {
+          "info": {
+            "name": "handleOnDemand",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/cache/:cloudProvider/:type",
+            "params": [
+              {
+                "name": "cloudProvider",
+                "value": "",
+                "type": "path",
+                "description": "cloudProvider"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "type"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "handleOnDemand"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

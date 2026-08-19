@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armory Scale Agent Infrastructure Security Group Controller API",
+    "version": "0.13.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "security-group-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/securityGroups"
+          },
+          "docs": "list"
+        },
+        {
+          "info": {
+            "name": "listByAccountAndRegion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/securityGroups/:account",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "region"
+              }
+            ]
+          },
+          "docs": "listByAccountAndRegion"
+        },
+        {
+          "info": {
+            "name": "listByAccountAndCloudProvider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/securityGroups/:account/:cloudProvider",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "cloudProvider",
+                "value": "",
+                "type": "path",
+                "description": "cloudProvider"
+              }
+            ]
+          },
+          "docs": "listByAccountAndCloudProvider"
+        },
+        {
+          "info": {
+            "name": "get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/securityGroups/:account/:cloudProvider/:region/:securityGroupNameOrId",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "cloudProvider",
+                "value": "",
+                "type": "path",
+                "description": "cloudProvider"
+              },
+              {
+                "name": "getById",
+                "value": "",
+                "type": "query",
+                "description": "getById"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "path",
+                "description": "region"
+              },
+              {
+                "name": "securityGroupNameOrId",
+                "value": "",
+                "type": "path",
+                "description": "securityGroupNameOrId"
+              },
+              {
+                "name": "vpcId",
+                "value": "",
+                "type": "query",
+                "description": "vpcId"
+              }
+            ]
+          },
+          "docs": "get"
+        },
+        {
+          "info": {
+            "name": "listByAccountAndCloudProviderAndName",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/securityGroups/:account/:cloudProvider/:securityGroupName",
+            "params": [
+              {
+                "name": "account",
+                "value": "",
+                "type": "path",
+                "description": "account"
+              },
+              {
+                "name": "cloudProvider",
+                "value": "",
+                "type": "path",
+                "description": "cloudProvider"
+              },
+              {
+                "name": "securityGroupName",
+                "value": "",
+                "type": "path",
+                "description": "securityGroupName"
+              }
+            ]
+          },
+          "docs": "listByAccountAndCloudProviderAndName"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
