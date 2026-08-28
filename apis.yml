@@ -9,6 +9,19 @@ description: >-
   including a $40M Series C, and its assets were acquired by Harness in January 2024. www.armory.io now redirects to
   harness.io, but docs.armory.io remains live and still publishes the full product documentation plus a real Swagger 2.0
   API reference for the Armory Scale Agent Clouddriver surface.
+deliveryModel:
+  model: self-hosted
+  license: Apache-2.0
+  open_source: true
+  commercial: false
+  callable_host: false
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 image: https://docs.armory.io/favicons/android-192x192.png
 url: https://raw.githubusercontent.com/api-evangelist/armory/refs/heads/main/apis.yml
 x-type: company
