@@ -1,17 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Armory Scale Agent Operations & Tasks Operations Controller API
-  description: Cloud operation submission (the /ops surface), task polling/resume, and on-demand cache introspection.
-  version: 0.13.x
+  description: Cloud read and write operations
+  title: clouddriver Operations Controller API
   contact:
-    name: Armory Docs
-    url: https://docs.armory.io/plugins/scale-agent/
-  x-origin:
-  - format: swagger
-    version: '2.0'
-    url: https://docs.armory.io/reference/scale-agent/swagger.json
+    name: admin@host.net
 servers:
-- url: /
+- url: https://localhost:7002/
 tags:
 - name: operations-controller
 paths:
@@ -267,11 +261,6 @@ paths:
         required: true
 components:
   schemas:
-    Map_string_Map:
-      type: object
-      title: Map«string,Map»
-      additionalProperties:
-        $ref: '#/components/schemas/Map'
     SagaId:
       type: object
       properties:
@@ -280,6 +269,25 @@ components:
         name:
           type: string
       title: SagaId
+    Map_string_Map:
+      type: object
+      title: Map«string,Map»
+      additionalProperties:
+        $ref: '#/components/schemas/Map'
+    Status:
+      type: object
+      properties:
+        completed:
+          type: boolean
+        failed:
+          type: boolean
+        phase:
+          type: string
+        retryable:
+          type: boolean
+        status:
+          type: string
+      title: Status
     Task:
       type: object
       properties:
@@ -317,17 +325,3 @@ components:
         resourceUri:
           type: string
       title: StartOperationResult
-    Status:
-      type: object
-      properties:
-        completed:
-          type: boolean
-        failed:
-          type: boolean
-        phase:
-          type: string
-        retryable:
-          type: boolean
-        status:
-          type: string
-      title: Status

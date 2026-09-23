@@ -1,17 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Armory Scale Agent Infrastructure Security Group Controller API
-  description: Cloud infrastructure lookups - networks, subnets, VPCs, security groups, elastic IPs, instance types, reservation reports and search.
-  version: 0.13.x
+  description: Cloud read and write operations
+  title: clouddriver Security Group Controller API
   contact:
-    name: Armory Docs
-    url: https://docs.armory.io/plugins/scale-agent/
-  x-origin:
-  - format: swagger
-    version: '2.0'
-    url: https://docs.armory.io/reference/scale-agent/swagger.json
+    name: admin@host.net
 servers:
-- url: /
+- url: https://localhost:7002/
 tags:
 - name: security-group-controller
 paths:
@@ -221,16 +215,16 @@ paths:
       deprecated: false
 components:
   schemas:
-    Rule:
+    PortRange:
       type: object
       properties:
-        portRanges:
-          type: array
-          items:
-            $ref: '#/components/schemas/PortRange'
-        protocol:
-          type: string
-      title: Rule
+        endPort:
+          type: integer
+          format: int32
+        startPort:
+          type: integer
+          format: int32
+      title: PortRange
     SecurityGroupSummary:
       type: object
       properties:
@@ -256,16 +250,16 @@ components:
         stack:
           type: string
       title: Moniker
-    PortRange:
+    Rule:
       type: object
       properties:
-        endPort:
-          type: integer
-          format: int32
-        startPort:
-          type: integer
-          format: int32
-      title: PortRange
+        portRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortRange'
+        protocol:
+          type: string
+      title: Rule
     SecurityGroup:
       type: object
       properties:

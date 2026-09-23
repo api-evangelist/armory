@@ -1,17 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Armory Scale Agent Applications & Clusters Server Group Controller API
-  description: Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.
-  version: 0.13.x
+  description: Cloud read and write operations
+  title: clouddriver Server Group Controller API
   contact:
-    name: Armory Docs
-    url: https://docs.armory.io/plugins/scale-agent/
-  x-origin:
-  - format: swagger
-    version: '2.0'
-    url: https://docs.armory.io/reference/scale-agent/swagger.json
+    name: admin@host.net
 servers:
-- url: /
+- url: https://localhost:7002/
 tags:
 - name: server-group-controller
 paths:
@@ -121,74 +115,11 @@ paths:
       deprecated: false
 components:
   schemas:
-    Instance:
+    Map_string_object:
       type: object
-      properties:
-        cloudProvider:
-          type: string
-        health:
-          type: array
-          items:
-            $ref: '#/components/schemas/Map_string_object'
-        healthState:
-          type: string
-          enum:
-          - Failed
-          - Down
-          - OutOfService
-          - Unknown
-          - Starting
-          - Succeeded
-          - Up
-          - Draining
-        humanReadableName:
-          type: string
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        launchTime:
-          type: integer
-          format: int64
-        name:
-          type: string
-        providerType:
-          type: string
-        zone:
-          type: string
-      title: Instance
-    InstanceCounts:
-      type: object
-      properties:
-        down:
-          type: integer
-          format: int32
-        outOfService:
-          type: integer
-          format: int32
-        starting:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          format: int32
-        unknown:
-          type: integer
-          format: int32
-        up:
-          type: integer
-          format: int32
-      title: InstanceCounts
-    ServerGroupManagerSummary:
-      type: object
-      properties:
-        account:
-          type: string
-        location:
-          type: string
-        name:
-          type: string
-      title: ServerGroupManagerSummary
+      title: Map«string,object»
+      additionalProperties:
+        type: object
     ServerGroup:
       type: object
       properties:
@@ -242,26 +173,6 @@ components:
           items:
             type: string
       title: ServerGroup
-    Capacity:
-      type: object
-      properties:
-        desired:
-          type: integer
-          format: int32
-        max:
-          type: integer
-          format: int32
-        min:
-          type: integer
-          format: int32
-        pinned:
-          type: boolean
-      title: Capacity
-    Map_string_object:
-      type: object
-      title: Map«string,object»
-      additionalProperties:
-        type: object
     Moniker:
       type: object
       properties:
@@ -277,3 +188,86 @@ components:
         stack:
           type: string
       title: Moniker
+    Instance:
+      type: object
+      properties:
+        cloudProvider:
+          type: string
+        health:
+          type: array
+          items:
+            $ref: '#/components/schemas/Map_string_object'
+        healthState:
+          type: string
+          enum:
+          - Failed
+          - Down
+          - OutOfService
+          - Unknown
+          - Starting
+          - Succeeded
+          - Up
+          - Draining
+        humanReadableName:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchTime:
+          type: integer
+          format: int64
+        name:
+          type: string
+        providerType:
+          type: string
+        zone:
+          type: string
+      title: Instance
+    ServerGroupManagerSummary:
+      type: object
+      properties:
+        account:
+          type: string
+        location:
+          type: string
+        name:
+          type: string
+      title: ServerGroupManagerSummary
+    InstanceCounts:
+      type: object
+      properties:
+        down:
+          type: integer
+          format: int32
+        outOfService:
+          type: integer
+          format: int32
+        starting:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        unknown:
+          type: integer
+          format: int32
+        up:
+          type: integer
+          format: int32
+      title: InstanceCounts
+    Capacity:
+      type: object
+      properties:
+        desired:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        min:
+          type: integer
+          format: int32
+        pinned:
+          type: boolean
+      title: Capacity

@@ -1,17 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Armory Scale Agent Applications & Clusters Server Group Manager Controller API
-  description: Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.
-  version: 0.13.x
+  description: Cloud read and write operations
+  title: clouddriver Server Group Manager Controller API
   contact:
-    name: Armory Docs
-    url: https://docs.armory.io/plugins/scale-agent/
-  x-origin:
-  - format: swagger
-    version: '2.0'
-    url: https://docs.armory.io/reference/scale-agent/swagger.json
+    name: admin@host.net
 servers:
-- url: /
+- url: https://localhost:7002/
 tags:
 - name: server-group-manager-controller
 paths:
@@ -66,6 +60,18 @@ components:
           items:
             $ref: '#/components/schemas/ServerGroupSummary'
       title: ServerGroupManager
+    ServerGroupSummary:
+      type: object
+      properties:
+        account:
+          type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        region:
+          type: string
+      title: ServerGroupSummary
     Moniker:
       type: object
       properties:
@@ -81,15 +87,3 @@ components:
         stack:
           type: string
       title: Moniker
-    ServerGroupSummary:
-      type: object
-      properties:
-        account:
-          type: string
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        region:
-          type: string
-      title: ServerGroupSummary

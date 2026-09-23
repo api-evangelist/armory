@@ -1,17 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Armory Scale Agent Applications & Clusters Raw Resource Controller API
-  description: Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.
-  version: 0.13.x
+  description: Cloud read and write operations
+  title: clouddriver Raw Resource Controller API
   contact:
-    name: Armory Docs
-    url: https://docs.armory.io/plugins/scale-agent/
-  x-origin:
-  - format: swagger
-    version: '2.0'
-    url: https://docs.armory.io/reference/scale-agent/swagger.json
+    name: admin@host.net
 servers:
-- url: /
+- url: https://localhost:7002/
 tags:
 - name: raw-resource-controller
 paths:
@@ -46,12 +40,12 @@ paths:
       deprecated: false
 components:
   schemas:
-    KubernetesKind:
+    KubernetesApiVersion:
       type: object
       properties:
         apiGroup:
           $ref: '#/components/schemas/KubernetesApiGroup'
-      title: KubernetesKind
+      title: KubernetesApiVersion
     Moniker:
       type: object
       properties:
@@ -67,12 +61,12 @@ components:
         stack:
           type: string
       title: Moniker
-    KubernetesApiGroup:
+    KubernetesKind:
       type: object
       properties:
-        nativeGroup:
-          type: boolean
-      title: KubernetesApiGroup
+        apiGroup:
+          $ref: '#/components/schemas/KubernetesApiGroup'
+      title: KubernetesKind
     KubernetesRawResource:
       type: object
       properties:
@@ -100,9 +94,9 @@ components:
         region:
           type: string
       title: KubernetesRawResource
-    KubernetesApiVersion:
+    KubernetesApiGroup:
       type: object
       properties:
-        apiGroup:
-          $ref: '#/components/schemas/KubernetesApiGroup'
-      title: KubernetesApiVersion
+        nativeGroup:
+          type: boolean
+      title: KubernetesApiGroup

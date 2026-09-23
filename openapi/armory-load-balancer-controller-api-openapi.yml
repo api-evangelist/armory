@@ -1,17 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Armory Scale Agent Applications & Clusters Load Balancer Controller API
-  description: Read operations across applications, clusters, server groups, server group managers, instances, load balancers, functions, raw resources and jobs.
-  version: 0.13.x
+  description: Cloud read and write operations
+  title: clouddriver Load Balancer Controller API
   contact:
-    name: Armory Docs
-    url: https://docs.armory.io/plugins/scale-agent/
-  x-origin:
-  - format: swagger
-    version: '2.0'
-    url: https://docs.armory.io/reference/scale-agent/swagger.json
+    name: admin@host.net
 servers:
-- url: /
+- url: https://localhost:7002/
 tags:
 - name: load-balancer-controller
 paths:
@@ -46,6 +40,33 @@ paths:
       deprecated: false
 components:
   schemas:
+    LoadBalancerInstance:
+      type: object
+      properties:
+        health:
+          type: object
+        id:
+          type: string
+        name:
+          type: string
+        zone:
+          type: string
+      title: LoadBalancerInstance
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker
     LoadBalancer:
       type: object
       properties:
@@ -90,30 +111,3 @@ components:
         region:
           type: string
       title: LoadBalancerServerGroup
-    LoadBalancerInstance:
-      type: object
-      properties:
-        health:
-          type: object
-        id:
-          type: string
-        name:
-          type: string
-        zone:
-          type: string
-      title: LoadBalancerInstance
-    Moniker:
-      type: object
-      properties:
-        app:
-          type: string
-        cluster:
-          type: string
-        detail:
-          type: string
-        sequence:
-          type: integer
-          format: int32
-        stack:
-          type: string
-      title: Moniker

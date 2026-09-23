@@ -1,17 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Armory Scale Agent Operations & Tasks Cache Controller API
-  description: Cloud operation submission (the /ops surface), task polling/resume, and on-demand cache introspection.
-  version: 0.13.x
+  description: Cloud read and write operations
+  title: clouddriver Cache Controller API
   contact:
-    name: Armory Docs
-    url: https://docs.armory.io/plugins/scale-agent/
-  x-origin:
-  - format: swagger
-    version: '2.0'
-    url: https://docs.armory.io/reference/scale-agent/swagger.json
+    name: admin@host.net
 servers:
-- url: /
+- url: https://localhost:7002/
 tags:
 - name: cache-controller
 paths:
@@ -121,30 +115,6 @@ paths:
         required: true
 components:
   schemas:
-    AgentIntrospection:
-      type: object
-      properties:
-        id:
-          type: string
-        lastError:
-          $ref: '#/components/schemas/Throwable'
-        lastExecutionDurationMs:
-          type: integer
-          format: int64
-        lastExecutionStartDate:
-          type: string
-        lastExecutionStartMs:
-          type: integer
-          format: int64
-        provider:
-          type: string
-        totalAdditions:
-          type: integer
-          format: int32
-        totalEvictions:
-          type: integer
-          format: int32
-      title: AgentIntrospection
     StackTraceElement:
       type: object
       properties:
@@ -166,6 +136,24 @@ components:
         nativeMethod:
           type: boolean
       title: StackTraceElement
+    Throwable:
+      type: object
+      properties:
+        cause:
+          $ref: '#/components/schemas/Throwable'
+        localizedMessage:
+          type: string
+        message:
+          type: string
+        stackTrace:
+          type: array
+          items:
+            $ref: '#/components/schemas/StackTraceElement'
+        suppressed:
+          type: array
+          items:
+            $ref: '#/components/schemas/Throwable'
+      title: Throwable
     ResponseEntity:
       type: object
       properties:
@@ -246,21 +234,27 @@ components:
           type: integer
           format: int32
       title: ResponseEntity
-    Throwable:
+    AgentIntrospection:
       type: object
       properties:
-        cause:
+        id:
+          type: string
+        lastError:
           $ref: '#/components/schemas/Throwable'
-        localizedMessage:
+        lastExecutionDurationMs:
+          type: integer
+          format: int64
+        lastExecutionStartDate:
           type: string
-        message:
+        lastExecutionStartMs:
+          type: integer
+          format: int64
+        provider:
           type: string
-        stackTrace:
-          type: array
-          items:
-            $ref: '#/components/schemas/StackTraceElement'
-        suppressed:
-          type: array
-          items:
-            $ref: '#/components/schemas/Throwable'
-      title: Throwable
+        totalAdditions:
+          type: integer
+          format: int32
+        totalEvictions:
+          type: integer
+          format: int32
+      title: AgentIntrospection

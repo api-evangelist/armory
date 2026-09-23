@@ -1,17 +1,11 @@
 openapi: 3.2.0
 info:
-  title: Armory Scale Agent Infrastructure Subnet Controller API
-  description: Cloud infrastructure lookups - networks, subnets, VPCs, security groups, elastic IPs, instance types, reservation reports and search.
-  version: 0.13.x
+  description: Cloud read and write operations
+  title: clouddriver Subnet Controller API
   contact:
-    name: Armory Docs
-    url: https://docs.armory.io/plugins/scale-agent/
-  x-origin:
-  - format: swagger
-    version: '2.0'
-    url: https://docs.armory.io/reference/scale-agent/swagger.json
+    name: admin@host.net
 servers:
-- url: /
+- url: https://localhost:7002/
 tags:
 - name: subnet-controller
 paths:
