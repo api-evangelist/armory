@@ -40,6 +40,21 @@ paths:
       deprecated: false
 components:
   schemas:
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker
     ServerGroupManager:
       type: object
       properties:
@@ -72,18 +87,3 @@ components:
         region:
           type: string
       title: ServerGroupSummary
-    Moniker:
-      type: object
-      properties:
-        app:
-          type: string
-        cluster:
-          type: string
-        detail:
-          type: string
-        sequence:
-          type: integer
-          format: int32
-        stack:
-          type: string
-      title: Moniker

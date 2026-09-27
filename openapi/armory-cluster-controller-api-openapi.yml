@@ -435,11 +435,206 @@ paths:
       deprecated: false
 components:
   schemas:
+    ClusterViewModel:
+      type: object
+      properties:
+        account:
+          type: string
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            type: string
+      title: ClusterViewModel
+    LoadBalancerServerGroup:
+      type: object
+      properties:
+        account:
+          type: string
+        cloudProvider:
+          type: string
+        detachedInstances:
+          type: array
+          items:
+            type: string
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadBalancerInstance'
+        isDisabled:
+          type: boolean
+        name:
+          type: string
+        region:
+          type: string
+      title: LoadBalancerServerGroup
+    Summary:
+      type: object
+      title: Summary
+    LoadBalancerInstance:
+      type: object
+      properties:
+        health:
+          type: object
+        id:
+          type: string
+        name:
+          type: string
+        zone:
+          type: string
+      title: LoadBalancerInstance
+    Cluster:
+      type: object
+      properties:
+        accountName:
+          type: string
+        loadBalancers:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadBalancer'
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerGroup'
+        type:
+          type: string
+      title: Cluster
+    LoadBalancer:
+      type: object
+      properties:
+        account:
+          type: string
+        cloudProvider:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadBalancerServerGroup'
+        type:
+          type: string
+      title: LoadBalancer
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker
+    Instance:
+      type: object
+      properties:
+        cloudProvider:
+          type: string
+        health:
+          type: array
+          items:
+            $ref: '#/components/schemas/Map_string_object'
+        healthState:
+          type: string
+          enum:
+          - Failed
+          - Down
+          - OutOfService
+          - Unknown
+          - Starting
+          - Succeeded
+          - Up
+          - Draining
+        humanReadableName:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchTime:
+          type: integer
+          format: int64
+        name:
+          type: string
+        providerType:
+          type: string
+        zone:
+          type: string
+      title: Instance
+    ServerGroupManagerSummary:
+      type: object
+      properties:
+        account:
+          type: string
+        location:
+          type: string
+        name:
+          type: string
+      title: ServerGroupManagerSummary
+    Capacity:
+      type: object
+      properties:
+        desired:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        min:
+          type: integer
+          format: int32
+        pinned:
+          type: boolean
+      title: Capacity
     Map_string_object:
       type: object
       title: Map«string,object»
       additionalProperties:
         type: object
+    InstanceCounts:
+      type: object
+      properties:
+        down:
+          type: integer
+          format: int32
+        outOfService:
+          type: integer
+          format: int32
+        starting:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        unknown:
+          type: integer
+          format: int32
+        up:
+          type: integer
+          format: int32
+      title: InstanceCounts
     ServerGroup:
       type: object
       properties:
@@ -493,198 +688,3 @@ components:
           items:
             type: string
       title: ServerGroup
-    Summary:
-      type: object
-      title: Summary
-    Cluster:
-      type: object
-      properties:
-        accountName:
-          type: string
-        loadBalancers:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoadBalancer'
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        serverGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServerGroup'
-        type:
-          type: string
-      title: Cluster
-    Moniker:
-      type: object
-      properties:
-        app:
-          type: string
-        cluster:
-          type: string
-        detail:
-          type: string
-        sequence:
-          type: integer
-          format: int32
-        stack:
-          type: string
-      title: Moniker
-    Instance:
-      type: object
-      properties:
-        cloudProvider:
-          type: string
-        health:
-          type: array
-          items:
-            $ref: '#/components/schemas/Map_string_object'
-        healthState:
-          type: string
-          enum:
-          - Failed
-          - Down
-          - OutOfService
-          - Unknown
-          - Starting
-          - Succeeded
-          - Up
-          - Draining
-        humanReadableName:
-          type: string
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        launchTime:
-          type: integer
-          format: int64
-        name:
-          type: string
-        providerType:
-          type: string
-        zone:
-          type: string
-      title: Instance
-    ClusterViewModel:
-      type: object
-      properties:
-        account:
-          type: string
-        loadBalancers:
-          type: array
-          items:
-            type: string
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        serverGroups:
-          type: array
-          items:
-            type: string
-      title: ClusterViewModel
-    LoadBalancerServerGroup:
-      type: object
-      properties:
-        account:
-          type: string
-        cloudProvider:
-          type: string
-        detachedInstances:
-          type: array
-          items:
-            type: string
-        instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoadBalancerInstance'
-        isDisabled:
-          type: boolean
-        name:
-          type: string
-        region:
-          type: string
-      title: LoadBalancerServerGroup
-    LoadBalancerInstance:
-      type: object
-      properties:
-        health:
-          type: object
-        id:
-          type: string
-        name:
-          type: string
-        zone:
-          type: string
-      title: LoadBalancerInstance
-    ServerGroupManagerSummary:
-      type: object
-      properties:
-        account:
-          type: string
-        location:
-          type: string
-        name:
-          type: string
-      title: ServerGroupManagerSummary
-    InstanceCounts:
-      type: object
-      properties:
-        down:
-          type: integer
-          format: int32
-        outOfService:
-          type: integer
-          format: int32
-        starting:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          format: int32
-        unknown:
-          type: integer
-          format: int32
-        up:
-          type: integer
-          format: int32
-      title: InstanceCounts
-    Capacity:
-      type: object
-      properties:
-        desired:
-          type: integer
-          format: int32
-        max:
-          type: integer
-          format: int32
-        min:
-          type: integer
-          format: int32
-        pinned:
-          type: boolean
-      title: Capacity
-    LoadBalancer:
-      type: object
-      properties:
-        account:
-          type: string
-        cloudProvider:
-          type: string
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        serverGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoadBalancerServerGroup'
-        type:
-          type: string
-      title: LoadBalancer

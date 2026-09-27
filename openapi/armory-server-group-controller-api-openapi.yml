@@ -115,64 +115,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    Map_string_object:
-      type: object
-      title: Map«string,object»
-      additionalProperties:
-        type: object
-    ServerGroup:
-      type: object
-      properties:
-        capacity:
-          $ref: '#/components/schemas/Capacity'
-        cloudProvider:
-          type: string
-        createdTime:
-          type: integer
-          format: int64
-        disabled:
-          type: boolean
-        instanceCounts:
-          $ref: '#/components/schemas/InstanceCounts'
-        instanceType:
-          type: string
-        instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/Instance'
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        launchConfig:
-          type: object
-        loadBalancers:
-          type: array
-          items:
-            type: string
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        region:
-          type: string
-        securityGroups:
-          type: array
-          items:
-            type: string
-        serverGroupManagers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServerGroupManagerSummary'
-        tags:
-          type: object
-        type:
-          type: string
-        zones:
-          type: array
-          items:
-            type: string
-      title: ServerGroup
     Moniker:
       type: object
       properties:
@@ -234,6 +176,26 @@ components:
         name:
           type: string
       title: ServerGroupManagerSummary
+    Capacity:
+      type: object
+      properties:
+        desired:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        min:
+          type: integer
+          format: int32
+        pinned:
+          type: boolean
+      title: Capacity
+    Map_string_object:
+      type: object
+      title: Map«string,object»
+      additionalProperties:
+        type: object
     InstanceCounts:
       type: object
       properties:
@@ -256,18 +218,56 @@ components:
           type: integer
           format: int32
       title: InstanceCounts
-    Capacity:
+    ServerGroup:
       type: object
       properties:
-        desired:
+        capacity:
+          $ref: '#/components/schemas/Capacity'
+        cloudProvider:
+          type: string
+        createdTime:
           type: integer
-          format: int32
-        max:
-          type: integer
-          format: int32
-        min:
-          type: integer
-          format: int32
-        pinned:
+          format: int64
+        disabled:
           type: boolean
-      title: Capacity
+        instanceCounts:
+          $ref: '#/components/schemas/InstanceCounts'
+        instanceType:
+          type: string
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instance'
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchConfig:
+          type: object
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        region:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            type: string
+        serverGroupManagers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerGroupManagerSummary'
+        tags:
+          type: object
+        type:
+          type: string
+        zones:
+          type: array
+          items:
+            type: string
+      title: ServerGroup

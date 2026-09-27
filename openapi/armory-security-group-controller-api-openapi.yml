@@ -215,41 +215,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    PortRange:
-      type: object
-      properties:
-        endPort:
-          type: integer
-          format: int32
-        startPort:
-          type: integer
-          format: int32
-      title: PortRange
-    SecurityGroupSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-      title: SecurityGroupSummary
-    Moniker:
-      type: object
-      properties:
-        app:
-          type: string
-        cluster:
-          type: string
-        detail:
-          type: string
-        sequence:
-          type: integer
-          format: int32
-        stack:
-          type: string
-      title: Moniker
     Rule:
       type: object
       properties:
@@ -260,6 +225,26 @@ components:
         protocol:
           type: string
       title: Rule
+    SecurityGroupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+      title: SecurityGroupSummary
+    PortRange:
+      type: object
+      properties:
+        endPort:
+          type: integer
+          format: int32
+        startPort:
+          type: integer
+          format: int32
+      title: PortRange
     SecurityGroup:
       type: object
       properties:
@@ -294,3 +279,18 @@ components:
         type:
           type: string
       title: SecurityGroup
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker

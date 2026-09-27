@@ -75,22 +75,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    Application:
-      type: object
-      properties:
-        attributes:
-          type: object
-          additionalProperties:
-            type: string
-        clusterNames:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        name:
-          type: string
-      title: Application
     ApplicationViewModel:
       type: object
       properties:
@@ -123,3 +107,19 @@ components:
           items:
             type: string
       title: ApplicationClusterViewModel
+    Application:
+      type: object
+      properties:
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+        clusterNames:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        name:
+          type: string
+      title: Application

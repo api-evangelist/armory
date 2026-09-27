@@ -115,27 +115,6 @@ paths:
         required: true
 components:
   schemas:
-    StackTraceElement:
-      type: object
-      properties:
-        classLoaderName:
-          type: string
-        className:
-          type: string
-        fileName:
-          type: string
-        lineNumber:
-          type: integer
-          format: int32
-        methodName:
-          type: string
-        moduleName:
-          type: string
-        moduleVersion:
-          type: string
-        nativeMethod:
-          type: boolean
-      title: StackTraceElement
     Throwable:
       type: object
       properties:
@@ -234,6 +213,27 @@ components:
           type: integer
           format: int32
       title: ResponseEntity
+    StackTraceElement:
+      type: object
+      properties:
+        classLoaderName:
+          type: string
+        className:
+          type: string
+        fileName:
+          type: string
+        lineNumber:
+          type: integer
+          format: int32
+        methodName:
+          type: string
+        moduleName:
+          type: string
+        moduleVersion:
+          type: string
+        nativeMethod:
+          type: boolean
+      title: StackTraceElement
     AgentIntrospection:
       type: object
       properties:

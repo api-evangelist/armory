@@ -52,21 +52,6 @@ components:
         zone:
           type: string
       title: LoadBalancerInstance
-    Moniker:
-      type: object
-      properties:
-        app:
-          type: string
-        cluster:
-          type: string
-        detail:
-          type: string
-        sequence:
-          type: integer
-          format: int32
-        stack:
-          type: string
-      title: Moniker
     LoadBalancer:
       type: object
       properties:
@@ -89,6 +74,21 @@ components:
         type:
           type: string
       title: LoadBalancer
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker
     LoadBalancerServerGroup:
       type: object
       properties:
