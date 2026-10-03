@@ -290,11 +290,6 @@ components:
         status:
           $ref: '#/components/schemas/Status'
       title: Task
-    Map_string_Map:
-      type: object
-      title: Map«string,Map»
-      additionalProperties:
-        $ref: '#/components/schemas/Map'
     Status:
       type: object
       properties:
@@ -309,14 +304,6 @@ components:
         status:
           type: string
       title: Status
-    StartOperationResult:
-      type: object
-      properties:
-        id:
-          type: string
-        resourceUri:
-          type: string
-      title: StartOperationResult
     SagaId:
       type: object
       properties:
@@ -325,3 +312,16 @@ components:
         name:
           type: string
       title: SagaId
+    StartOperationResult:
+      type: object
+      properties:
+        id:
+          type: string
+        resourceUri:
+          type: string
+      title: StartOperationResult
+    Map_string_Map:
+      type: object
+      title: Map«string,Map»
+      additionalProperties:
+        $ref: '#/components/schemas/Map'

@@ -435,81 +435,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    ClusterViewModel:
-      type: object
-      properties:
-        account:
-          type: string
-        loadBalancers:
-          type: array
-          items:
-            type: string
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        serverGroups:
-          type: array
-          items:
-            type: string
-      title: ClusterViewModel
-    LoadBalancerServerGroup:
-      type: object
-      properties:
-        account:
-          type: string
-        cloudProvider:
-          type: string
-        detachedInstances:
-          type: array
-          items:
-            type: string
-        instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoadBalancerInstance'
-        isDisabled:
-          type: boolean
-        name:
-          type: string
-        region:
-          type: string
-      title: LoadBalancerServerGroup
-    Summary:
-      type: object
-      title: Summary
-    LoadBalancerInstance:
-      type: object
-      properties:
-        health:
-          type: object
-        id:
-          type: string
-        name:
-          type: string
-        zone:
-          type: string
-      title: LoadBalancerInstance
-    Cluster:
-      type: object
-      properties:
-        accountName:
-          type: string
-        loadBalancers:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoadBalancer'
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        serverGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServerGroup'
-        type:
-          type: string
-      title: Cluster
     LoadBalancer:
       type: object
       properties:
@@ -532,6 +457,117 @@ components:
         type:
           type: string
       title: LoadBalancer
+    Summary:
+      type: object
+      title: Summary
+    LoadBalancerServerGroup:
+      type: object
+      properties:
+        account:
+          type: string
+        cloudProvider:
+          type: string
+        detachedInstances:
+          type: array
+          items:
+            type: string
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadBalancerInstance'
+        isDisabled:
+          type: boolean
+        name:
+          type: string
+        region:
+          type: string
+      title: LoadBalancerServerGroup
+    Capacity:
+      type: object
+      properties:
+        desired:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        min:
+          type: integer
+          format: int32
+        pinned:
+          type: boolean
+      title: Capacity
+    ServerGroup:
+      type: object
+      properties:
+        capacity:
+          $ref: '#/components/schemas/Capacity'
+        cloudProvider:
+          type: string
+        createdTime:
+          type: integer
+          format: int64
+        disabled:
+          type: boolean
+        instanceCounts:
+          $ref: '#/components/schemas/InstanceCounts'
+        instanceType:
+          type: string
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instance'
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchConfig:
+          type: object
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        region:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            type: string
+        serverGroupManagers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerGroupManagerSummary'
+        tags:
+          type: object
+        type:
+          type: string
+        zones:
+          type: array
+          items:
+            type: string
+      title: ServerGroup
+    ClusterViewModel:
+      type: object
+      properties:
+        account:
+          type: string
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            type: string
+      title: ClusterViewModel
     Moniker:
       type: object
       properties:
@@ -593,26 +629,6 @@ components:
         name:
           type: string
       title: ServerGroupManagerSummary
-    Capacity:
-      type: object
-      properties:
-        desired:
-          type: integer
-          format: int32
-        max:
-          type: integer
-          format: int32
-        min:
-          type: integer
-          format: int32
-        pinned:
-          type: boolean
-      title: Capacity
-    Map_string_object:
-      type: object
-      title: Map«string,object»
-      additionalProperties:
-        type: object
     InstanceCounts:
       type: object
       properties:
@@ -635,56 +651,40 @@ components:
           type: integer
           format: int32
       title: InstanceCounts
-    ServerGroup:
+    Map_string_object:
+      type: object
+      title: Map«string,object»
+      additionalProperties:
+        type: object
+    LoadBalancerInstance:
       type: object
       properties:
-        capacity:
-          $ref: '#/components/schemas/Capacity'
-        cloudProvider:
-          type: string
-        createdTime:
-          type: integer
-          format: int64
-        disabled:
-          type: boolean
-        instanceCounts:
-          $ref: '#/components/schemas/InstanceCounts'
-        instanceType:
-          type: string
-        instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/Instance'
-        labels:
+        health:
           type: object
-          additionalProperties:
-            type: string
-        launchConfig:
-          type: object
+        id:
+          type: string
+        name:
+          type: string
+        zone:
+          type: string
+      title: LoadBalancerInstance
+    Cluster:
+      type: object
+      properties:
+        accountName:
+          type: string
         loadBalancers:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/LoadBalancer'
         moniker:
           $ref: '#/components/schemas/Moniker'
         name:
           type: string
-        region:
-          type: string
-        securityGroups:
+        serverGroups:
           type: array
           items:
-            type: string
-        serverGroupManagers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServerGroupManagerSummary'
-        tags:
-          type: object
+            $ref: '#/components/schemas/ServerGroup'
         type:
           type: string
-        zones:
-          type: array
-          items:
-            type: string
-      title: ServerGroup
+      title: Cluster

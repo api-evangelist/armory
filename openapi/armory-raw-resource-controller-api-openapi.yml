@@ -67,24 +67,6 @@ components:
         region:
           type: string
       title: KubernetesRawResource
-    KubernetesApiGroup:
-      type: object
-      properties:
-        nativeGroup:
-          type: boolean
-      title: KubernetesApiGroup
-    KubernetesApiVersion:
-      type: object
-      properties:
-        apiGroup:
-          $ref: '#/components/schemas/KubernetesApiGroup'
-      title: KubernetesApiVersion
-    KubernetesKind:
-      type: object
-      properties:
-        apiGroup:
-          $ref: '#/components/schemas/KubernetesApiGroup'
-      title: KubernetesKind
     Moniker:
       type: object
       properties:
@@ -100,3 +82,21 @@ components:
         stack:
           type: string
       title: Moniker
+    KubernetesApiVersion:
+      type: object
+      properties:
+        apiGroup:
+          $ref: '#/components/schemas/KubernetesApiGroup'
+      title: KubernetesApiVersion
+    KubernetesKind:
+      type: object
+      properties:
+        apiGroup:
+          $ref: '#/components/schemas/KubernetesApiGroup'
+      title: KubernetesKind
+    KubernetesApiGroup:
+      type: object
+      properties:
+        nativeGroup:
+          type: boolean
+      title: KubernetesApiGroup

@@ -72,11 +72,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    Map_string_object:
-      type: object
-      title: Map«string,object»
-      additionalProperties:
-        type: object
     SearchResultSet:
       type: object
       properties:
@@ -98,3 +93,8 @@ components:
           type: integer
           format: int32
       title: SearchResultSet
+    Map_string_object:
+      type: object
+      title: Map«string,object»
+      additionalProperties:
+        type: object
