@@ -115,24 +115,30 @@ paths:
         required: true
 components:
   schemas:
-    Throwable:
+    AgentIntrospection:
       type: object
       properties:
-        cause:
+        id:
+          type: string
+        lastError:
           $ref: '#/components/schemas/Throwable'
-        localizedMessage:
+        lastExecutionDurationMs:
+          type: integer
+          format: int64
+        lastExecutionStartDate:
           type: string
-        message:
+        lastExecutionStartMs:
+          type: integer
+          format: int64
+        provider:
           type: string
-        stackTrace:
-          type: array
-          items:
-            $ref: '#/components/schemas/StackTraceElement'
-        suppressed:
-          type: array
-          items:
-            $ref: '#/components/schemas/Throwable'
-      title: Throwable
+        totalAdditions:
+          type: integer
+          format: int32
+        totalEvictions:
+          type: integer
+          format: int32
+      title: AgentIntrospection
     ResponseEntity:
       type: object
       properties:
@@ -234,27 +240,21 @@ components:
         nativeMethod:
           type: boolean
       title: StackTraceElement
-    AgentIntrospection:
+    Throwable:
       type: object
       properties:
-        id:
-          type: string
-        lastError:
+        cause:
           $ref: '#/components/schemas/Throwable'
-        lastExecutionDurationMs:
-          type: integer
-          format: int64
-        lastExecutionStartDate:
+        localizedMessage:
           type: string
-        lastExecutionStartMs:
-          type: integer
-          format: int64
-        provider:
+        message:
           type: string
-        totalAdditions:
-          type: integer
-          format: int32
-        totalEvictions:
-          type: integer
-          format: int32
-      title: AgentIntrospection
+        stackTrace:
+          type: array
+          items:
+            $ref: '#/components/schemas/StackTraceElement'
+        suppressed:
+          type: array
+          items:
+            $ref: '#/components/schemas/Throwable'
+      title: Throwable

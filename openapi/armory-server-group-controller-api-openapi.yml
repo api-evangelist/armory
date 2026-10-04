@@ -130,59 +130,6 @@ components:
         pinned:
           type: boolean
       title: Capacity
-    ServerGroup:
-      type: object
-      properties:
-        capacity:
-          $ref: '#/components/schemas/Capacity'
-        cloudProvider:
-          type: string
-        createdTime:
-          type: integer
-          format: int64
-        disabled:
-          type: boolean
-        instanceCounts:
-          $ref: '#/components/schemas/InstanceCounts'
-        instanceType:
-          type: string
-        instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/Instance'
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        launchConfig:
-          type: object
-        loadBalancers:
-          type: array
-          items:
-            type: string
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        region:
-          type: string
-        securityGroups:
-          type: array
-          items:
-            type: string
-        serverGroupManagers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServerGroupManagerSummary'
-        tags:
-          type: object
-        type:
-          type: string
-        zones:
-          type: array
-          items:
-            type: string
-      title: ServerGroup
     Moniker:
       type: object
       properties:
@@ -266,6 +213,59 @@ components:
           type: integer
           format: int32
       title: InstanceCounts
+    ServerGroup:
+      type: object
+      properties:
+        capacity:
+          $ref: '#/components/schemas/Capacity'
+        cloudProvider:
+          type: string
+        createdTime:
+          type: integer
+          format: int64
+        disabled:
+          type: boolean
+        instanceCounts:
+          $ref: '#/components/schemas/InstanceCounts'
+        instanceType:
+          type: string
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Instance'
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchConfig:
+          type: object
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        region:
+          type: string
+        securityGroups:
+          type: array
+          items:
+            type: string
+        serverGroupManagers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerGroupManagerSummary'
+        tags:
+          type: object
+        type:
+          type: string
+        zones:
+          type: array
+          items:
+            type: string
+      title: ServerGroup
     Map_string_object:
       type: object
       title: Map«string,object»

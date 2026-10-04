@@ -40,6 +40,27 @@ paths:
       deprecated: false
 components:
   schemas:
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker
+    KubernetesApiGroup:
+      type: object
+      properties:
+        nativeGroup:
+          type: boolean
+      title: KubernetesApiGroup
     KubernetesRawResource:
       type: object
       properties:
@@ -67,21 +88,6 @@ components:
         region:
           type: string
       title: KubernetesRawResource
-    Moniker:
-      type: object
-      properties:
-        app:
-          type: string
-        cluster:
-          type: string
-        detail:
-          type: string
-        sequence:
-          type: integer
-          format: int32
-        stack:
-          type: string
-      title: Moniker
     KubernetesApiVersion:
       type: object
       properties:
@@ -94,9 +100,3 @@ components:
         apiGroup:
           $ref: '#/components/schemas/KubernetesApiGroup'
       title: KubernetesKind
-    KubernetesApiGroup:
-      type: object
-      properties:
-        nativeGroup:
-          type: boolean
-      title: KubernetesApiGroup

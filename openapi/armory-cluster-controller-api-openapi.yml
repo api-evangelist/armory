@@ -435,6 +435,157 @@ paths:
       deprecated: false
 components:
   schemas:
+    Capacity:
+      type: object
+      properties:
+        desired:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        min:
+          type: integer
+          format: int32
+        pinned:
+          type: boolean
+      title: Capacity
+    Summary:
+      type: object
+      title: Summary
+    LoadBalancerInstance:
+      type: object
+      properties:
+        health:
+          type: object
+        id:
+          type: string
+        name:
+          type: string
+        zone:
+          type: string
+      title: LoadBalancerInstance
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker
+    Cluster:
+      type: object
+      properties:
+        accountName:
+          type: string
+        loadBalancers:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadBalancer'
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerGroup'
+        type:
+          type: string
+      title: Cluster
+    Instance:
+      type: object
+      properties:
+        cloudProvider:
+          type: string
+        health:
+          type: array
+          items:
+            $ref: '#/components/schemas/Map_string_object'
+        healthState:
+          type: string
+          enum:
+          - Failed
+          - Down
+          - OutOfService
+          - Unknown
+          - Starting
+          - Succeeded
+          - Up
+          - Draining
+        humanReadableName:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchTime:
+          type: integer
+          format: int64
+        name:
+          type: string
+        providerType:
+          type: string
+        zone:
+          type: string
+      title: Instance
+    ServerGroupManagerSummary:
+      type: object
+      properties:
+        account:
+          type: string
+        location:
+          type: string
+        name:
+          type: string
+      title: ServerGroupManagerSummary
+    ClusterViewModel:
+      type: object
+      properties:
+        account:
+          type: string
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            type: string
+      title: ClusterViewModel
+    InstanceCounts:
+      type: object
+      properties:
+        down:
+          type: integer
+          format: int32
+        outOfService:
+          type: integer
+          format: int32
+        starting:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        unknown:
+          type: integer
+          format: int32
+        up:
+          type: integer
+          format: int32
+      title: InstanceCounts
     LoadBalancer:
       type: object
       properties:
@@ -457,46 +608,6 @@ components:
         type:
           type: string
       title: LoadBalancer
-    Summary:
-      type: object
-      title: Summary
-    LoadBalancerServerGroup:
-      type: object
-      properties:
-        account:
-          type: string
-        cloudProvider:
-          type: string
-        detachedInstances:
-          type: array
-          items:
-            type: string
-        instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoadBalancerInstance'
-        isDisabled:
-          type: boolean
-        name:
-          type: string
-        region:
-          type: string
-      title: LoadBalancerServerGroup
-    Capacity:
-      type: object
-      properties:
-        desired:
-          type: integer
-          format: int32
-        max:
-          type: integer
-          format: int32
-        min:
-          type: integer
-          format: int32
-        pinned:
-          type: boolean
-      title: Capacity
     ServerGroup:
       type: object
       properties:
@@ -550,141 +661,30 @@ components:
           items:
             type: string
       title: ServerGroup
-    ClusterViewModel:
-      type: object
-      properties:
-        account:
-          type: string
-        loadBalancers:
-          type: array
-          items:
-            type: string
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        serverGroups:
-          type: array
-          items:
-            type: string
-      title: ClusterViewModel
-    Moniker:
-      type: object
-      properties:
-        app:
-          type: string
-        cluster:
-          type: string
-        detail:
-          type: string
-        sequence:
-          type: integer
-          format: int32
-        stack:
-          type: string
-      title: Moniker
-    Instance:
-      type: object
-      properties:
-        cloudProvider:
-          type: string
-        health:
-          type: array
-          items:
-            $ref: '#/components/schemas/Map_string_object'
-        healthState:
-          type: string
-          enum:
-          - Failed
-          - Down
-          - OutOfService
-          - Unknown
-          - Starting
-          - Succeeded
-          - Up
-          - Draining
-        humanReadableName:
-          type: string
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        launchTime:
-          type: integer
-          format: int64
-        name:
-          type: string
-        providerType:
-          type: string
-        zone:
-          type: string
-      title: Instance
-    ServerGroupManagerSummary:
-      type: object
-      properties:
-        account:
-          type: string
-        location:
-          type: string
-        name:
-          type: string
-      title: ServerGroupManagerSummary
-    InstanceCounts:
-      type: object
-      properties:
-        down:
-          type: integer
-          format: int32
-        outOfService:
-          type: integer
-          format: int32
-        starting:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          format: int32
-        unknown:
-          type: integer
-          format: int32
-        up:
-          type: integer
-          format: int32
-      title: InstanceCounts
     Map_string_object:
       type: object
       title: Map«string,object»
       additionalProperties:
         type: object
-    LoadBalancerInstance:
+    LoadBalancerServerGroup:
       type: object
       properties:
-        health:
-          type: object
-        id:
+        account:
           type: string
-        name:
+        cloudProvider:
           type: string
-        zone:
-          type: string
-      title: LoadBalancerInstance
-    Cluster:
-      type: object
-      properties:
-        accountName:
-          type: string
-        loadBalancers:
+        detachedInstances:
           type: array
           items:
-            $ref: '#/components/schemas/LoadBalancer'
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        serverGroups:
+            type: string
+        instances:
           type: array
           items:
-            $ref: '#/components/schemas/ServerGroup'
-        type:
+            $ref: '#/components/schemas/LoadBalancerInstance'
+        isDisabled:
+          type: boolean
+        name:
           type: string
-      title: Cluster
+        region:
+          type: string
+      title: LoadBalancerServerGroup

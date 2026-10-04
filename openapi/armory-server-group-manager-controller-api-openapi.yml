@@ -60,18 +60,6 @@ components:
           items:
             $ref: '#/components/schemas/ServerGroupSummary'
       title: ServerGroupManager
-    ServerGroupSummary:
-      type: object
-      properties:
-        account:
-          type: string
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        region:
-          type: string
-      title: ServerGroupSummary
     Moniker:
       type: object
       properties:
@@ -87,3 +75,15 @@ components:
         stack:
           type: string
       title: Moniker
+    ServerGroupSummary:
+      type: object
+      properties:
+        account:
+          type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        region:
+          type: string
+      title: ServerGroupSummary

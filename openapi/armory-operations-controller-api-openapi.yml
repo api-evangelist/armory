@@ -261,6 +261,33 @@ paths:
         required: true
 components:
   schemas:
+    StartOperationResult:
+      type: object
+      properties:
+        id:
+          type: string
+        resourceUri:
+          type: string
+      title: StartOperationResult
+    Map_string_Map:
+      type: object
+      title: Map«string,Map»
+      additionalProperties:
+        $ref: '#/components/schemas/Map'
+    Status:
+      type: object
+      properties:
+        completed:
+          type: boolean
+        failed:
+          type: boolean
+        phase:
+          type: string
+        retryable:
+          type: boolean
+        status:
+          type: string
+      title: Status
     Task:
       type: object
       properties:
@@ -290,20 +317,6 @@ components:
         status:
           $ref: '#/components/schemas/Status'
       title: Task
-    Status:
-      type: object
-      properties:
-        completed:
-          type: boolean
-        failed:
-          type: boolean
-        phase:
-          type: string
-        retryable:
-          type: boolean
-        status:
-          type: string
-      title: Status
     SagaId:
       type: object
       properties:
@@ -312,16 +325,3 @@ components:
         name:
           type: string
       title: SagaId
-    StartOperationResult:
-      type: object
-      properties:
-        id:
-          type: string
-        resourceUri:
-          type: string
-      title: StartOperationResult
-    Map_string_Map:
-      type: object
-      title: Map«string,Map»
-      additionalProperties:
-        $ref: '#/components/schemas/Map'

@@ -62,28 +62,6 @@ components:
         type:
           type: string
       title: LoadBalancer
-    LoadBalancerServerGroup:
-      type: object
-      properties:
-        account:
-          type: string
-        cloudProvider:
-          type: string
-        detachedInstances:
-          type: array
-          items:
-            type: string
-        instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoadBalancerInstance'
-        isDisabled:
-          type: boolean
-        name:
-          type: string
-        region:
-          type: string
-      title: LoadBalancerServerGroup
     LoadBalancerInstance:
       type: object
       properties:
@@ -111,3 +89,25 @@ components:
         stack:
           type: string
       title: Moniker
+    LoadBalancerServerGroup:
+      type: object
+      properties:
+        account:
+          type: string
+        cloudProvider:
+          type: string
+        detachedInstances:
+          type: array
+          items:
+            type: string
+        instances:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadBalancerInstance'
+        isDisabled:
+          type: boolean
+        name:
+          type: string
+        region:
+          type: string
+      title: LoadBalancerServerGroup

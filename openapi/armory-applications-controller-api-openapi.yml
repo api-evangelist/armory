@@ -75,22 +75,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    ApplicationClusterViewModel:
-      type: object
-      properties:
-        loadBalancers:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        provider:
-          type: string
-        serverGroups:
-          type: array
-          items:
-            type: string
-      title: ApplicationClusterViewModel
     ApplicationViewModel:
       type: object
       properties:
@@ -107,6 +91,22 @@ components:
         name:
           type: string
       title: ApplicationViewModel
+    ApplicationClusterViewModel:
+      type: object
+      properties:
+        loadBalancers:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        provider:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            type: string
+      title: ApplicationClusterViewModel
     Application:
       type: object
       properties:
