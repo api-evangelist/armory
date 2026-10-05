@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.armory.io/reference/scale-agent/swagger.json",
+ "requested_url": "https://docs.armory.io/reference/scale-agent/swagger.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 98755,
+ "sha256": "d6b609f151c6cff7c15025450a0175746189a28f3705a525c6cbb4235bb4ee9d",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
