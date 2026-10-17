@@ -40,28 +40,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    LoadBalancer:
-      type: object
-      properties:
-        account:
-          type: string
-        cloudProvider:
-          type: string
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        moniker:
-          $ref: '#/components/schemas/Moniker'
-        name:
-          type: string
-        serverGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoadBalancerServerGroup'
-        type:
-          type: string
-      title: LoadBalancer
     LoadBalancerInstance:
       type: object
       properties:
@@ -89,6 +67,28 @@ components:
         stack:
           type: string
       title: Moniker
+    LoadBalancer:
+      type: object
+      properties:
+        account:
+          type: string
+        cloudProvider:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        moniker:
+          $ref: '#/components/schemas/Moniker'
+        name:
+          type: string
+        serverGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoadBalancerServerGroup'
+        type:
+          type: string
+      title: LoadBalancer
     LoadBalancerServerGroup:
       type: object
       properties:

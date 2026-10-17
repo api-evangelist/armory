@@ -115,104 +115,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    Capacity:
-      type: object
-      properties:
-        desired:
-          type: integer
-          format: int32
-        max:
-          type: integer
-          format: int32
-        min:
-          type: integer
-          format: int32
-        pinned:
-          type: boolean
-      title: Capacity
-    Moniker:
-      type: object
-      properties:
-        app:
-          type: string
-        cluster:
-          type: string
-        detail:
-          type: string
-        sequence:
-          type: integer
-          format: int32
-        stack:
-          type: string
-      title: Moniker
-    Instance:
-      type: object
-      properties:
-        cloudProvider:
-          type: string
-        health:
-          type: array
-          items:
-            $ref: '#/components/schemas/Map_string_object'
-        healthState:
-          type: string
-          enum:
-          - Failed
-          - Down
-          - OutOfService
-          - Unknown
-          - Starting
-          - Succeeded
-          - Up
-          - Draining
-        humanReadableName:
-          type: string
-        labels:
-          type: object
-          additionalProperties:
-            type: string
-        launchTime:
-          type: integer
-          format: int64
-        name:
-          type: string
-        providerType:
-          type: string
-        zone:
-          type: string
-      title: Instance
-    ServerGroupManagerSummary:
-      type: object
-      properties:
-        account:
-          type: string
-        location:
-          type: string
-        name:
-          type: string
-      title: ServerGroupManagerSummary
-    InstanceCounts:
-      type: object
-      properties:
-        down:
-          type: integer
-          format: int32
-        outOfService:
-          type: integer
-          format: int32
-        starting:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          format: int32
-        unknown:
-          type: integer
-          format: int32
-        up:
-          type: integer
-          format: int32
-      title: InstanceCounts
     ServerGroup:
       type: object
       properties:
@@ -266,8 +168,106 @@ components:
           items:
             type: string
       title: ServerGroup
+    InstanceCounts:
+      type: object
+      properties:
+        down:
+          type: integer
+          format: int32
+        outOfService:
+          type: integer
+          format: int32
+        starting:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        unknown:
+          type: integer
+          format: int32
+        up:
+          type: integer
+          format: int32
+      title: InstanceCounts
+    Instance:
+      type: object
+      properties:
+        cloudProvider:
+          type: string
+        health:
+          type: array
+          items:
+            $ref: '#/components/schemas/Map_string_object'
+        healthState:
+          type: string
+          enum:
+          - Failed
+          - Down
+          - OutOfService
+          - Unknown
+          - Starting
+          - Succeeded
+          - Up
+          - Draining
+        humanReadableName:
+          type: string
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        launchTime:
+          type: integer
+          format: int64
+        name:
+          type: string
+        providerType:
+          type: string
+        zone:
+          type: string
+      title: Instance
+    Capacity:
+      type: object
+      properties:
+        desired:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        min:
+          type: integer
+          format: int32
+        pinned:
+          type: boolean
+      title: Capacity
+    Moniker:
+      type: object
+      properties:
+        app:
+          type: string
+        cluster:
+          type: string
+        detail:
+          type: string
+        sequence:
+          type: integer
+          format: int32
+        stack:
+          type: string
+      title: Moniker
     Map_string_object:
       type: object
       title: Map«string,object»
       additionalProperties:
         type: object
+    ServerGroupManagerSummary:
+      type: object
+      properties:
+        account:
+          type: string
+        location:
+          type: string
+        name:
+          type: string
+      title: ServerGroupManagerSummary

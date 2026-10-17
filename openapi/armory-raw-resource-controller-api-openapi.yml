@@ -55,12 +55,6 @@ components:
         stack:
           type: string
       title: Moniker
-    KubernetesApiGroup:
-      type: object
-      properties:
-        nativeGroup:
-          type: boolean
-      title: KubernetesApiGroup
     KubernetesRawResource:
       type: object
       properties:
@@ -88,6 +82,12 @@ components:
         region:
           type: string
       title: KubernetesRawResource
+    KubernetesApiGroup:
+      type: object
+      properties:
+        nativeGroup:
+          type: boolean
+      title: KubernetesApiGroup
     KubernetesApiVersion:
       type: object
       properties:
