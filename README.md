@@ -64,35 +64,156 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Armory, Inc. is a San Mateo, California software company founded in 2016 that built and sold an
-enterprise distribution of the open source Spinnaker continuous delivery platform. Its product line
-covered Armory Continuous Deployment (self-hosted and Armory-managed Spinnaker), Armory Continuous
-Deployment-as-a-Service, and a set of proprietary Spinnaker plugins — the Armory Scale Agent for
-Spinnaker and Kubernetes, Pipelines-as-Code (Dinghy), an OPA-backed Policy Engine, Terraform
-Integration, GitHub Integration and AWS Event Cache.
+Armory, Inc. is a San Mateo, California software company founded in 2016 that built and sold an enterprise distribution of the open source Spinnaker continuous delivery platform. Its product line covered Armory Continuous Deployment (self-hosted and Armory-managed Spinnaker), Armory Continuous Deployment-as-a-Service, and a set of proprietary Spinnaker plugins - the Armory Scale Agent for Spinnaker and Kubernetes, Pipelines-as-Code (Dinghy), an OPA-backed Policy Engine, Terraform Integration, GitHub Integration and AWS Event Cache. Armory raised more than $82M including a $40M Series C, and its assets were acquired by Harness in January 2024. www.armory.io now redirects to harness.io, but docs.armory.io remains live and still publishes the full product documentation plus a real Swagger 2.0 API reference for the Armory Scale Agent Clouddriver surface.
 
-Harness acquired Armory's continuous delivery assets in January 2024. `www.armory.io` now 301s to
-`harness.io/products/continuous-delivery` and the `armory.io` apex no longer completes a TLS
-handshake, but the product did not stop: **docs.armory.io remains live**, Armory CD releases were
-still shipping as recently as **v2.40.2 on 2026-07-27**, and Armory still publishes a real Swagger
-2.0 API reference for the Scale Agent.
+**Areas:** Continuous Delivery · Spinnaker · Kubernetes · DevOps · Deployment Automation · Multi-Cloud · Pipelines · Developer Tools · Plugins · Continuous Deployment
 
-## API surface
+## Armory on APIs.io
 
-- **Armory Scale Agent API** — the REST surface Clouddriver exposes when the Armory Scale Agent
-  plugin is installed. **51 paths, 56 operations**, published as Swagger 2.0 at
-  [`/reference/scale-agent/swagger.json`](https://docs.armory.io/reference/scale-agent/swagger.json).
-  Self-hosted only — served by the operator's own Clouddriver, so there is no vendor base URL.
-- **Armory Continuous Deployment API** — the Spinnaker Gate API, which Armory documents exposing for
-  automation clients on a second port behind x509 client certificates.
+Everything profiled for Armory is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/armory/](https://apis.io/providers/armory/)** — or go straight to one of the APIs or properties below.
 
-## What is gone
+### APIs (23)
 
-`developer.armory.io` and `api.cloud.armory.io` — the Armory CD-as-a-Service developer portal and API
-host — no longer resolve. There is no status page, no `/.well-known/` surface, no security.txt, no
-trust center, no MCP server and no agent card on any Armory host.
+- [Armory Continuous Deployment API (Spinnaker Gate)](https://apis.io/apis/armory/armory-cd-gate-api/) — Armory Continuous Deployment ships the Spinnaker Gate API as its programmatic interface. Armory documents how to expose it for automation clients on a…
+- [Armory Agent Accounts Controller API](https://apis.io/apis/armory/armory-agent-accounts-controller-api/) — The agent-accounts-controller API from Armory — 2 operation(s) for agent-accounts-controller.
+- [Armory Applications Controller API](https://apis.io/apis/armory/armory-applications-controller-api/) — The applications-controller API from Armory — 2 operation(s) for applications-controller.
+- [Armory Artifact Controller API](https://apis.io/apis/armory/armory-artifact-controller-api/) — The artifact-controller API from Armory — 1 operation(s) for artifact-controller.
+- [Armory Cache Controller API](https://apis.io/apis/armory/armory-cache-controller-api/) — The cache-controller API from Armory — 2 operation(s) for cache-controller.
+- [Armory Cluster Controller API](https://apis.io/apis/armory/armory-cluster-controller-api/) — The cluster-controller API from Armory — 8 operation(s) for cluster-controller.
+- [Armory Credentials Controller API](https://apis.io/apis/armory/armory-credentials-controller-api/) — The credentials-controller API from Armory — 4 operation(s) for credentials-controller.
+- [Armory Elastic Ip Controller API](https://apis.io/apis/armory/armory-elastic-ip-controller-api/) — The elastic-ip-controller API from Armory — 1 operation(s) for elastic-ip-controller.
+- [Armory Function Controller API](https://apis.io/apis/armory/armory-function-controller-api/) — The function-controller API from Armory — 1 operation(s) for function-controller.
+- [Armory Instance Controller API](https://apis.io/apis/armory/armory-instance-controller-api/) — The instance-controller API from Armory — 2 operation(s) for instance-controller.
+- [Armory Instance Type Controller API](https://apis.io/apis/armory/armory-instance-type-controller-api/) — The instance-type-controller API from Armory — 1 operation(s) for instance-type-controller.
+- [Armory Job Controller API](https://apis.io/apis/armory/armory-job-controller-api/) — The job-controller API from Armory — 2 operation(s) for job-controller.
+- [Armory Load Balancer Controller API](https://apis.io/apis/armory/armory-load-balancer-controller-api/) — The load-balancer-controller API from Armory — 1 operation(s) for load-balancer-controller.
+- [Armory Network Controller API](https://apis.io/apis/armory/armory-network-controller-api/) — The network-controller API from Armory — 2 operation(s) for network-controller.
+- [Armory Operations Controller API](https://apis.io/apis/armory/armory-operations-controller-api/) — The operations-controller API from Armory — 7 operation(s) for operations-controller.
+- [Armory Raw Resource Controller API](https://apis.io/apis/armory/armory-raw-resource-controller-api/) — The raw-resource-controller API from Armory — 1 operation(s) for raw-resource-controller.
+- [Armory Reservation Report Controller API](https://apis.io/apis/armory/armory-reservation-report-controller-api/) — The reservation-report-controller API from Armory — 2 operation(s) for reservation-report-controller.
+- [Armory Search Controller API](https://apis.io/apis/armory/armory-search-controller-api/) — The search-controller API from Armory — 1 operation(s) for search-controller.
+- [Armory Security Group Controller API](https://apis.io/apis/armory/armory-security-group-controller-api/) — The security-group-controller API from Armory — 5 operation(s) for security-group-controller.
+- [Armory Server Group Controller API](https://apis.io/apis/armory/armory-server-group-controller-api/) — The server-group-controller API from Armory — 2 operation(s) for server-group-controller.
+- [Armory Server Group Manager Controller API](https://apis.io/apis/armory/armory-server-group-manager-controller-api/) — The server-group-manager-controller API from Armory — 1 operation(s) for server-group-manager-controller.
+- [Armory Subnet Controller API](https://apis.io/apis/armory/armory-subnet-controller-api/) — The subnet-controller API from Armory — 2 operation(s) for subnet-controller.
+- [Armory Vpc Controller API](https://apis.io/apis/armory/armory-vpc-controller-api/) — The vpc-controller API from Armory — 1 operation(s) for vpc-controller.
 
-- Docs: https://docs.armory.io/
-- Source: https://github.com/armory · https://github.com/armory-io
-- Containers: https://hub.docker.com/u/armory (219 repositories)
-- Secondary-market listing: https://forgeglobal.com/armory_stock/
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Armory Webhooks](https://apis.io/asyncapis/armory/armory-webhooks/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Armory Agentic Access](https://apis.io/agentic-access/armory/armory-agentic-access/)
+
+#### Collections (22)
+
+Postman and Open Collection request collections.
+
+- [Armory Scale Agent Dynamic Accounts Agent Accounts Controller API](https://apis.io/collections/armory/open-armory-agent-accounts-controller-api/)
+- [Armory Scale Agent Applications & Clusters Applications Controller API](https://apis.io/collections/armory/open-armory-applications-controller-api/)
+- [Armory Scale Agent Credentials Artifact Controller API](https://apis.io/collections/armory/open-armory-artifact-controller-api/)
+- [Armory Scale Agent Operations & Tasks Cache Controller API](https://apis.io/collections/armory/open-armory-cache-controller-api/)
+- [Armory Scale Agent Applications & Clusters Cluster Controller API](https://apis.io/collections/armory/open-armory-cluster-controller-api/)
+- [Armory Scale Agent Credentials Credentials Controller API](https://apis.io/collections/armory/open-armory-credentials-controller-api/)
+- [Armory Scale Agent Infrastructure Elastic Ip Controller API](https://apis.io/collections/armory/open-armory-elastic-ip-controller-api/)
+- [Armory Scale Agent Applications & Clusters Function Controller API](https://apis.io/collections/armory/open-armory-function-controller-api/)
+- [Armory Scale Agent Applications & Clusters Instance Controller API](https://apis.io/collections/armory/open-armory-instance-controller-api/)
+- [Armory Scale Agent Infrastructure Instance Type Controller API](https://apis.io/collections/armory/open-armory-instance-type-controller-api/)
+- [Armory Scale Agent Applications & Clusters Job Controller API](https://apis.io/collections/armory/open-armory-job-controller-api/)
+- [Armory Scale Agent Applications & Clusters Load Balancer Controller API](https://apis.io/collections/armory/open-armory-load-balancer-controller-api/)
+- [Armory Scale Agent Infrastructure Network Controller API](https://apis.io/collections/armory/open-armory-network-controller-api/)
+- [Armory Scale Agent Operations & Tasks Operations Controller API](https://apis.io/collections/armory/open-armory-operations-controller-api/)
+- [Armory Scale Agent Applications & Clusters Raw Resource Controller API](https://apis.io/collections/armory/open-armory-raw-resource-controller-api/)
+- [Armory Scale Agent Infrastructure Reservation Report Controller API](https://apis.io/collections/armory/open-armory-reservation-report-controller-api/)
+- [Armory Scale Agent Infrastructure Search Controller API](https://apis.io/collections/armory/open-armory-search-controller-api/)
+- [Armory Scale Agent Infrastructure Security Group Controller API](https://apis.io/collections/armory/open-armory-security-group-controller-api/)
+- [Armory Scale Agent Applications & Clusters Server Group Controller API](https://apis.io/collections/armory/open-armory-server-group-controller-api/)
+- [Armory Scale Agent Applications & Clusters Server Group Manager Controller API](https://apis.io/collections/armory/open-armory-server-group-manager-controller-api/)
+- [Armory Scale Agent Infrastructure Subnet Controller API](https://apis.io/collections/armory/open-armory-subnet-controller-api/)
+- [Armory Scale Agent Infrastructure Vpc Controller API](https://apis.io/collections/armory/open-armory-vpc-controller-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Armory Scale Agent Overlay](https://apis.io/overlays/armory/armory-scale-agent-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Armory Authentication](https://apis.io/security/armory/armory-authentication/)
+- [Armory Domain Security](https://apis.io/security/armory/armory-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://docs.armory.io/)
+- [Documentation](https://docs.armory.io/)
+- [Getting started](https://docs.armory.io/plugins/scale-agent/install/quickstart/)
+- [API reference](https://docs.armory.io/plugins/scale-agent/reference/)
+- [Support](https://support.armory.io/)
+- [GitHub](https://github.com/armory)
+
+## API Evangelist rating
+
+**Kin Score 34.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 44.6 |
+| Contract governance | 4.5 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 68.5 |
+| Access clarity | 0.0 |
+
+**Agent readiness 25.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | derived (partial credit) |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/armory/](https://apis.io/providers/armory/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Armory: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/armory/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
